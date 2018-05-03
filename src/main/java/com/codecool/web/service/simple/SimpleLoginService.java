@@ -1,7 +1,7 @@
 package com.codecool.web.service.simple;
 
 import com.codecool.web.dao.UserDao;
-import com.codecool.web.model.User;
+//import com.codecool.web.model.User;
 import com.codecool.web.service.LoginService;
 import com.codecool.web.service.exception.ServiceException;
 import javafx.concurrent.Service;
@@ -17,7 +17,7 @@ public final class SimpleLoginService implements LoginService {
         this.userDao = userDao;
     }
 
-    @Override
+    /*@Override
     public User loginUser(String email, String password) throws SQLException, ServiceException {
         try {
             User user = userDao.findByEmail(email);
@@ -28,5 +28,5 @@ public final class SimpleLoginService implements LoginService {
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
-    }
+    }*/
 }

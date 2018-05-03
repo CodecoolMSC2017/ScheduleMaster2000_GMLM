@@ -1,18 +1,18 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.CouponDao;
+/*import com.codecool.web.dao.CouponDao;
 import com.codecool.web.dao.ShopDao;
 import com.codecool.web.model.Coupon;
 import com.codecool.web.model.Shop;
-import com.codecool.web.service.CouponService;
+import com.codecool.web.service.CouponService;*/
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public final class SimpleCouponService implements CouponService {
+public final class SimpleCouponService /*implements CouponService*/ {
 
-    private final CouponDao couponDao;
+    /*private final CouponDao couponDao;
     private final ShopDao shopDao;
 
     public SimpleCouponService(CouponDao couponDao, ShopDao shopDao) {
@@ -83,5 +83,5 @@ public final class SimpleCouponService implements CouponService {
         } catch (NumberFormatException ex) {
             throw new ServiceException("Shop ids must be integers");
         }
-    }
+    }*/
 }

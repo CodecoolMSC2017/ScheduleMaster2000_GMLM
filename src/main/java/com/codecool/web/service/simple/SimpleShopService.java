@@ -1,16 +1,16 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.ShopDao;
-import com.codecool.web.model.Shop;
-import com.codecool.web.service.ShopService;
+//import com.codecool.web.dao.ShopDao;
+//import com.codecool.web.model.Shop;
+//import com.codecool.web.service.ShopService;
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
 import java.util.List;
 
-public final class SimpleShopService implements ShopService {
+public final class SimpleShopService /*implements ShopService*/ {
 
-    private final ShopDao shopDao;
+    /*private final ShopDao shopDao;
 
     public SimpleShopService(ShopDao shopDao) {
         this.shopDao = shopDao;
@@ -43,5 +43,5 @@ public final class SimpleShopService implements ShopService {
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
-    }
+    }*/
 }
