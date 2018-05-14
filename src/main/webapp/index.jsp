@@ -8,11 +8,13 @@
         <c:url value="/style.css" var="styleUrl"/>
         <c:url value="/index.js" var="indexScriptUrl"/>
         <c:url value="/login.js" var="loginScriptUrl"/>
+        <c:url value="/register.js" var="registerScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
+        <script src="${registerScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <title>App</title>
