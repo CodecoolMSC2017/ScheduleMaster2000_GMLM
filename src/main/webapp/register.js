@@ -37,3 +37,8 @@ function onSignUpButtonClicked() {
     xhr.open('POST', 'register');
     xhr.send(params);
 }
+
+function onBackToLoginButtonClicked() {
+    clearMessages();
+    showContents('login-content');
+}
