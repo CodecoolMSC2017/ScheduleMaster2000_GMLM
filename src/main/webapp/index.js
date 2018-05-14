@@ -106,8 +106,8 @@ function onLoad() {
     const signUpButtonEl = document.getElementById('sign-up-button');
     signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
 
-    const logoutButtonEl = document.getElementById('logout-button');
-    logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
+    //const logoutButtonEl = document.getElementById('logout-button');
+    //logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
