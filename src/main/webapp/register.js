@@ -1,4 +1,4 @@
-function onSignUpButtonClicked() {
+function onRegisterResponse() {
     clearMessages();
     if (this.status === OK) {
         alert('Register Success');
@@ -9,8 +9,12 @@ function onSignUpButtonClicked() {
 }
 
 
-
 function onRegisterButtonClicked() {
+    clearMessages();
+    showContents('register-content');
+}
+
+function onSignUpButtonClicked() {
     const registerFormEl = document.forms['register-form'];
 
     const nameInputEl = registerFormEl.querySelector('input[name="name"]');
