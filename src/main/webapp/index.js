@@ -6,6 +6,7 @@ const INTERNAL_SERVER_ERROR = 500;
 
 let loginContentDivEl;
 let registerContentDivEl;
+let registerFormEl;
 let menuContentDivEl;
 
 function newInfo(targetEl, message) {
@@ -25,6 +26,10 @@ function newMessage(targetEl, cssClass, message) {
     pEl.textContent = message;
 
     targetEl.appendChild(pEl);
+}
+
+function clearForm(form) {
+    form.reset();
 }
 
 function clearMessages() {
@@ -95,6 +100,7 @@ function setUnauthorized() {
 function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
     registerContentDivEl = document.getElementById('register-content');
+    registerFormEl = document.getElementById('register-form');
     menuContentDivEl = document.getElementById('menu-content');
 
     const loginButtonEl = document.getElementById('login-button');
