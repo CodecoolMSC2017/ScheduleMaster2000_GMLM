@@ -5,13 +5,8 @@ const NOT_FOUND = 404;
 const INTERNAL_SERVER_ERROR = 500;
 
 let loginContentDivEl;
-let profileContentDivEl;
-let couponContentDivEl;
-let couponsContentDivEl;
-let shopContentDivEl;
-let shopsContentDivEl;
-let backToProfileContentDivEl;
-let logoutContentDivEl;
+let registerContentDivEl;
+let menuContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -62,7 +57,7 @@ function onNetworkError(response) {
     document.body.remove();
     const bodyEl = document.createElement('body');
     document.appendChild(bodyEl);
-    newError(bodyEl, 'Network error, please try reloaing the page');
+    newError(bodyEl, 'Network error, please try reloading the page');
 }
 
 function onOtherResponse(targetEl, xhr) {
@@ -99,16 +94,17 @@ function setUnauthorized() {
 
 function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
-    profileContentDivEl = document.getElementById('profile-content');
-    couponContentDivEl = document.getElementById('coupon-content');
-    couponsContentDivEl = document.getElementById('coupons-content');
-    shopContentDivEl = document.getElementById('shop-content');
-    shopsContentDivEl = document.getElementById('shops-content');
-    backToProfileContentDivEl = document.getElementById('back-to-profile-content');
-    logoutContentDivEl = document.getElementById('logout-content');
+    registerContentDivEl = document.getElementById('register-content');
+    menuContentDivEl = document.getElementById('menu-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
+
+    const registerButtonEl = document.getElementById('register-button')
+    registerButtonEl.addEventListener('click', onRegisterButtonClicked);
+
+    const signUpButtonEl = document.getElementById('sign-up-button');
+    signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
 
     const logoutButtonEl = document.getElementById('logout-button');
     logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
