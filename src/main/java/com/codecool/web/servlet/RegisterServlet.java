@@ -28,7 +28,7 @@ public class RegisterServlet extends AbstractServlet {
 
             userService.addNewUser(name, email, password);
 
-            sendMessage(resp,200, "Registration is succesful!");
+            sendMessage(resp,200, "Registration is successful!");
         } catch (SQLException e) {
             handleSqlError(resp, e);
         } catch (ServiceException e) {
