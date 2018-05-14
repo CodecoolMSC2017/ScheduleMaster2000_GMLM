@@ -1,7 +1,8 @@
 function onRegisterResponse() {
     clearMessages();
     if (this.status === OK) {
-        alert('Register Success');
+        const text = JSON.parse(this.responseText);
+        alert(text.message);
     } else {
         onOtherResponse(registerContentDivEl, this);
     }
