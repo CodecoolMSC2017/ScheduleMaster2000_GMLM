@@ -106,6 +106,9 @@ function onLoad() {
     const signUpButtonEl = document.getElementById('sign-up-button');
     signUpButtonEl.addEventListener('click', onSignUpButtonClicked);
 
+    const backToLoginButtonEl = document.getElementById('back-to-login');
+    backToLoginButtonEl.addEventListener('click', onBackToLoginButtonClicked);
+
     //const logoutButtonEl = document.getElementById('logout-button');
     //logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
 
