@@ -1,4 +1,4 @@
-function onRegisterResponse() {
+function onSignUpButtonClicked() {
     clearMessages();
     if (this.status === OK) {
         alert('Register Success');
