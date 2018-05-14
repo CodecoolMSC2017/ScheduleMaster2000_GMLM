@@ -38,6 +38,7 @@
             E-mail:<input type="text" name="email">
             Password:<input type="password" name="password">
             <button id="sign-up-button">Sign up</button>
+            <button id="back-to-login">Back to login</button>
         </form>
     </div>
 
