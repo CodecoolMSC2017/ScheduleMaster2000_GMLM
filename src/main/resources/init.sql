@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
-	name TEXT UNIQUE NOT NULL,
+	name TEXT NOT NULL,
 	email TEXT UNIQUE NOT NULL,
 	password TEXT NOT NULL,
 	permission BOOLEAN DEFAULT FALSE
@@ -50,18 +50,18 @@ INSERT INTO users (name, email, password, permission) VALUES
 	('Pista Lakatos', 'pLakatos@lungodrom', 'plakatos', 'false'), -- 2
 	('Ketrin Kanalas', 'kkanalas@lungodrom', 'plakatos', 'false'), -- 3
 	('Szantiago Orgovan', 'sorgovan@lungodrom', 'student', 'false'); -- 4
-	
+
 iNSERT INTO schedules (user_id,name) VALUES
 	(2,'Bugázás'), --1
 	(2,'Uzsora'),  --2
 	(3,'Munka'),  --3
 	(4,'Segély nap'); --4
-	
+
 insert into days (schedule_id,name) VALUES
 	(3,'szerda'), --1
 	(3,'csütörtök'), --2
 	(4,'Segély nap'); --3
-	
+
 insert into tasks (name,content,user_id) VALUES
 	('cocózás', 'Pistával öccáért', 3),  --1
 	('nagy aranyeső', 'Szantiagoval  20ért', 3), --2
@@ -69,7 +69,7 @@ insert into tasks (name,content,user_id) VALUES
 	('segélyéy begyűjtés', 'a hivatalba ', 4),  --4
 	('Uzsora behajtás', 'a Búzán Janitól', 4),  --5
 	('Italozás', 'A hatcsöcsűben', 4);  --6
-	
+
 insert into slots (hour,day_id,task_id) VALUES
 	(8,1,1), --1
 	(9,1,2),  --2
