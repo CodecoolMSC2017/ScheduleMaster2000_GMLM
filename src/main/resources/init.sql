@@ -23,7 +23,7 @@ CREATE TABLE schedules (
 CREATE TABLE days (
 	id SERIAL PRIMARY KEY,
 	schedule_id INTEGER NOT NULL,
-	name TEXT,
+	title TEXT,
 	FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 
