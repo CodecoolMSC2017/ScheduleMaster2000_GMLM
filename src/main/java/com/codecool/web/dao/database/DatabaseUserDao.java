@@ -45,14 +45,15 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO users (name, email, password, permission) VALUES (?, ?, ?, ?)";
         try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, name);
             statement.setString(2, email);
             statement.setString(3, password);
+            statement.setBoolean(4, false);
             executeInsert(statement);
             int id = fetchGeneratedId(statement);
-            return new User(id, name, email, password);
+            return new User(id, name, email, password, false);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -66,7 +67,8 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
         String name = resultSet.getString("name");
         String email = resultSet.getString("email");
         String password = resultSet.getString("password");
-        return new User(id, name, email, password);
+        boolean isAdmin = resultSet.getBoolean("permission");
+        return new User(id, name, email, password, isAdmin);
     }
 
     private boolean isEmailExists(String email) throws SQLException {
