@@ -68,4 +68,13 @@ public class SimpleTaskService implements TaskService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    @Override
+    public List<Task> getTaskByDayId(int day_id) throws SQLException, ServiceException {
+        try {
+            return taskDao.getTaskByDayId(day_id);
+        }catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
 }
