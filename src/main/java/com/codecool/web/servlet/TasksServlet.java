@@ -18,23 +18,29 @@ import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet("/protected/tasks")
-public class TasksServlet extends AbstractServlet{
+public class TasksServlet extends AbstractServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ServletContext scx = req.getServletContext();
 
-        try(Connection connection = getConnection(scx)) {
+        try (Connection connection = getConnection(scx)) {
             TaskDao taskDao = new DatabaseTaskDao(connection);
             TaskService taskService = new SimpleTaskService(taskDao);
 
             User actualUser = (User) req.getSession().getAttribute("user");
-            List<Task> tasks = taskService.getUsersTask(actualUser.getId());
+            List<Task> tasks;
 
-            sendMessage(resp, 200, tasks);
+            if (actualUser.isAdmin()) {
+                tasks = taskService.getAllTasks();
+            } else {
+                tasks = taskService.getUsersTask(actualUser.getId());
+            }
+
+            sendMessage(resp, HttpServletResponse.SC_OK, tasks);
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
         } catch (ServiceException e) {
-            sendMessage(resp,401, e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_NO_CONTENT, e.getMessage());
         }
     }
 }
