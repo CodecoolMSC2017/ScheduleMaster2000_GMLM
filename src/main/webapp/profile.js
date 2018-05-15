@@ -4,4 +4,6 @@ function onProfileLoad(user) {
 
     const userNameSpanEl = document.getElementById('user-name');
     userNameSpanEl.textContent = user.name;
+
+    onSchedulesButtonClicked();
 }
