@@ -59,7 +59,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getUsersTask(int user_id) throws SQLException, ServiceException {
         try {
             if (taskDao.getUsersTask(user_id).isEmpty()) {
-                throw new ServiceException();
+                throw new ServiceException("There's no any task yet!");
             } else {
                 return taskDao.getUsersTask(user_id);
             }
