@@ -8,6 +8,7 @@ let loginContentDivEl;
 let registerContentDivEl;
 let registerFormEl;
 let menuContentDivEl;
+let schedulesContentDivEl;
 let tasksContentDivEl;
 
 function newInfo(targetEl, message) {
@@ -103,6 +104,7 @@ function onLoad() {
     registerContentDivEl = document.getElementById('register-content');
     registerFormEl = document.getElementById('register-form');
     menuContentDivEl = document.getElementById('menu-content');
+    schedulesContentDivEl = document.getElementById('schedules-content');
     tasksContentDivEl = document.getElementById('tasks-content');
 
     const loginButtonEl = document.getElementById('login-button');
