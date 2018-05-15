@@ -1,6 +1,20 @@
 let tasksTableEl;
 let tasksTableBodyEl;
 
+function onTaskClicked() {
+    const taskId = this.dataset.taskId;
+
+    const params = new URLSearchParams();
+    params.append('id', taskId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onTaskResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/task?' + params.toString());
+    xhr.send(params);
+}
+
+
 function appendTask(task) {
     const idTdEl = document.createElement('td');
     idTdEl.textContent = task.id;
@@ -10,7 +24,7 @@ function appendTask(task) {
     nameTdEl.setAttribute('id', task.id);
     nameTdEl.dataset.taskId = task.id;
 
-    // nameTdEl.addEventListener('click', onTaskClicked);
+    nameTdEl.addEventListener('click', onTaskClicked);
 
     const modifyButtonTdEl = document.createElement('td');
     const modifyButtonEl = document.createElement('button');

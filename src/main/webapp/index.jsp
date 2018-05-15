@@ -13,6 +13,7 @@
         <c:url value="/schedules.js" var="schedulesScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
+        <c:url value="/task.js" var="taskScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -21,6 +22,7 @@
         <script src="${schedulesScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
+        <script src="${taskScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -82,6 +84,8 @@
             </tbody>
         </table>
     </div>
+
+    <div id="task-content" class="hiddent content"></div>
 
 </body>
 </html>
