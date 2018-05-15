@@ -46,7 +46,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getAllTasks() throws SQLException, ServiceException {
         try {
             if (taskDao.getAllTasks().isEmpty()) {
-                throw new ServiceException();
+                throw new ServiceException("There's no any task yet!");
             } else {
                 return taskDao.getAllTasks();
             }
@@ -81,7 +81,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getTaskByDayId(int day_id) throws SQLException, ServiceException {
         try {
             if (taskDao.getTaskByDayId(day_id).isEmpty()) {
-                throw new ServiceException();
+                throw new ServiceException("There's no any task for this day yet!");
             } else {
                 return taskDao.getTaskByDayId(day_id);
             }
