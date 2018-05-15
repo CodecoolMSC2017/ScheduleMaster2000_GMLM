@@ -5,6 +5,7 @@ import com.codecool.web.dao.database.DatabaseScheduleDao;
 import com.codecool.web.model.Schedule;
 import com.codecool.web.model.User;
 import com.codecool.web.service.ScheduleService;
+import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleScheduleService;
 
 import javax.servlet.ServletContext;
@@ -23,17 +24,24 @@ public class SchedulesServlet extends AbstractServlet {
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ServletContext scx = req.getServletContext();
 
-        try(Connection connection = getConnection(scx)) {
+        try (Connection connection = getConnection(scx)) {
             ScheduleDao scheduleDao = new DatabaseScheduleDao(connection);
             ScheduleService scheduleService = new SimpleScheduleService(scheduleDao);
 
             User actualUser = (User) req.getSession().getAttribute("user");
+            List<Schedule> schedules = null;
 
-            List<Schedule> schedules = scheduleService.getUsersSchedules(actualUser.getId());
+            if (actualUser.isAdmin()) {
+                schedules = scheduleService.getAllSchedules();
+            } else {
+                schedules = scheduleService.getUsersSchedules(actualUser.getId());
+            }
+            sendMessage(resp, HttpServletResponse.SC_OK, schedules);
 
-            sendMessage(resp,200,schedules);
         } catch (SQLException e) {
             handleSqlError(resp, e);
+        } catch (ServiceException e) {
+            sendMessage(resp,HttpServletResponse.SC_NO_CONTENT,e.getMessage());
         }
 
 
