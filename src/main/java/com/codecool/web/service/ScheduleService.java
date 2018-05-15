@@ -13,7 +13,7 @@ public interface ScheduleService {
 
     List<Schedule> getUsersSchedules(int userId) throws SQLException, ServiceException;
 
-    Schedule getScheduleById(int id) throws SQLException;
+    Schedule getScheduleById(int id) throws SQLException, ServiceException;
 
     void addNewSchedule(int userId, String name) throws SQLException;
 

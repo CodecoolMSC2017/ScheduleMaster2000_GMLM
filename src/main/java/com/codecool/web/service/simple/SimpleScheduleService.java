@@ -32,8 +32,13 @@ public class SimpleScheduleService implements ScheduleService {
         }
     }
 
-    public Schedule getScheduleById(int id) throws SQLException {
-        return scheduleDao.getScheduleById(id);
+    public Schedule getScheduleById(int id) throws SQLException, ServiceException {
+        if(scheduleDao.getScheduleById(id) == null) {
+            throw new ServiceException("Not existing schedule'");
+        } else {
+            return scheduleDao.getScheduleById(id);
+        }
+
     }
 
     public void addNewSchedule(int userId, String name) throws SQLException{
