@@ -2,17 +2,12 @@ function onRegisterResponse() {
     clearMessages();
     if (this.status === OK) {
         const text = JSON.parse(this.responseText);
+        clearForm(registerFormEl);
         alert(text.message);
+        showContents('login-content');
     } else {
         onOtherResponse(registerContentDivEl, this);
     }
-
-}
-
-
-function onRegisterButtonClicked() {
-    clearMessages();
-    showContents('register-content');
 }
 
 function onSignUpButtonClicked() {
@@ -36,6 +31,11 @@ function onSignUpButtonClicked() {
     xhr.addEventListener('error', onNetworkError);
     xhr.open('POST', 'register');
     xhr.send(params);
+}
+
+function onRegisterButtonClicked() {
+    clearMessages();
+    showContents('register-content');
 }
 
 function onBackToLoginButtonClicked() {
