@@ -10,14 +10,16 @@
         <c:url value="/login.js" var="loginScriptUrl"/>
         <c:url value="/register.js" var="registerScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
+        <c:url value="/schedules.js" var="schedulesScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
         <script src="${registerScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
+        <script src="${schedulesScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
-        <title>App</title>
+        <title>Schedule Master 2000</title>
     </head>
 <body>
 
@@ -44,10 +46,24 @@
 
     <div id="menu-content" class="hidden content">
         <button id="profile-button">Profile</button>
-        <button id="schedules-button">Schedules</button>
+        <button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button>
         <button id="tasks-button">Tasks</button>
         <p>Welcome <span id="user-name"></span></p>
         <button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button>
+    </div>
+
+    <div id="schedules-content" class="hidden content">
+        <table id="schedules">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Modifiy</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
 
 </body>
