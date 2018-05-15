@@ -7,6 +7,7 @@ const INTERNAL_SERVER_ERROR = 500;
 let loginContentDivEl;
 let registerContentDivEl;
 let menuContentDivEl;
+let tasksContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -96,6 +97,7 @@ function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
     registerContentDivEl = document.getElementById('register-content');
     menuContentDivEl = document.getElementById('menu-content');
+    tasksContentDivEl = document.getElementById('tasks-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
@@ -109,8 +111,8 @@ function onLoad() {
     const backToLoginButtonEl = document.getElementById('back-to-login');
     backToLoginButtonEl.addEventListener('click', onBackToLoginButtonClicked);
 
-    //const logoutButtonEl = document.getElementById('logout-button');
-    //logoutButtonEl.addEventListener('click', onLogoutButtonClicked);
+    const tasksButtonEl = document.getElementById('tasks-button');
+    tasksButtonEl.addEventListener('click', onTasksButtonClicked);
 
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
