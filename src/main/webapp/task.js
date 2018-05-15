@@ -1,5 +1,6 @@
 function onTaskLoad(task) {
     const taskContentDivEl = document.getElementById('task-content');
+    removeAllChildren(taskContentDivEl);
 
     const nameHEl = document.createElement('h3');
     nameHEl.textContent = "Name:";
