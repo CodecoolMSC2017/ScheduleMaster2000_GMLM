@@ -45,7 +45,11 @@ public class SimpleTaskService implements TaskService {
     @Override
     public List<Task> getAllTasks() throws SQLException, ServiceException {
         try {
-            return taskDao.getAllTasks();
+            if (taskDao.getAllTasks().isEmpty()) {
+                throw new ServiceException();
+            } else {
+                return taskDao.getAllTasks();
+            }
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -54,7 +58,11 @@ public class SimpleTaskService implements TaskService {
     @Override
     public List<Task> getUsersTask(int user_id) throws SQLException, ServiceException {
         try {
-            return taskDao.getUsersTask(user_id);
+            if (taskDao.getUsersTask(user_id).isEmpty()) {
+                throw new ServiceException();
+            } else {
+                return taskDao.getUsersTask(user_id);
+            }
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -72,7 +80,11 @@ public class SimpleTaskService implements TaskService {
     @Override
     public List<Task> getTaskByDayId(int day_id) throws SQLException, ServiceException {
         try {
-            return taskDao.getTaskByDayId(day_id);
+            if (taskDao.getTaskByDayId(day_id).isEmpty()) {
+                throw new ServiceException();
+            } else {
+                return taskDao.getTaskByDayId(day_id);
+            }
         }catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
