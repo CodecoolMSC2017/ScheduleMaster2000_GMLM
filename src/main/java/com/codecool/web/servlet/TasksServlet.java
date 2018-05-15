@@ -40,7 +40,7 @@ public class TasksServlet extends AbstractServlet {
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
         } catch (ServiceException e) {
-            sendMessage(resp, HttpServletResponse.SC_NO_CONTENT, e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
         }
     }
 }
