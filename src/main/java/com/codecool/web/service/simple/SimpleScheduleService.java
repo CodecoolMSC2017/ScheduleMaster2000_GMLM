@@ -3,6 +3,7 @@ package com.codecool.web.service.simple;
 import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.model.Schedule;
 import com.codecool.web.service.ScheduleService;
+import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,8 +16,20 @@ public class SimpleScheduleService implements ScheduleService {
         this.scheduleDao = scheduleDao;
     }
 
-    public List<Schedule> getUsersSchedules(int userId) throws SQLException {
-        return scheduleDao.getUsersSchedules(userId);
+    public List<Schedule> getAllSchedules() throws SQLException, ServiceException {
+        if(scheduleDao.getAllSchedules().isEmpty()) {
+            throw new ServiceException("There are no schedules made!");
+        } else {
+            return scheduleDao.getAllSchedules();
+        }
+    }
+
+    public List<Schedule> getUsersSchedules(int userId) throws SQLException, ServiceException {
+        if(scheduleDao.getUsersSchedules(userId).isEmpty()) {
+            throw new ServiceException("You don't have any schedules!");
+        } else {
+            return scheduleDao.getUsersSchedules(userId);
+        }
     }
 
     public Schedule getScheduleById(int id) throws SQLException {
