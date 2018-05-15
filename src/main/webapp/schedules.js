@@ -1,3 +1,6 @@
+let schedulesTableEl;
+let schedulesTableBodyEl;
+
 function appendSchedule(schedule) {
     const nameAEl = document.createElement('a');
     nameAEl.textContent = schedule.name;
@@ -34,8 +37,8 @@ function appendSchedules(schedules) {
 }
 
 function onSchedulesLoad(schedules) {
-    const schedulesTableEl = document.getElementById('schedules');
-    const schedulesTableBodyEl = schedulesTableEl.querySelector('tbody');
+    schedulesTableEl = document.getElementById('schedules');
+    schedulesTableBodyEl = schedulesTableEl.querySelector('tbody');
 
     appendSchedules(schedules);
 }
