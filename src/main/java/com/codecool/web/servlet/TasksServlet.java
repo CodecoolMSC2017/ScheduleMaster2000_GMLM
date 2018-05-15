@@ -17,7 +17,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("protected/tasks")
+@WebServlet("/protected/tasks")
 public class TasksServlet extends AbstractServlet{
 
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -34,7 +34,7 @@ public class TasksServlet extends AbstractServlet{
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
         } catch (ServiceException e) {
-            e.printStackTrace();
+            sendMessage(resp,401, e.getMessage());
         }
     }
 }
