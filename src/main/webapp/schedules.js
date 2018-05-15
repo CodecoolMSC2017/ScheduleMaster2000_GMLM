@@ -45,7 +45,7 @@ function onSchedulesResponse() {
         showContents(['menu-content', 'schedules-content']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        onOtherResponse(menuContentDivEl, this);
+        onOtherResponse(schedulesContentDivEl, this);
     }
 }
 
