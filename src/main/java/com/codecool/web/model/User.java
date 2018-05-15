@@ -4,12 +4,14 @@ public class User extends AbstractModel {
     private String name;
     private String email;
     private String password;
+    private boolean isAdmin;
 
-    public User(int id, String name, String email, String password) {
+    public User(int id, String name, String email, String password, boolean isAdmin) {
         super(id);
         this.name = name;
         this.email = email;
         this.password = password;
+        this.isAdmin = isAdmin;
     }
 
     public String getName() {
@@ -24,12 +26,17 @@ public class User extends AbstractModel {
         return password;
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
+
     @Override
     public String toString() {
         return "User{" +
             "name='" + name + '\'' +
             ", email='" + email + '\'' +
             ", password='" + password + '\'' +
+            ", isAdmin=" + isAdmin +
             '}';
     }
 }
