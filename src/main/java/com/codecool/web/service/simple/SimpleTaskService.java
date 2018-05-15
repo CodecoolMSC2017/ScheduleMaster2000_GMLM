@@ -46,7 +46,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getAllTasks() throws SQLException, ServiceException {
         try {
             if (taskDao.getAllTasks().isEmpty()) {
-                throw new ServiceException("There's no any task yet!");
+                throw new ServiceException("There are no tasks yet!");
             } else {
                 return taskDao.getAllTasks();
             }
@@ -59,7 +59,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getUsersTask(int user_id) throws SQLException, ServiceException {
         try {
             if (taskDao.getUsersTask(user_id).isEmpty()) {
-                throw new ServiceException("There's no any task yet!");
+                throw new ServiceException("There are no tasks yet!");
             } else {
                 return taskDao.getUsersTask(user_id);
             }
@@ -81,7 +81,7 @@ public class SimpleTaskService implements TaskService {
     public List<Task> getTaskByDayId(int day_id) throws SQLException, ServiceException {
         try {
             if (taskDao.getTaskByDayId(day_id).isEmpty()) {
-                throw new ServiceException("There's no any task for this day yet!");
+                throw new ServiceException("There aren't any task for this day yet!");
             } else {
                 return taskDao.getTaskByDayId(day_id);
             }

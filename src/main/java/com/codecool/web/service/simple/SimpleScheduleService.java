@@ -26,7 +26,7 @@ public class SimpleScheduleService implements ScheduleService {
 
     public List<Schedule> getUsersSchedules(int userId) throws SQLException, ServiceException {
         if(scheduleDao.getUsersSchedules(userId).isEmpty()) {
-            throw new ServiceException("You don't have any schedules!");
+            throw new ServiceException("You don't have any schedule!");
         } else {
             return scheduleDao.getUsersSchedules(userId);
         }
