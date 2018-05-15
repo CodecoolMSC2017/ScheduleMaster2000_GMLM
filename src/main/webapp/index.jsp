@@ -10,7 +10,7 @@
         <c:url value="/login.js" var="loginScriptUrl"/>
         <c:url value="/register.js" var="registerScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
-        <c:url value="/schedules.js" var="schedulesScriptUrl">
+        <c:url value="/schedules.js" var="schedulesScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
