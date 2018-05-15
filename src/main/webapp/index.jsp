@@ -55,6 +55,7 @@
     </div>
 
     <div id="schedules-content" class="hidden content">
+        <h1>Schedules</h1>
         <table id="schedules">
             <thead>
                 <tr>
