@@ -100,6 +100,24 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
+    public void deleteTask(int id) throws SQLException{
+        String sql = "DELETE FROM slots WHERE task_id =?;\n" +
+            "DELETE FROM tasks WHERE id =?;";
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            preparedStatement.setInt(2,id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
     public List<Task> getUsersTask(int user_id) throws SQLException {
         String sql = "SELECT * FROM tasks WHERE user_id = ?";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
