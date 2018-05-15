@@ -57,7 +57,7 @@ iNSERT INTO schedules (user_id,name) VALUES
 	(3,'Munka'),  --3
 	(4,'Segély nap'); --4
 
-insert into days (schedule_id,name) VALUES
+insert into days (schedule_id,title) VALUES
 	(3,'szerda'), --1
 	(3,'csütörtök'), --2
 	(4,'Segély nap'); --3
