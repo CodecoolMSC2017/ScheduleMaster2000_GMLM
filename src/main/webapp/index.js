@@ -10,6 +10,7 @@ let registerFormEl;
 let menuContentDivEl;
 let schedulesContentDivEl;
 let tasksContentDivEl;
+let taskContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -106,6 +107,7 @@ function onLoad() {
     menuContentDivEl = document.getElementById('menu-content');
     schedulesContentDivEl = document.getElementById('schedules-content');
     tasksContentDivEl = document.getElementById('tasks-content');
+    taskContentDivEl = document.getElementById('task-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
