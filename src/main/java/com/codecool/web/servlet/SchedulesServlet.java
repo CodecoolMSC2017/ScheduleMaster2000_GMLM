@@ -41,7 +41,7 @@ public class SchedulesServlet extends AbstractServlet {
         } catch (SQLException e) {
             handleSqlError(resp, e);
         } catch (ServiceException e) {
-            sendMessage(resp,HttpServletResponse.SC_NO_CONTENT,e.getMessage());
+            sendMessage(resp, HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
         }
 
 

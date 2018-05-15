@@ -44,10 +44,11 @@ function onSchedulesLoad(schedules) {
 }
 
 function onSchedulesResponse() {
+    showContents(['menu-content', 'schedules-content']);    
     if (this.status === OK) {
-        showContents(['menu-content', 'schedules-content']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
+        removeAllChildren(schedulesContentDivEl);
         onOtherResponse(schedulesContentDivEl, this);
     }
 }
