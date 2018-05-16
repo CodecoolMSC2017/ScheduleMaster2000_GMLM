@@ -112,9 +112,11 @@
             <tr>
                 <th>Name</th>
                 <th>Content</th>
+                <th>Start hour</th>
+                <th>End hour</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tasks-of-day-tbody">
             </tbody>
         </table>
     </div>
