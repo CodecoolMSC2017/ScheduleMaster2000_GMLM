@@ -69,4 +69,13 @@ public class SimpleDayService implements DayService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    @Override
+    public List<Day> findDaysByScheduleId(int schedule_id) throws SQLException, ServiceException {
+        try {
+            return dayDao.findDaysByScheduleId(schedule_id);
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
 }

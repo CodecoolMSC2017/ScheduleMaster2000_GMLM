@@ -104,6 +104,21 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
     }
 
+    public List<Day> findDaysByScheduleId(int schedule_id) throws SQLException {
+        String sql = "SELECT * FROM days\n" +
+            "WHERE schedule_id = ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, schedule_id);
+            List<Day> days = new ArrayList<>();
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    days.add(fetchDay(resultSet));
+                }
+            }
+            return days;
+        }
+    }
+
     public Day findById(int id) throws SQLException {
         String sql = "SELECT * FROM days\n" +
             "WHERE id = ?;";
@@ -117,6 +132,7 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
         return null;
     }
+
 
     private Day fetchDay(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");

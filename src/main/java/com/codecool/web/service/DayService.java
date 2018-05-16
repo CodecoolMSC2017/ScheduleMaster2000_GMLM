@@ -19,4 +19,6 @@ public interface DayService {
     List<Day> getAllDays() throws SQLException, ServiceException;
 
     Day findById(int id) throws SQLException, ServiceException;
+
+    List<Day> findDaysByScheduleId(int schedule_id) throws SQLException, ServiceException;
 }

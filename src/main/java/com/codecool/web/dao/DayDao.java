@@ -13,5 +13,6 @@ public interface DayDao {
     void deleteDay(int id) throws SQLException;
     List<Day> getAllDays() throws SQLException;
     Day findById(int id) throws SQLException;
+    List<Day> findDaysByScheduleId(int schedule_id) throws SQLException;
 
 }
