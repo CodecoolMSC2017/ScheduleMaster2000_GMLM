@@ -11,6 +11,7 @@ let menuContentDivEl;
 let schedulesContentDivEl;
 let tasksContentDivEl;
 let taskContentDivEl;
+let tasksOfDayContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -108,6 +109,7 @@ function onLoad() {
     schedulesContentDivEl = document.getElementById('schedules-content');
     tasksContentDivEl = document.getElementById('tasks-content');
     taskContentDivEl = document.getElementById('task-content');
+    tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
