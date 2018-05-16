@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DatabaseDayDao extends AbstractDao implements DayDao {
 
-    DatabaseDayDao(Connection connection) {
+    public DatabaseDayDao(Connection connection) {
         super(connection);
     }
 
