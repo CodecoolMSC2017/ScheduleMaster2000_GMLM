@@ -85,7 +85,20 @@
         </table>
     </div>
 
-    <div id="task-content" class="hiddent content"></div>
+    <div id="task-content" class="hidden content"></div>
+
+    <div id="tasks-of-day-content" class="hidden content">
+        <table id="tasks-of-day">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Content</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>
