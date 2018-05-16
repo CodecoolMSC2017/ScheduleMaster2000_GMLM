@@ -81,9 +81,11 @@
             <thead>
                 <tr>
                     <th>Title</th>
+                    <th>Modify</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="schedule-tbody">
             </tbody>
         </table>
     </div>
