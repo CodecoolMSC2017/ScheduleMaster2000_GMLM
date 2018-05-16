@@ -41,7 +41,7 @@ function appendDays(days) {
 
 function onScheduleLoad(days) {
     scheduleTableEl = document.getElementById('schedule');
-    scheduleTableBodyEl = schedulesTableEl.querySelector('tbody');
+    scheduleTableBodyEl = document.getElementById('schedule-tbody');
 
     appendDays(days);
 }
