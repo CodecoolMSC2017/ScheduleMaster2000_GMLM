@@ -4,6 +4,9 @@ let schedulesTableBodyEl;
 function appendSchedule(schedule) {
     const nameAEl = document.createElement('a');
     nameAEl.textContent = schedule.name;
+    nameAEl.href = 'javascript:void(0);';
+    nameAEl.dataset.scheduleId = schedule.id;
+    nameAEl.addEventListener('click', onScheduleClicked);
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';

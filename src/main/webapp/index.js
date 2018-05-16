@@ -9,6 +9,7 @@ let registerContentDivEl;
 let registerFormEl;
 let menuContentDivEl;
 let schedulesContentDivEl;
+let scheduleContentDivEl;
 let tasksContentDivEl;
 let taskContentDivEl;
 let tasksOfDayContentDivEl;
@@ -107,6 +108,7 @@ function onLoad() {
     registerFormEl = document.getElementById('register-form');
     menuContentDivEl = document.getElementById('menu-content');
     schedulesContentDivEl = document.getElementById('schedules-content');
+    scheduleContentDivEl = document.getElementById('schedule-content');
     tasksContentDivEl = document.getElementById('tasks-content');
     taskContentDivEl = document.getElementById('task-content');
     tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');

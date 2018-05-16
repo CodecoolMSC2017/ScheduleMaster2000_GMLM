@@ -11,6 +11,7 @@
         <c:url value="/register.js" var="registerScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
         <c:url value="/schedules.js" var="schedulesScriptUrl"/>
+        <c:url value="/schedule.js" var="scheduleScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
@@ -21,6 +22,7 @@
         <script src="${registerScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
         <script src="${schedulesScriptUrl}"></script>
+        <script src="${scheduleScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
@@ -66,6 +68,19 @@
                     <th>Name</th>
                     <th>Modify</th>
                     <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="schedule-content" class="hidden content">
+        <h1>Days</h1>
+        <table id="schedule">
+            <thead>
+                <tr>
+                    <th>Title</th>
                 </tr>
             </thead>
             <tbody>
