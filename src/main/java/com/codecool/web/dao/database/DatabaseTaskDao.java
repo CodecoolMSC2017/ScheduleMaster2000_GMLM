@@ -119,16 +119,17 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     }
 
     public List<Task> getTaskByDayId (int day_id) throws SQLException {
-        String sql = "SELECT id, user_id, name FROM tasks\n" +
+        String sql = "SELECT id, user_id, name, content, hour FROM tasks\n" +
             "LEFT JOIN slots\n" +
             "ON tasks.id = slots.task_id\n" +
-            "WHERE day_id = ?;";
+            "WHERE day_id = ?" +
+            "ORDER BY hour ASC;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             List<Task> tasksByDay = new ArrayList<>();
             preparedStatement.setInt(1, day_id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    tasksByDay.add(fetchTask(resultSet));
+                while (resultSet.next()) {
+                    tasksByDay.add(fetchTaskToDay(resultSet));
                 }
             }
             return tasksByDay;
@@ -141,7 +142,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             List<Task> usersTask = new ArrayList<>();
             preparedStatement.setInt(1, user_id);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
+                while (resultSet.next()) {
                     usersTask.add(fetchTask(resultSet));
                 }
             }
@@ -149,12 +150,18 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
+    private Task fetchTaskToDay(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String name = resultSet.getString("name");
+        String content = resultSet.getString("content");
+        int hour = resultSet.getInt("hour");
+        return new Task(id, name, content, hour);
+    }
 
     private Task fetchTask(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
         String content = resultSet.getString("content");
         return new Task(id, name, content);
-
     }
 }
