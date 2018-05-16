@@ -11,18 +11,22 @@
         <c:url value="/register.js" var="registerScriptUrl"/>
         <c:url value="/profile.js" var="profileScriptUrl"/>
         <c:url value="/schedules.js" var="schedulesScriptUrl"/>
+        <c:url value="/schedule.js" var="scheduleScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
+        <c:url value="/day.js" var="dayScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
         <script src="${registerScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
         <script src="${schedulesScriptUrl}"></script>
+        <script src="${scheduleScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
+        <script src="${dayScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -71,6 +75,19 @@
         </table>
     </div>
 
+    <div id="schedule-content" class="hidden content">
+        <h1>Days</h1>
+        <table id="schedule">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
     <div id="tasks-content" class="hidden content">
         <h1>Tasks</h1>
         <table id="tasks">
@@ -85,7 +102,20 @@
         </table>
     </div>
 
-    <div id="task-content" class="hiddent content"></div>
+    <div id="task-content" class="hidden content"></div>
+
+    <div id="tasks-of-day-content" class="hidden content">
+        <table id="tasks-of-day">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Content</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
 
 </body>
 </html>

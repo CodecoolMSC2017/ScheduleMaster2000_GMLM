@@ -9,8 +9,10 @@ let registerContentDivEl;
 let registerFormEl;
 let menuContentDivEl;
 let schedulesContentDivEl;
+let scheduleContentDivEl;
 let tasksContentDivEl;
 let taskContentDivEl;
+let tasksOfDayContentDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -106,8 +108,10 @@ function onLoad() {
     registerFormEl = document.getElementById('register-form');
     menuContentDivEl = document.getElementById('menu-content');
     schedulesContentDivEl = document.getElementById('schedules-content');
+    scheduleContentDivEl = document.getElementById('schedule-content');
     tasksContentDivEl = document.getElementById('tasks-content');
     taskContentDivEl = document.getElementById('task-content');
+    tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
