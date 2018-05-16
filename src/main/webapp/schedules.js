@@ -8,25 +8,25 @@ function appendSchedule(schedule) {
     nameAEl.dataset.scheduleId = schedule.id;
     nameAEl.addEventListener('click', onScheduleClicked);
 
-    const deleteButtonEl = document.createElement('button');
-    deleteButtonEl.textContent = 'Delete';
-
     const modifyButtonEl = document.createElement('button');
     modifyButtonEl.textContent = 'Modify';
+
+    const deleteButtonEl = document.createElement('button');
+    deleteButtonEl.textContent = 'Delete';
 
     const nameTdEl = document.createElement('td');
     nameTdEl.appendChild(nameAEl);
 
-    const deleteTdEl = document.createElement('td');
-    deleteTdEl.appendChild(deleteButtonEl);
-
     const modifyTdEl = document.createElement('td');
     modifyTdEl.appendChild(modifyButtonEl);
 
+    const deleteTdEl = document.createElement('td');
+    deleteTdEl.appendChild(deleteButtonEl);
+
     const trEl = document.createElement('tr');
     trEl.appendChild(nameTdEl);
-    trEl.appendChild(deleteTdEl);
     trEl.appendChild(modifyTdEl);
+    trEl.appendChild(deleteTdEl);
     schedulesTableBodyEl.appendChild(trEl);
 }
 
