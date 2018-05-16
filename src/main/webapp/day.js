@@ -8,7 +8,13 @@ function appendTaskToDay(task) {
     nameTdEl.addEventListener('click', onTaskClicked);
 
     const contentTdEl = document.createElement('td');
-    content.textContent = task.content;
+    contentTdEl.textContent = task.content;
+
+    const startHourTdEl = document.createElement('td');
+    startHourTdEl.textContent = task.hour - 1 + ":00";
+
+    const endHourTdEl = document.createElement('td');
+    endHourTdEl.textContent = task.hour + ":00";
 
     const modifyButtonTdEl = document.createElement('td');
     const modifyTaskButtonEl = document.createElement('button');
@@ -27,6 +33,8 @@ function appendTaskToDay(task) {
     const trEl = document.createElement('tr');
     trEl.append(nameTdEl);
     trEl.append(contentTdEl);
+    trEl.append(startHourTdEl);
+    trEl.append(endHourTdEl);
     trEl.append(modifyButtonTdEl);
     trEl.append(deleteButtonEl);
 
@@ -45,17 +53,18 @@ function appendTasksToDay(tasks) {
 
 function onDayLoad(tasks) {
     tasksOfDayTableEl = document.getElementById('tasks-of-day');
-    tasksOfDayTableBodyEl = tasksOfDayTableEl.querySelector('tbody');
+    tasksOfDayTableBodyEl = document.getElementById('tasks-of-day-tbody');
 
     appendTasksToDay(tasks);
 }
 
 function onDayResponse() {
     clearMessages();
+    showContents(['menu-content', 'tasks-of-day-content', 'schedule-content']);
     if (this.status === OK) {
-        showContents(['menu-content', 'tasks-of-day-content', 'schedule-content']);
         onDayLoad(JSON.parse(this.responseText));
     } else {
+        removeAllChildren(tasksOfDayContentDivEl)
         onOtherResponse(tasksOfDayContentDivEl, this);
     }
 }
@@ -63,7 +72,7 @@ function onDayResponse() {
 function onDayClicked() {
     const dayId = this.dataset.dayId;
 
-    const params = new URLSearchParam();
+    const params = new URLSearchParams();
     params.append('id', dayId);
 
     const xhr = new XMLHttpRequest();
