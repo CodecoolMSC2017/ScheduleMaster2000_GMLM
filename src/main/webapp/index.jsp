@@ -46,11 +46,13 @@
     <div id="register-content" class="hidden content">
         <h1>Sign up</h1>
         <form id="register-form" onsubmit="return false;">
-            Name:<input type="text" name="name">
-            E-mail:<input type="text" name="email">
-            Password:<input type="password" name="password">
-            <button id="sign-up-button">Sign up</button>
-            <button id="back-to-login">Back to login</button>
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="email" placeholder="E-mail">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" id="sign-up-button" name="sign-up" class="sign-up sign-up-submit" value="sign up">
+            <input type="submit" id="back-to-login" name="back-to-login" class="back-to-login back-to-login-submit" value="back to login">
+            <!-- <button id="sign-up-button">Sign up</button> -->
+            <!-- <button id="back-to-login">Back to login</button> -->
         </form>
     </div>
 
@@ -98,6 +100,8 @@
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Modify</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody id="tasks-content-table">
