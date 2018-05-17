@@ -69,8 +69,8 @@ function onTasksResponse() {
         showContents(['menu-content', 'tasks-content']);
         onTasksLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message']);
-        onOtherResponse(errorMessageDivEl, this);
+        showContents(['menu-content', 'error-message-content']);
+        onOtherResponse(errorMessageContentDivEl, this);
     }
 }
 
