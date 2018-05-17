@@ -70,7 +70,7 @@
                     <th>Delete</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="schedules-tbody">
             </tbody>
         </table>
     </div>
