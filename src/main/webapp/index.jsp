@@ -122,6 +122,8 @@
                 <th>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
+                <th>Modify</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody id="tasks-of-day-tbody">
