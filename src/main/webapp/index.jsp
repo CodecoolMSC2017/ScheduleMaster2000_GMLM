@@ -34,10 +34,12 @@
     <div id="login-content" class="content">
         <h1>Login</h1>
         <form id="login-form" onsubmit="return false;">
-            E-mail:<input type="text" name="email">
-            Password:<input type="password" name="password">
-            <button id="login-button">Login</button>
-            <button id="register-button">Sign up</button>
+            <input type="text" name="email" placeholder="E-mail">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" id="login-button" name="login" class="login login-submit" value="login">
+            <input type="submit" id="register-button" name="register" class="register register-submit" value="sign up">
+            <!-- <button id="login-button">Login</button> -->
+            <!--<button id="register-button">Sign up</button> -->
         </form>
     </div>
 
