@@ -34,6 +34,7 @@ public class SimpleDayService implements DayService {
         }
     }
 
+    //Laci thinks this method might not be needed at all, so somebody should delete it if it turns out to be true
     @Override
     public void assignDayToSchedule(int schedule_id, int day_id) throws SQLException, ServiceException {
         try {
@@ -55,7 +56,11 @@ public class SimpleDayService implements DayService {
     @Override
     public List<Day> getAllDays() throws SQLException, ServiceException {
         try {
-            return dayDao.getAllDays();
+            if (dayDao.getAllDays().isEmpty()) {
+                throw new ServiceException("There are no days made to this task yet");
+            } else {
+                return dayDao.getAllDays();
+            }
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -64,7 +69,11 @@ public class SimpleDayService implements DayService {
     @Override
     public Day findById(int id) throws SQLException, ServiceException {
         try {
-            return dayDao.findById(id);
+            if (dayDao.findById(id) == null) {
+                throw new ServiceException("Could not find any day by this Id.");
+            } else {
+                return dayDao.findById(id);
+            }
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
@@ -73,7 +82,11 @@ public class SimpleDayService implements DayService {
     @Override
     public List<Day> findDaysByScheduleId(int schedule_id) throws SQLException, ServiceException {
         try {
-            return dayDao.findDaysByScheduleId(schedule_id);
+            if (dayDao.findDaysByScheduleId(schedule_id).isEmpty()) {
+                throw new ServiceException("There are no days assigned to this schedule yet");
+            } else {
+                return dayDao.findDaysByScheduleId(schedule_id);
+            }
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
