@@ -53,7 +53,6 @@
     </div>
 
     <div id="menu-content" class="hidden content">
-        <button id="profile-button">Profile</button>
         <button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button>
         <button id="tasks-button">Tasks</button>
         <p>Welcome <span id="user-name"></span>!</p>
@@ -107,6 +106,7 @@
     <div id="task-content" class="hidden content"></div>
 
     <div id="tasks-of-day-content" class="hidden content">
+        <h1>Tasks</h1>
         <table id="tasks-of-day">
             <thead>
             <tr>
@@ -121,7 +121,7 @@
         </table>
     </div>
 
-    <div id="error-message" class="hidden content">
+    <div id="error-message-content" class="hidden content">
     </div>
 
 </body>
