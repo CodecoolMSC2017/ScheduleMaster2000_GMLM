@@ -47,12 +47,14 @@ function onSchedulesLoad(schedules) {
 }
 
 function onSchedulesResponse() {
+    clearMessages();
     showContents(['menu-content', 'schedules-content']);    
     if (this.status === OK) {
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        removeAllChildren(schedulesContentDivEl);
-        onOtherResponse(schedulesContentDivEl, this);
+        showContents(['menu-content', 'error-message']);
+        //removeAllChildren(schedulesContentDivEl);
+        onOtherResponse(errorMessageDivEl, this);
     }
 }
 
