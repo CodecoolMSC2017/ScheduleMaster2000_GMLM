@@ -57,10 +57,12 @@
     </div>
 
     <div id="menu-content" class="hidden content">
-        <button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button>
-        <button id="tasks-button">Tasks</button>
-        <p>Welcome <span id="user-name"></span>!</p>
-        <button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button>
+        <ul>
+            <li><button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button></li>
+            <li><button id="tasks-button">Tasks</button></li>
+            <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
+            <li><p id = "welcome-string">Welcome <span id="user-name"></span>!</p></li>
+        </ul>
     </div>
 
     <div id="schedules-content" class="hidden content">
