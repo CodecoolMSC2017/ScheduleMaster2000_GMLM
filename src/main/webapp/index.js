@@ -5,6 +5,7 @@ const NOT_FOUND = 404;
 const INTERNAL_SERVER_ERROR = 500;
 
 let loginContentDivEl;
+let loginFormEl;
 let registerContentDivEl;
 let registerFormEl;
 let menuContentDivEl;
@@ -105,6 +106,7 @@ function setUnauthorized() {
 
 function onLoad() {
     loginContentDivEl = document.getElementById('login-content');
+    loginFormEl = document.getElementById('login-form');
     registerContentDivEl = document.getElementById('register-content');
     registerFormEl = document.getElementById('register-form');
     menuContentDivEl = document.getElementById('menu-content');
