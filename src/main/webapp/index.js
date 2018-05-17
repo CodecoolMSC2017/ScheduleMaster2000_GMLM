@@ -13,6 +13,7 @@ let scheduleContentDivEl;
 let tasksContentDivEl;
 let taskContentDivEl;
 let tasksOfDayContentDivEl;
+let errorMessageDivEl;
 
 function newInfo(targetEl, message) {
     newMessage(targetEl, 'info', message);
@@ -112,6 +113,7 @@ function onLoad() {
     tasksContentDivEl = document.getElementById('tasks-content');
     taskContentDivEl = document.getElementById('task-content');
     tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
+    errorMessageDivEl = document.getElementById('error-message');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
