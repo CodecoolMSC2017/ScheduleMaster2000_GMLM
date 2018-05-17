@@ -36,9 +36,11 @@ function onSignUpButtonClicked() {
 function onRegisterButtonClicked() {
     clearMessages();
     showContents('register-content');
+    clearForm(registerFormEl);
 }
 
 function onBackToLoginButtonClicked() {
     clearMessages();
     showContents('login-content');
+    clearForm(loginFormEl);
 }
