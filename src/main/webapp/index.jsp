@@ -121,5 +121,8 @@
         </table>
     </div>
 
+    <div id="error-message" class="hidden content">
+    </div>
+
 </body>
 </html>
