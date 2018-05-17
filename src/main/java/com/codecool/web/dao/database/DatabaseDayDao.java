@@ -55,6 +55,7 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
     }
 
+    //Laci thinks this method might not be needed at all, so somebody should delete it if it turns out to be true
     public void assignDayToSchedule(int schedule_id, int day_id) throws SQLException {
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
