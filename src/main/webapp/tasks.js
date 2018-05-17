@@ -59,7 +59,7 @@ function appendTasks(tasks) {
 
 function onTasksLoad(tasks) {
     tasksTableEl = document.getElementById('tasks');
-    tasksTableBodyEl = tasksTableEl.querySelector('tbody');
+    tasksTableBodyEl = document.getElementById('tasks-content-table');
 
     appendTasks(tasks);
 }
