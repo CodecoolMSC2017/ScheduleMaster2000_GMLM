@@ -48,13 +48,13 @@ function onSchedulesLoad(schedules) {
 
 function onSchedulesResponse() {
     clearMessages();
-    showContents(['menu-content', 'schedules-content']);    
+        
     if (this.status === OK) {
+        showContents(['menu-content', 'schedules-content']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message']);
-        //removeAllChildren(schedulesContentDivEl);
-        onOtherResponse(errorMessageDivEl, this);
+        showContents(['menu-content', 'error-message-content']);
+        onOtherResponse(errorMessageContentDivEl, this);
     }
 }
 
