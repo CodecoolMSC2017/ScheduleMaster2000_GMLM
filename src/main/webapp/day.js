@@ -60,12 +60,13 @@ function onDayLoad(tasks) {
 
 function onDayResponse() {
     clearMessages();
-    showContents(['menu-content', 'tasks-of-day-content', 'schedule-content']);
+
     if (this.status === OK) {
+        showContents(['menu-content', 'schedule-content', 'tasks-of-day-content']);        
         onDayLoad(JSON.parse(this.responseText));
     } else {
-        removeAllChildren(tasksOfDayContentDivEl)
-        onOtherResponse(tasksOfDayContentDivEl, this);
+        showContents(['menu-content', 'schedule-content', 'error-message-content']);
+        onOtherResponse(errorMessageContentDivEl, this);
     }
 }
 
