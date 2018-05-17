@@ -65,12 +65,12 @@ function onTasksLoad(tasks) {
 }
 
 function onTasksResponse() {
-    showContents(['menu-content', 'tasks-content']);
     if (this.status === OK) {
+        showContents(['menu-content', 'tasks-content']);
         onTasksLoad(JSON.parse(this.responseText));
     } else {
-        removeAllChildren(tasksContentDivEl);
-        onOtherResponse(tasksContentDivEl, this);
+        showContents(['menu-content', 'error-message']);
+        onOtherResponse(errorMessageDivEl, this);
     }
 }
 
