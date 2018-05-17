@@ -99,7 +99,7 @@
                 <th>Name</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="tasks-content-table">
             </tbody>
         </table>
     </div>
