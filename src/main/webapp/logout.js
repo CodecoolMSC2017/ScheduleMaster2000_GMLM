@@ -3,6 +3,7 @@ function onLogoutResponse() {
         setUnauthorized();
         clearMessages();
         showContents(['login-content']);
+        clearForm(loginFormEl);
     } else {
         onOtherResponse(menuContentDivEl, this);
     }
