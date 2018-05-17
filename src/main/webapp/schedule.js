@@ -52,8 +52,9 @@ function onScheduleResponse() {
     if (this.status === OK) {
         onScheduleLoad(JSON.parse(this.responseText));
     } else {
-        removeAllChildren(scheduleContentDivEl);
-        onOtherResponse(scheduleContentDivEl, this);
+        showContents(['menu-content', 'error-message']);
+        //removeAllChildren(scheduleContentDivEl);
+        onOtherResponse(errorMessageDivEl, this);
     }
 }
 
