@@ -17,7 +17,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         if (name == null || name.equals("")) {
             throw new IllegalArgumentException("Name can not be empty");
         }
-        if (!doesTaskExists(name)) {
+        if (doesTaskExists(name)) {
             throw new IllegalArgumentException("Task with this name already exists");
         }
         boolean autoCommit = connection.getAutoCommit();
