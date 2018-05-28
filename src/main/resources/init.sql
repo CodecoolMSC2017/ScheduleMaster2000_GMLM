@@ -3,7 +3,9 @@ DROP TABLE IF EXISTS days;
 DROP TABLE IF EXISTS schedules;
 DROP TABLE IF EXISTS tasks;
 DROP TABLE IF EXISTS users;
-
+DROP FUNCTION IF EXISTS enforce_days_count();
+DROP FUNCTION IF EXISTS enforce_slots_count();
+DROP FUNCTION IF EXISTS enforce_slot_hour_check();
 
 CREATE TABLE users (
 	id SERIAL PRIMARY KEY,
@@ -22,8 +24,8 @@ CREATE TABLE schedules (
 
 CREATE TABLE days (
 	id SERIAL PRIMARY KEY,
-	schedule_id INTEGER NOT NULL,
-	title TEXT,
+	schedule_id INTEGER references schedules ON DELETE CASCADE,
+	title TEXT UNIQUE,
 	FOREIGN KEY (schedule_id) REFERENCES schedules(id)
 );
 
@@ -37,8 +39,8 @@ CREATE TABLE tasks (
 
 CREATE table slots (
 	hour INTEGER not null,
-	day_id INTEGER,
-	task_id INTEGER,
+	day_id INTEGER REFERENCES days ON DELETE CASCADE,
+	task_id INTEGER REFERENCES tasks ON DELETE SET NULL,
 	FOREIGN KEY (day_id) REFERENCES days(id),
 	FOREIGN KEY (task_id) REFERENCES tasks(id),
 	check(hour >= 1 and hour <= 24)
@@ -78,3 +80,123 @@ insert into slots (hour,day_id,task_id) VALUES
 	(12,2,3),  --5
 	(13,2,3),  --6
 	(8,3,4);  --7
+
+-- This funtion starts when a day created.Counts the days in a schedule and
+
+
+CREATE OR REPLACE FUNCTION enforce_days_count() RETURNS trigger AS $$
+DECLARE
+    max_days_count INTEGER := 7;
+    days_count INTEGER := 0;
+    must_check BOOLEAN := false;
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        must_check := true;
+    END IF;
+
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.schedule_id != OLD.schedule_id) THEN
+            must_check := true;
+        END IF;
+    END IF;
+
+    IF must_check THEN
+        -- prevent concurrent inserts from multiple transactions
+        LOCK TABLE days IN EXCLUSIVE MODE;
+
+        SELECT INTO days_count COUNT(*)
+        FROM days
+        WHERE schedule_id = NEW.schedule_id;
+
+        IF days_count >= max_days_count THEN
+            RAISE EXCEPTION 'Cannot create more than % days for a schedule.', max_days_count;
+        END IF;
+    END IF;
+
+    RETURN NEW;
+
+END;
+
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER enforce_days_count
+    BEFORE INSERT OR UPDATE ON days
+    FOR EACH ROW EXECUTE PROCEDURE enforce_days_count();
+
+
+CREATE OR REPLACE FUNCTION enforce_slots_count() RETURNS trigger AS $$
+DECLARE
+    max_slots_count INTEGER := 24;
+    slots_count INTEGER := 0;
+    must_check BOOLEAN := false;
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        must_check := true;
+    END IF;
+
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.day_id != OLD.day_id) THEN
+            must_check := true;
+        END IF;
+    END IF;
+
+    IF must_check THEN
+        LOCK TABLE slots IN EXCLUSIVE MODE;
+
+        SELECT INTO slots_count COUNT(*)
+        FROM slots
+        WHERE day_id = NEW.day_id;
+
+        IF slots_count >= max_slots_count THEN
+            RAISE EXCEPTION 'Your day is fullfilled like a bus at noon!';
+        END IF;
+    END IF;
+
+    RETURN NEW;
+
+END;
+
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER enforce_slots_count
+    BEFORE INSERT OR UPDATE ON slots
+    FOR EACH ROW EXECUTE PROCEDURE enforce_slots_count();
+
+
+CREATE OR REPLACE FUNCTION enforce_slot_hour_check() RETURNS trigger AS $$
+DECLARE
+    must_check BOOLEAN := false;
+	result_hour INTEGER :=0;
+BEGIN
+    IF TG_OP = 'INSERT' THEN
+        must_check := true;
+    END IF;
+
+    IF TG_OP = 'UPDATE' THEN
+        IF (NEW.day_id != OLD.day_id) THEN
+            must_check := true;
+        END IF;
+    END IF;
+
+    IF must_check THEN
+        LOCK TABLE slots IN EXCLUSIVE MODE;
+
+        Select hour into result_hour  FROM slots
+        	WHERE day_id = NEW.day_id;
+
+        IF result_hour = NEW.hour THEN
+            RAISE EXCEPTION 'This time you already have a task arranged!';
+        END IF;
+    END IF;
+
+    RETURN NEW;
+
+END;
+
+$$ LANGUAGE plpgsql;
+
+
+CREATE TRIGGER enforce_slot_hour_check
+    BEFORE INSERT OR UPDATE ON slots
+    FOR EACH ROW EXECUTE PROCEDURE enforce_slot_hour_check();
