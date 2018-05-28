@@ -66,7 +66,7 @@ function onTasksLoad(tasks) {
 
 function onTasksResponse() {
     if (this.status === OK) {
-        showContents(['menu-content', 'tasks-content']);
+        showContents(['menu-content', 'tasks-content', 'add-task-button-content']);
         onTasksLoad(JSON.parse(this.responseText));
     } else {
         showContents(['menu-content', 'error-message-content']);
