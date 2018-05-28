@@ -16,6 +16,7 @@
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
         <c:url value="/day.js" var="dayScriptUrl"/>
+        <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -27,6 +28,7 @@
         <script src="${tasksScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
         <script src="${dayScriptUrl}"></script>
+        <script src="${addTaskScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -62,8 +64,35 @@
             <li><button id="tasks-button">Tasks</button></li>
             <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
             <li><p id = "welcome-string">Welcome <span id="user-name"></span>!</p></li>
+            <li>
+                <div id="add-task-button-content" class="hidden content">
+                    <button id="add-new-task">Add new task</button>
+                </div>
+            </li>
         </ul>
     </div>
+
+    <div id="add-task-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="close" class="close">&times;</span>
+                <h2>Add new task</h2>
+            </div>
+            <div class="modal-body">
+                <form id="add-task-form">
+                    Task title:<br>
+                    <input type="text" id="new-task-title"><br>
+                    Task content:<br>
+                    <textarea id="task-content-area" rows="4" cols="50"></textarea>
+                </form>
+                <div id="info-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-task-button">Save</button>
+            </div>
+        </div>
+    </div>
+
 
     <div id="schedules-content" class="hidden content">
         <h1>Schedules</h1>
@@ -131,8 +160,7 @@
         </table>
     </div>
 
-    <div id="error-message-content" class="hidden content">
-    </div>
+    <div id="error-message-content" class="hidden content"></div>
 
 </body>
 </html>
