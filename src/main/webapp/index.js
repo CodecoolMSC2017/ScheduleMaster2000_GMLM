@@ -116,6 +116,7 @@ function onLoad() {
     taskContentDivEl = document.getElementById('task-content');
     tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
     errorMessageContentDivEl = document.getElementById('error-message-content');
+    infoContentDivEl = document.getElementById('info-content');
 
     const loginButtonEl = document.getElementById('login-button');
     loginButtonEl.addEventListener('click', onLoginButtonClicked);
@@ -131,6 +132,12 @@ function onLoad() {
 
     const tasksButtonEl = document.getElementById('tasks-button');
     tasksButtonEl.addEventListener('click', onTasksButtonClicked);
+
+    const addNewTaskButtonEl = document.getElementById('add-new-task');
+    addNewTaskButtonEl.addEventListener('click', onAddTaskButtonClicked);
+
+    const saveNewTaskButtonEl = document.getElementById('save-task-button');
+    saveNewTaskButtonEl.addEventListener('click', onSaveButtonClicked);
 
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
