@@ -5,6 +5,7 @@ import com.codecool.web.dao.DayDao;
 import com.codecool.web.dao.TaskDao;
 import com.codecool.web.dao.database.DatabaseDayDao;
 import com.codecool.web.dao.database.DatabaseTaskDao;
+import com.codecool.web.model.Day;
 import com.codecool.web.model.Task;
 import com.codecool.web.service.DayService;
 import com.codecool.web.service.TaskService;
@@ -27,16 +28,16 @@ public class DayServlet extends AbstractServlet {
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         try (Connection connection = getConnection(req.getServletContext())) {
-            TaskDao taskDao = new DatabaseTaskDao(connection);
-            TaskService taskService = new SimpleTaskService(taskDao);
+            DayDao dayDao = new DatabaseDayDao(connection);
+            DayService dayService = new SimpleDayService(dayDao);
 
-            String dayId = req.getParameter("id");
+            int dayId = Integer.parseInt(req.getParameter("id"));
 
-            List<Task> tasks = taskService.getTaskByDayId(Integer.parseInt(dayId));
+            Day day = dayService.findById(dayId);
 
-            sendMessage(resp, 200, tasks);
-        } catch (SQLException ex) {
-            handleSqlError(resp, ex);
+            sendMessage(resp, 200, day);
+        } catch (SQLException e) {
+            handleSqlError(resp, e);
         } catch (ServiceException e) {
             sendMessage(resp, 401, e.getMessage());
         }
