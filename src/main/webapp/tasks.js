@@ -29,9 +29,10 @@ function appendTask(task) {
     const modifyButtonTdEl = document.createElement('td');
     const modifyButtonEl = document.createElement('button');
     modifyButtonEl.textContent = 'Modify';
+    modifyButtonEl.setAttribute('id', task.id);
     modifyButtonTdEl.append(modifyButtonEl);
 
-    //modifyButtonEl.addEventListener('click', onModifyButtonClicked);
+    modifyButtonEl.addEventListener('click', onModifyButtonClicked);
 
     const deleteButtonTdEl = document.createElement('td');
     const deleteButtonEl = document.createElement('button');

@@ -89,7 +89,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
     }
 
     public List<Task> getAllTasks() throws SQLException {
-        String sql = "SELECT * FROM tasks;";
+        String sql = "SELECT * FROM tasks ORDER BY id ASC;";
         try (Statement statement = connection.createStatement();
              ResultSet resultSet = statement.executeQuery(sql)) {
             List<Task> allTasks = new ArrayList<>();

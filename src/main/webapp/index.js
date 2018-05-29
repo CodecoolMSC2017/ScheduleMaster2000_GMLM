@@ -136,9 +136,6 @@ function onLoad() {
     const addNewTaskButtonEl = document.getElementById('add-new-task');
     addNewTaskButtonEl.addEventListener('click', onAddTaskButtonClicked);
 
-    const saveNewTaskButtonEl = document.getElementById('save-task-button');
-    saveNewTaskButtonEl.addEventListener('click', onSaveButtonClicked);
-
     if (hasAuthorization()) {
         onProfileLoad(getAuthorization());
     }
