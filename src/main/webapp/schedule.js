@@ -11,6 +11,7 @@ function appendDay(day) {
     const modifyButtonEl = document.createElement('button');
     modifyButtonEl.textContent = 'Modify';
     modifyButtonEl.setAttribute('id', day.id);
+    modifyButtonEl.dataset.scheduleId = day.scheduleId;
     modifyButtonEl.addEventListener('click', onModifyDayButtonClicked);
 
     const deleteButtonEl = document.createElement('button');

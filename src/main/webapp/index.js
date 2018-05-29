@@ -15,6 +15,8 @@ let tasksContentDivEl;
 let taskContentDivEl;
 let tasksOfDayContentDivEl;
 let errorMessageContentDivEl;
+let infoContentDivEl;
+let dayInfoContentDivEl;
 let scheduleInfoContentDivId;
 
 function newInfo(targetEl, message) {
@@ -118,6 +120,7 @@ function onLoad() {
     tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
     errorMessageContentDivEl = document.getElementById('error-message-content');
     infoContentDivEl = document.getElementById('info-content');
+    dayInfoContentDivEl = document.getElementById('day-info-content');
     scheduleInfoContentDivId = document.getElementById('schedule-info-content');
 
     const loginButtonEl = document.getElementById('login-button');
