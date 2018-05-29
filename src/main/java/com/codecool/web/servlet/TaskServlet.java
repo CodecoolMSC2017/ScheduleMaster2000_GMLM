@@ -62,10 +62,11 @@ public class TaskServlet extends AbstractServlet {
             TaskService taskService = new SimpleTaskService(taskDao);
 
             User user = (User) req.getSession().getAttribute("user");
+            int taskId = Integer.parseInt(req.getParameter("id"));
             String name = req.getParameter("title");
             String content = req.getParameter("content");
 
-            taskService.updateTask(name, content, user.getId());
+            taskService.updateTask(name, content, taskId);
             sendMessage(resp, 200, "Task is modified!");
         } catch (SQLException e) {
             handleSqlError(resp, e);
