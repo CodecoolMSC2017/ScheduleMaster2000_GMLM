@@ -1,11 +1,11 @@
-let popupFormDivEl;
+let popupTaskFormDivEl;
 let addTaskForm;
 
 function onAddTaskResponse() {
     removeAllChildren(infoContentDivEl);
     if(this.status === OK) {
         addTaskForm.reset();
-        onCloseSpanClicked();
+        onCloseTaskSpanClicked();
         onTasksButtonClicked();
     }
     const pEl = document.createElement('p');
@@ -14,7 +14,7 @@ function onAddTaskResponse() {
     infoContentDivEl.append(pEl);
 }
 
-function onSaveButtonClicked() {
+function onSaveTaskButtonClicked() {
     const taskTitleInputEl = document.getElementById('new-task-title');
     const taskContentInputEl = document.getElementById('task-content-area');
 
@@ -34,22 +34,22 @@ function onSaveButtonClicked() {
 }
 
 
-function onCloseSpanClicked() {
-    popupFormDivEl.style.display = "none";
+function onCloseTaskSpanClicked() {
+    popupTaskFormDivEl.style.display = "none";
 }
 
 function onAddTaskButtonClicked() {
     addTaskForm = document.getElementById('add-task-form');
     addTaskForm.reset();
     const addTaskButtonEl = document.getElementById('save-task-button');
-    addTaskButtonEl.addEventListener('click', onSaveButtonClicked);
+    addTaskButtonEl.addEventListener('click', onSaveTaskButtonClicked);
 
-    popupFormDivEl = document.getElementById('add-task-modal');
+    popupTaskFormDivEl = document.getElementById('add-task-modal');
 
     const closeSpan = document.getElementById('close');
-    closeSpan.addEventListener('click', onCloseSpanClicked);
+    closeSpan.addEventListener('click', onCloseTaskSpanClicked);
 
     removeAllChildren(infoContentDivEl);
-    popupFormDivEl.style.display = "block";
+    popupTaskFormDivEl.style.display = "block";
     showContents(['save-task-button', 'tasks-content', 'menu-content', 'add-task-button-content']);
 }
