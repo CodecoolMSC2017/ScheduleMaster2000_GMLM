@@ -10,6 +10,8 @@ function appendDay(day) {
 
     const modifyButtonEl = document.createElement('button');
     modifyButtonEl.textContent = 'Modify';
+    modifyButtonEl.setAttribute('id', day.id);
+    modifyButtonEl.addEventListener('click', onModifyDayButtonClicked);
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
