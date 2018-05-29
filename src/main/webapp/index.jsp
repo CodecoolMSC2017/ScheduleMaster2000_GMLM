@@ -133,7 +133,7 @@
             </div>
             <div class="modal-body">
                 <form id="add-schedule-form">
-                    Day title:<br>
+                    Schedule name:<br>
                     <input type="text" id="new-schedule-name"><br>
                 </form>
                 <div id="schedule-info-content"></div>
