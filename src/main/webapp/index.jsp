@@ -18,6 +18,7 @@
         <c:url value="/day.js" var="dayScriptUrl"/>
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
+        <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -31,6 +32,7 @@
         <script src="${dayScriptUrl}"></script>
         <script src="${addTaskScriptUrl}"></script>
         <script src="${modifyTaskScriptUrl}"></script>
+        <script src="${deleteTaskScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
