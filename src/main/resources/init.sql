@@ -83,18 +83,16 @@ insert into slots (hour,day_id,task_id) VALUES
 
 -- This funtion starts when a day created.Counts the days in a schedule and
 
-/*
-CREATE OR REPLACE FUNCTION enforce_days_count() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION enforce_days_count() RETURNS trigger AS '
 DECLARE
-    max_days_count INTEGER := 7;
     days_count INTEGER := 0;
     must_check BOOLEAN := false;
 BEGIN
-    IF TG_OP = 'INSERT' THEN
+    IF TG_OP = ''INSERT'' THEN
         must_check := true;
     END IF;
 
-    IF TG_OP = 'UPDATE' THEN
+    IF TG_OP = ''UPDATE'' THEN
         IF (NEW.schedule_id != OLD.schedule_id) THEN
             must_check := true;
         END IF;
@@ -108,8 +106,8 @@ BEGIN
         FROM days
         WHERE schedule_id = NEW.schedule_id;
 
-        IF days_count >= max_days_count THEN
-            RAISE EXCEPTION 'Cannot create more than % days for a schedule.', max_days_count;
+        IF days_count >= 7 THEN
+            RAISE EXCEPTION ''Cannot create more than % days for a schedule.'', max_days_count;
         END IF;
     END IF;
 
@@ -117,7 +115,7 @@ BEGIN
 
 END;
 
-$$ LANGUAGE plpgsql;
+' LANGUAGE plpgsql;
 
 
 CREATE TRIGGER enforce_days_count
@@ -125,17 +123,16 @@ CREATE TRIGGER enforce_days_count
     FOR EACH ROW EXECUTE PROCEDURE enforce_days_count();
 
 
-CREATE OR REPLACE FUNCTION enforce_slots_count() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION enforce_slots_count() RETURNS trigger AS '
 DECLARE
-    max_slots_count INTEGER := 24;
     slots_count INTEGER := 0;
     must_check BOOLEAN := false;
 BEGIN
-    IF TG_OP = 'INSERT' THEN
+    IF TG_OP = ''INSERT'' THEN
         must_check := true;
     END IF;
 
-    IF TG_OP = 'UPDATE' THEN
+    IF TG_OP = ''UPDATE'' THEN
         IF (NEW.day_id != OLD.day_id) THEN
             must_check := true;
         END IF;
@@ -148,8 +145,8 @@ BEGIN
         FROM slots
         WHERE day_id = NEW.day_id;
 
-        IF slots_count >= max_slots_count THEN
-            RAISE EXCEPTION 'Your day is fullfilled like a bus at noon!';
+        IF slots_count >= 24 THEN
+            RAISE EXCEPTION ''Your day is fullfilled like a bus at noon!'';
         END IF;
     END IF;
 
@@ -157,23 +154,24 @@ BEGIN
 
 END;
 
-$$ LANGUAGE plpgsql;
+' LANGUAGE plpgsql;
 
 CREATE TRIGGER enforce_slots_count
     BEFORE INSERT OR UPDATE ON slots
     FOR EACH ROW EXECUTE PROCEDURE enforce_slots_count();
 
 
-CREATE OR REPLACE FUNCTION enforce_slot_hour_check() RETURNS trigger AS $$
+CREATE OR REPLACE FUNCTION enforce_slot_hour_check()
+RETURNS trigger AS '
 DECLARE
     must_check BOOLEAN := false;
-	result_hour INTEGER :=0;
+	result_hour INTEGER := 0;
 BEGIN
-    IF TG_OP = 'INSERT' THEN
+    IF TG_OP = ''INSERT'' THEN
         must_check := true;
     END IF;
 
-    IF TG_OP = 'UPDATE' THEN
+    IF TG_OP = ''UPDATE'' THEN
         IF (NEW.day_id != OLD.day_id) THEN
             must_check := true;
         END IF;
@@ -186,7 +184,7 @@ BEGIN
         	WHERE day_id = NEW.day_id;
 
         IF result_hour = NEW.hour THEN
-            RAISE EXCEPTION 'This time you already have a task arranged!';
+            RAISE EXCEPTION ''This time you already have a task arranged!'';
         END IF;
     END IF;
 
@@ -194,10 +192,10 @@ BEGIN
 
 END;
 
-$$ LANGUAGE plpgsql;
+' LANGUAGE plpgsql;
 
 
 CREATE TRIGGER enforce_slot_hour_check
     BEFORE INSERT OR UPDATE ON slots
     FOR EACH ROW EXECUTE PROCEDURE enforce_slot_hour_check();
-*/
+
