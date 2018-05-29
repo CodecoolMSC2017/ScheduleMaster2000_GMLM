@@ -19,6 +19,7 @@
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
+        <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -33,6 +34,7 @@
         <script src="${addTaskScriptUrl}"></script>
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
+        <script src="${deleteDayScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -98,9 +100,29 @@
         </div>
     </div>
 
+    <div id="add-day-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="close-day-modal" class="close">&times;</span>
+                <h2>Add new task</h2>
+            </div>
+            <div class="modal-body">
+                <form id="add-day-form">
+                    Day title:<br>
+                    <input type="text" id="new-day-title"><br>
+                </form>
+                <div id="day-info-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-day-button" class="hidden content">Save</button>
+                <button id="modify-day-button" class="hidden content">Modify</button>
+            </div>
+        </div>
+    </div>
+
 
     <div id="schedules-content" class="hidden content">
-        <h1>Schedules</h1>
+        <h1>Schedules</h1><br>
         <table id="schedules">
             <thead>
                 <tr>
