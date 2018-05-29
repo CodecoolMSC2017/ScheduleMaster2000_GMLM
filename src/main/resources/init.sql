@@ -18,7 +18,7 @@ CREATE TABLE users (
 CREATE TABLE schedules (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
-	name TEXT,
+	name TEXT NOT NULL,
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
 

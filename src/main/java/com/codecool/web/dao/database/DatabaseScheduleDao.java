@@ -58,6 +58,10 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
 
     public void addNewSchedule(int userId, String name) throws SQLException {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Name cannot be empty!");
+        }
+
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "INSERT INTO schedules (user_id,name) VALUES\n" +
@@ -91,6 +95,32 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    @Override
+    public void updateSchedule(String name, int id) throws SQLException {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Name cannot be empty!");
+        }
+
+        String sql = "UPDATE schedules " +
+            "SET name= ? " +
+            "WHERE id = ?;";
+
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
         } finally {
             connection.setAutoCommit(autoCommit);
         }

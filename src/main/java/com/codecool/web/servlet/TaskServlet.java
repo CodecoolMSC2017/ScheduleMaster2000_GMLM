@@ -87,8 +87,6 @@ public class TaskServlet extends AbstractServlet {
             sendMessage(resp, 200, "The given task is deleted!");
         } catch (SQLException e) {
             handleSqlError(resp, e);
-        } catch (ServiceException e) {
-            sendMessage(resp, 401, e.getMessage());
         }
     }
 
