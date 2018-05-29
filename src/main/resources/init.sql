@@ -83,7 +83,7 @@ insert into slots (hour,day_id,task_id) VALUES
 
 -- This funtion starts when a day created.Counts the days in a schedule and
 
-
+/*
 CREATE OR REPLACE FUNCTION enforce_days_count() RETURNS trigger AS $$
 DECLARE
     max_days_count INTEGER := 7;
@@ -200,3 +200,4 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER enforce_slot_hour_check
     BEFORE INSERT OR UPDATE ON slots
     FOR EACH ROW EXECUTE PROCEDURE enforce_slot_hour_check();
+*/
