@@ -62,7 +62,7 @@ function onDayResponse() {
     clearMessages();
 
     if (this.status === OK) {
-        showContents(['menu-content', 'schedule-content', 'tasks-of-day-content']);        
+        showContents(['menu-content', 'schedule-content', 'tasks-of-day-content']);
         onDayLoad(JSON.parse(this.responseText));
     } else {
         showContents(['menu-content', 'schedule-content', 'error-message-content']);
@@ -79,6 +79,6 @@ function onDayClicked() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onDayResponse);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('GET', 'protected/day?' + params.toString());
+    xhr.open('GET', 'protected/days?' + params.toString());
     xhr.send();
 }
