@@ -38,8 +38,9 @@ function appendTask(task) {
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
     deleteButtonTdEl.append(deleteButtonEl);
+    deleteButtonEl.dataset.taskId = task.id;
 
-    //deleteButtonEl.addEventListener('click', onDeleteButtonClicked);
+    deleteButtonEl.addEventListener('click', onDeleteTaskButtonClicked);
 
     const trEl = document.createElement('tr');
     trEl.append(idTdEl);
