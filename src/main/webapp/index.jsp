@@ -98,9 +98,29 @@
         </div>
     </div>
 
+    <div id="add-day-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="close-day-modal" class="close">&times;</span>
+                <h2>Add new task</h2>
+            </div>
+            <div class="modal-body">
+                <form id="add-day-form">
+                    Day title:<br>
+                    <input type="text" id="new-day-title"><br>
+                </form>
+                <div id="day-info-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-day-button" class="hidden content">Save</button>
+                <button id="modify-day-button" class="hidden content">Modify</button>
+            </div>
+        </div>
+    </div>
+
 
     <div id="schedules-content" class="hidden content">
-        <h1>Schedules</h1>
+        <h1>Schedules</h1><br>
         <table id="schedules">
             <thead>
                 <tr>
