@@ -55,10 +55,10 @@ function onScheduleResponse() {
     clearMessages();
 
     if (this.status === OK) {
-        showContents(['menu-content', 'schedule-content']);
+        showContents(['menu-content', 'schedule-content', 'add-new-schedule']);
         onScheduleLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content']);
+        showContents(['menu-content', 'error-message-content', 'add-new-schedule']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }

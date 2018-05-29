@@ -1,7 +1,9 @@
+let popupModifyTaskFormDivEl;
+
 function onModifyResponse() {
     removeAllChildren(infoContentDivEl);
     if (this.status === OK) {
-        onCloseSpanClicked();
+        onModifyTaskCloseSpanClicked();
         onTasksButtonClicked();
     }
     const pEl = document.createElement('p');
@@ -43,6 +45,10 @@ function onTaskContentResponse() {
     }
 }
 
+function onModifyTaskCloseSpanClicked() {
+    popupModifyTaskFormDivEl.style.display = "none";
+}
+
 function onModifyButtonClicked() {
     removeAllChildren(infoContentDivEl);
 
@@ -54,12 +60,12 @@ function onModifyButtonClicked() {
         modifyTaskButton.removeEventListener('click', loadHandler);
     });
 
-    popupFormDivEl = document.getElementById('add-task-modal');
+    popupModifyTaskFormDivEl = document.getElementById('add-task-modal');
 
     const closeSpan = document.getElementById('close');
-    closeSpan.addEventListener('click', onCloseSpanClicked);
+    closeSpan.addEventListener('click', onModifyTaskCloseSpanClicked);
 
-    popupFormDivEl.style.display = "block";
+    popupModifyTaskFormDivEl    .style.display = "block";
     showContents(['modify-task-button', 'tasks-content', 'menu-content', 'add-task-button-content']);
 
     const params = new URLSearchParams();
