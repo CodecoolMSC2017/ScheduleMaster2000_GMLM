@@ -20,6 +20,7 @@
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
         <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
+        <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -35,6 +36,7 @@
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
         <script src="${deleteDayScriptUrl}"></script>
+        <script src="${modifyDayScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -104,7 +106,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="close-day-modal" class="close">&times;</span>
-                <h2>Add new task</h2>
+                <h2>Add new day</h2>
             </div>
             <div class="modal-body">
                 <form id="add-day-form">
