@@ -25,7 +25,7 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
             preparedStatement.setString(2, title);
             executeInsert(preparedStatement);
             int id = fetchGeneratedId(preparedStatement);
-            return new Day(id, title);
+            return new Day(id, title, schedule_id);
         } catch (SQLException ex) {
             connection.rollback();
             throw ex;
@@ -40,7 +40,7 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
-        String sql = "UPDATE days \n" +
+        String sql = "UPDATE days " +
             "SET title = ? WHERE id = ?;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, title);
@@ -138,7 +138,8 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
     private Day fetchDay(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String title = resultSet.getString("title");
-        return new Day(id, title);
+        int scheduleId = resultSet.getInt("schedule_id");
+        return new Day(id, title, scheduleId);
     }
 
     private boolean doesDayTitleExists(String title) throws SQLException {
@@ -150,11 +151,11 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
             preparedStatement.setString(1, title);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return false;
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
 }
