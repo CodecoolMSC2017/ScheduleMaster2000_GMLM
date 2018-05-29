@@ -82,7 +82,6 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         connection.setAutoCommit(false);
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
-            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {

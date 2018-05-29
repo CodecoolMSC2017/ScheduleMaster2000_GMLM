@@ -1,3 +1,4 @@
+let popupAddDayFormDivEl
 let addDayForm;
 
 function onAddDayResponse() {
@@ -13,11 +14,11 @@ function onAddDayResponse() {
     infoContentDivEl.append(pEl);
 }
 
-function onSaveButtonClicked() {
+function onSaveDayButtonClicked() {
     const dayTitleInputEl = document.getElementById('new-day-title');
-    
+
     dayTitle = dayTitleInputEl.value;
-    
+
     const params = new URLSearchParams();
     params.append('title', dayTitle);
 
@@ -29,7 +30,6 @@ function onSaveButtonClicked() {
 
 }
 
-
 function onCloseSpanClicked() {
     popupFormDivEl.style.display = "none";
 }
@@ -38,9 +38,9 @@ function onAddDayButtonClicked() {
     addDayForm = document.getElementById('add-day-form');
     addDayForm.reset();
     const addDayButtonEl = document.getElementById('save-day-button');
-    addDayButtonEl.addEventListener('click', onSaveButtonClicked);
+    addDayButtonEl.addEventListener('click', onSaveDayButtonClicked);
 
-    popupFormDivEl = document.getElementById('add-day-modal');
+    popupAddDayFormDivEl = document.getElementById('add-day-modal');
 
     const closeSpan = document.getElementById('close');
     closeSpan.addEventListener('click', onCloseSpanClicked);
