@@ -34,6 +34,7 @@ function onScheduleCloseSpanClicked() {
 }
 
 function onAddScheduleButtonClicked() {
+    removeAllChildren(scheduleInfoContentDivId);
     addScheduleForm = document.getElementById('add-schedule-form');
     addScheduleForm.reset();
     const addScheduleButtonEl = document.getElementById('save-schedule-button');
@@ -46,5 +47,5 @@ function onAddScheduleButtonClicked() {
 
     removeAllChildren(infoContentDivEl);
     popupScheduleFormDivEl.style.display = "block";
-    showContents(['save-schedule-button', 'schedule-content', 'menu-content', 'add-schedule-button-content']);
+    showContents(['save-schedule-button', 'schedules-content', 'menu-content', 'add-schedule-button-content']);
 }
