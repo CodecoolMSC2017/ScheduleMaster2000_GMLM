@@ -17,7 +17,7 @@ function appendDay(day) {
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
     deleteButtonEl.dataset.dayId = day.id;
-
+    deleteButtonEl.dataset.scheduleId = day.scheduleId;
     deleteButtonEl.addEventListener('click', onDeleteDayButtonClicked);
 
     const titleTdEl = document.createElement('td');
