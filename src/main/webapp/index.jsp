@@ -20,6 +20,7 @@
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
         <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
+        <c:url value="/addschedule.js" var="addScheduleScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -35,6 +36,7 @@
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
         <script src="${deleteDayScriptUrl}"></script>
+        <script src="${addScheduleScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -73,6 +75,9 @@
             <li>
                 <div id="add-task-button-content" class="hidden content">
                     <button id="add-new-task">Add new task</button>
+                </div>
+                <div id="add-schedule-button-content" class="hidden content">
+                    <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
                 </div>
             </li>
         </ul>
@@ -120,6 +125,25 @@
         </div>
     </div>
 
+    <div id="add-schedule-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="close-schedule-modal" class="close">&times;</span>
+                <h2>Add new schedule</h2>
+            </div>
+            <div class="modal-body">
+                <form id="add-schedule-form">
+                    Day title:<br>
+                    <input type="text" id="new-schedule-name"><br>
+                </form>
+                <div id="schedule-info-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="save-schedule-button" class="hidden content">Save</button>
+                <button id="modify-schedule-button" class="hidden content">Modify</button>
+            </div>
+        </div>
+    </div>
 
     <div id="schedules-content" class="hidden content">
         <h1>Schedules</h1><br>
