@@ -13,6 +13,6 @@ public interface TaskService {
     Task findById(int id) throws SQLException, ServiceException;
     List<Task> getAllTasks() throws SQLException, ServiceException;
     List<Task> getUsersTask(int user_id) throws SQLException, ServiceException;
-    void deleteTask(int id) throws SQLException, ServiceException;
+    void deleteTask(int id) throws SQLException;
     List<Task> getTaskByDayId (int day_id) throws SQLException, ServiceException;
 }
