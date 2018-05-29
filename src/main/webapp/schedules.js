@@ -13,6 +13,9 @@ function appendSchedule(schedule) {
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
+    deleteButtonEl.dataset.scheduleId = schedule.id;
+
+    deleteButtonEl.addEventListener('click', onScheduleDeleteButtonClicked);
 
     const nameTdEl = document.createElement('td');
     nameTdEl.appendChild(nameAEl);
@@ -48,12 +51,12 @@ function onSchedulesLoad(schedules) {
 
 function onSchedulesResponse() {
     clearMessages();
-
+        
     if (this.status === OK) {
-        showContents(['menu-content', 'schedules-content', 'add-schedule-button-content']);
+        showContents(['menu-content', 'schedules-content']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content', 'add-schedule-button-content']);
+        showContents(['menu-content', 'error-message-content']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }

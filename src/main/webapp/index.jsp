@@ -22,6 +22,7 @@
         <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
         <c:url value="/addschedule.js" var="addScheduleScriptUrl"/>
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
+        <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -39,6 +40,7 @@
         <script src="${deleteDayScriptUrl}"></script>
         <script src="${addScheduleScriptUrl}"></script>
         <script src="${modifyDayScriptUrl}"></script>
+        <script src="${deleteScheduleScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
