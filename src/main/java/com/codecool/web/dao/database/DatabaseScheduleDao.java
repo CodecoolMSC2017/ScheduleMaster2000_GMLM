@@ -86,7 +86,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         String sql = "DELETE FROM slots WHERE day_id IN (SELECT id FROM days where schedule_id = ?);\n" +
             "DELETE FROM days WHERE schedule_id =?;\n" +
             "Delete from schedules where id = ?";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
             statement.setInt(2, id);
             statement.setInt(3, id);
