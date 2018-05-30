@@ -14,6 +14,7 @@
         <c:url value="/schedule.js" var="scheduleScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
+        <c:url value="/users.js" var="usersScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
         <c:url value="/day.js" var="dayScriptUrl"/>
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
@@ -34,6 +35,7 @@
         <script src="${scheduleScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
+        <script src="${usersScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
         <script src="${dayScriptUrl}"></script>
         <script src="${addTaskScriptUrl}"></script>
@@ -76,6 +78,7 @@
 
     <div id="menu-content" class="hidden content">
         <ul>
+            <li><button id="users-button">Users</button></li>
             <li><button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button></li>
             <li><button id="tasks-button">Tasks</button></li>
             <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
@@ -154,6 +157,23 @@
                 <button id="modify-schedule-button" class="hidden content">Modify</button>
             </div>
         </div>
+    </div>
+
+    <div id="users-content" class="hidden content">
+        <h1>Users</h1><br>
+        <table id="users">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="users-tbody">
+            </tbody>
+        </table>
     </div>
 
     <div id="schedules-content" class="hidden content">
