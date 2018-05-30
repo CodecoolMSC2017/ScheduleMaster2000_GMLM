@@ -2,7 +2,7 @@ let popupAddDayFormDivEl
 let addDayForm;
 let scheduleId;
 
-function getModifiedScheduleAfterDelete() {
+function getModifiedScheduleAfterAdd() {
     const params = new URLSearchParams();
     params.append('id', scheduleId);
 
@@ -14,16 +14,16 @@ function getModifiedScheduleAfterDelete() {
 }
 
 function onAddDayResponse() {
-    removeAllChildren(infoContentDivEl);
+    removeAllChildren(dayInfoContentDivEl);
     if(this.status === OK) {
         addDayForm.reset();
-        onCloseSpanClicked();
-        getModifiedScheduleAfterDelete();
+        onCloseNewDaySpanClicked();
+        getModifiedScheduleAfterAdd();
     }
     const pEl = document.createElement('p');
     const response = JSON.parse(this.responseText);
     pEl.textContent = response.message;
-    infoContentDivEl.append(pEl);
+    dayInfoContentDivEl.append(pEl);
 }
 
 function onSaveDayButtonClicked() {
@@ -43,7 +43,7 @@ function onSaveDayButtonClicked() {
 
 }
 
-function onCloseSpanClicked() {
+function onCloseNewDaySpanClicked() {
     popupAddDayFormDivEl.style.display = "none";
 }
 
@@ -58,10 +58,10 @@ function onAddDayButtonClicked() {
 
     popupAddDayFormDivEl = document.getElementById('add-day-modal');
 
-    const closeSpan = document.getElementById('close');
-    closeSpan.addEventListener('click', onCloseSpanClicked);
+    const closeSpan = document.getElementById('close-day-modal');
+    closeSpan.addEventListener('click', onCloseNewDaySpanClicked);
 
-    removeAllChildren(infoContentDivEl);
+    removeAllChildren(dayInfoContentDivEl);
     popupAddDayFormDivEl.style.display = "block";
     showContents(['save-day-button', 'schedule-content', 'menu-content', 'add-day-button-content']);
 }
