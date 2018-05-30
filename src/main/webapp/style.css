@@ -155,7 +155,7 @@ li a.active {
   }
 
 #welcome-string {
-    font size: 14px;
+    font-size: 14px;
     text-align: right;
 }
 
@@ -167,7 +167,7 @@ li a.active {
     color: black;
 }
 
-# task-content span {
+#task-content span {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
