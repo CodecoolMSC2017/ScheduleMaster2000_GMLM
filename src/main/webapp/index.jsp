@@ -19,6 +19,7 @@
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
+        <c:url value="/addDay.js" var="addDayScriptUrl"/>
         <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
         <c:url value="/addschedule.js" var="addScheduleScriptUrl"/>
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
@@ -38,6 +39,7 @@
         <script src="${addTaskScriptUrl}"></script>
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
+        <script src="${addDayScriptUrl}"></script>
         <script src="${deleteDayScriptUrl}"></script>
         <script src="${addScheduleScriptUrl}"></script>
         <script src="${modifyDayScriptUrl}"></script>
@@ -84,6 +86,9 @@
                 </div>
                 <div id="add-schedule-button-content" class="hidden content">
                     <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
+                </div>
+                <div id="add-day-button-content" class="hidden content">
+                    <button id="add-new-day" onclick="onAddDayButtonClicked();">Add new day</button>
                 </div>
             </li>
         </ul>
