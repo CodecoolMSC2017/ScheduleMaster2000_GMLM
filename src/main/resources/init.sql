@@ -107,7 +107,7 @@ BEGIN
         WHERE schedule_id = NEW.schedule_id;
 
         IF days_count >= 7 THEN
-            RAISE EXCEPTION ''Cannot create more than % days for a schedule.'', max_days_count;
+            RAISE EXCEPTION ''Cannot create more than 7 days for a schedule.'';
         END IF;
     END IF;
 
