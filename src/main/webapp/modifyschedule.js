@@ -70,6 +70,6 @@ function onModifyScheduleButtonClicked() {
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onModifyScheduleContentResponse);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('GET', 'protected/schedule?' + params.toString());
+    xhr.open('GET', 'protected/modschedule?' + params.toString());
     xhr.send(params);
 }
