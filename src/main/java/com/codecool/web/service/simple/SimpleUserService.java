@@ -6,6 +6,7 @@ import com.codecool.web.service.UserService;
 import com.codecool.web.service.exception.ServiceException;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class SimpleUserService implements UserService {
     private final UserDao userDao;
@@ -29,6 +30,15 @@ public class SimpleUserService implements UserService {
             return userDao.addNewUser(name, email, password);
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<User> getAllUsers() throws SQLException, ServiceException {
+        if (userDao.getAllUsers().size() == 0) {
+            throw new ServiceException("No users yet!");
+        } else {
+            return userDao.getAllUsers();
         }
     }
 }

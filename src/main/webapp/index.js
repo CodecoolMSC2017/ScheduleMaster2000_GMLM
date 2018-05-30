@@ -138,6 +138,9 @@ function onLoad() {
     const tasksButtonEl = document.getElementById('tasks-button');
     tasksButtonEl.addEventListener('click', onTasksButtonClicked);
 
+    const usersButtonEl = document.getElementById('users-button');
+    usersButtonEl.addEventListener('click', onUsersButtonClicked);
+
     const addNewTaskButtonEl = document.getElementById('add-new-task');
     addNewTaskButtonEl.addEventListener('click', onAddTaskButtonClicked);
 
