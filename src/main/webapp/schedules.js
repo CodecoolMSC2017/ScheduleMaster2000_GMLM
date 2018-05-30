@@ -10,11 +10,12 @@ function appendSchedule(schedule) {
 
     const modifyButtonEl = document.createElement('button');
     modifyButtonEl.textContent = 'Modify';
+    modifyButtonEl.dataset.scheduleId = schedule.id;
+    modifyButtonEl.addEventListener('click', onModifyScheduleButtonClicked);
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
     deleteButtonEl.dataset.scheduleId = schedule.id;
-
     deleteButtonEl.addEventListener('click', onScheduleDeleteButtonClicked);
 
     const nameTdEl = document.createElement('td');
@@ -51,12 +52,12 @@ function onSchedulesLoad(schedules) {
 
 function onSchedulesResponse() {
     clearMessages();
-        
+
     if (this.status === OK) {
-        showContents(['menu-content', 'schedules-content']);
+        showContents(['menu-content', 'schedules-content', 'add-schedule-button-content']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content']);
+        showContents(['menu-content', 'error-message-content', 'add-schedule-button-content']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }
