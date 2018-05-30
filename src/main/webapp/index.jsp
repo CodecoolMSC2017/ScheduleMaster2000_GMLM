@@ -14,14 +14,17 @@
         <c:url value="/schedule.js" var="scheduleScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
+        <c:url value="/users.js" var="usersScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
         <c:url value="/day.js" var="dayScriptUrl"/>
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
+        <c:url value="/addDay.js" var="addDayScriptUrl"/>
         <c:url value="/deleteDay.js" var="deleteDayScriptUrl"/>
         <c:url value="/addschedule.js" var="addScheduleScriptUrl"/>
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
+        <c:url value="/modifyschedule.js" var="modifyScheduleScriptUrl"/>
         <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
@@ -32,15 +35,18 @@
         <script src="${scheduleScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
+        <script src="${usersScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
         <script src="${dayScriptUrl}"></script>
         <script src="${addTaskScriptUrl}"></script>
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
+        <script src="${addDayScriptUrl}"></script>
         <script src="${deleteDayScriptUrl}"></script>
         <script src="${addScheduleScriptUrl}"></script>
         <script src="${modifyDayScriptUrl}"></script>
         <script src="${deleteScheduleScriptUrl}"></script>
+        <script src="${modifyScheduleScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -72,6 +78,7 @@
 
     <div id="menu-content" class="hidden content">
         <ul>
+            <li><button id="users-button">Users</button></li>
             <li><button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button></li>
             <li><button id="tasks-button">Tasks</button></li>
             <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
@@ -82,6 +89,9 @@
                 </div>
                 <div id="add-schedule-button-content" class="hidden content">
                     <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
+                </div>
+                <div id="add-day-button-content" class="hidden content">
+                    <button id="add-new-day" onclick="onAddDayButtonClicked();">Add new day</button>
                 </div>
             </li>
         </ul>
@@ -147,6 +157,23 @@
                 <button id="modify-schedule-button" class="hidden content">Modify</button>
             </div>
         </div>
+    </div>
+
+    <div id="users-content" class="hidden content">
+        <h1>Users</h1><br>
+        <table id="users">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Password</th>
+                    <th>Role</th>
+                </tr>
+            </thead>
+            <tbody id="users-tbody">
+            </tbody>
+        </table>
     </div>
 
     <div id="schedules-content" class="hidden content">

@@ -17,7 +17,7 @@ function appendDay(day) {
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
     deleteButtonEl.dataset.dayId = day.id;
-
+    deleteButtonEl.dataset.scheduleId = day.scheduleId;
     deleteButtonEl.addEventListener('click', onDeleteDayButtonClicked);
 
     const titleTdEl = document.createElement('td');
@@ -56,17 +56,18 @@ function onScheduleResponse() {
     clearMessages();
 
     if (this.status === OK) {
-        showContents(['menu-content', 'schedule-content', 'add-new-schedule']);
+        showContents(['menu-content', 'schedule-content', 'add-day-button-content']);
         onScheduleLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content', 'add-new-schedule']);
+        showContents(['menu-content', 'error-message-content', 'add-day-button-content']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }
 
 function onScheduleClicked() {
     const scheduleId = this.dataset.scheduleId;
-
+    const addNewDayButtonEl = document.getElementById("add-new-day");
+    addNewDayButtonEl.dataset.scheduleId = scheduleId;
     const params = new URLSearchParams();
     params.append('id', scheduleId);
 

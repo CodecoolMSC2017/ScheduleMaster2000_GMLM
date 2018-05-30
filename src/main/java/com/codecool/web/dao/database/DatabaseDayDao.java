@@ -76,12 +76,10 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
     }
 
     public void deleteDay(int id) throws SQLException {
-        String sql = "DELETE FROM slots where day_id = ?;\n" +
-            "DELETE FROM days where id = ?;";
+        String sql = "DELETE FROM days where id = ?;";
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, id);
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
             connection.commit();

@@ -4,6 +4,8 @@ import com.codecool.web.dao.UserDao;
 import com.codecool.web.model.User;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class DatabaseUserDao extends AbstractDao implements UserDao {
@@ -60,6 +62,19 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
         } finally {
             connection.setAutoCommit(autoCommit);
         }
+    }
+
+    @Override
+    public List<User> getAllUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+        String sql = "SELECT * FROM users";
+        try (Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery(sql)) {
+            while (resultSet.next()) {
+                users.add(fetchUser(resultSet));
+            }
+        }
+        return users;
     }
 
     private User fetchUser(ResultSet resultSet) throws SQLException {
