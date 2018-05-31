@@ -6,6 +6,8 @@ import com.codecool.web.model.User;
 import com.codecool.web.service.LoginService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleLoginService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +18,8 @@ import java.sql.SQLException;
 
 @WebServlet("/login")
 public final class LoginServlet extends AbstractServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginServlet.class);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -32,8 +36,10 @@ public final class LoginServlet extends AbstractServlet {
             sendMessage(resp, HttpServletResponse.SC_OK, user);
         } catch (ServiceException ex) {
             sendMessage(resp, HttpServletResponse.SC_UNAUTHORIZED, ex.getMessage());
+            logger.debug("Exception has been caught: " + ex.getMessage());
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
+            logger.debug("Exception has been caught: " + ex.getMessage());
         }
     }
 }

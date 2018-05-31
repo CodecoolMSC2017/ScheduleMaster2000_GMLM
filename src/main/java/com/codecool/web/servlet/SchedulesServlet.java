@@ -7,6 +7,8 @@ import com.codecool.web.model.User;
 import com.codecool.web.service.ScheduleService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleScheduleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletContext;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +23,10 @@ import java.util.List;
 @WebServlet("/protected/schedules")
 public class SchedulesServlet extends AbstractServlet {
 
+    private static final Logger logger = LoggerFactory.getLogger(SchedulesServlet.class);
+
     public void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        User user = (User) req.getSession().getAttribute("user");
         ServletContext scx = req.getServletContext();
 
         try (Connection connection = getConnection(scx)) {
@@ -36,12 +41,15 @@ public class SchedulesServlet extends AbstractServlet {
             } else {
                 schedules = scheduleService.getUsersSchedules(actualUser.getId());
             }
-            sendMessage(resp, HttpServletResponse.SC_OK, schedules);
 
+            sendMessage(resp, HttpServletResponse.SC_OK, schedules);
+            logger.debug("The schedules are listed by " + user.getEmail() + ".");
         } catch (SQLException e) {
             handleSqlError(resp, e);
+            logger.debug("Exception has been caught: " + e.getMessage());
         } catch (ServiceException e) {
             sendMessage(resp, HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
+            logger.debug("Exception has been caught: " + e.getMessage());
         }
 
 
