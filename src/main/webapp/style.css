@@ -138,7 +138,7 @@ li a.active {
     background-color: #4d90fe;
 }
 
-#users-button, #schedules-button, #tasks-button, #logout-button {
+#users-button, #schedules-button, #tasks-button, #logout-button, #add-new-schedule, #add-new-day, #add-new-task {
     size: 300%;
     border: 0px;
     color: #fff;
@@ -146,7 +146,7 @@ li a.active {
     background-color: #4d90fe;
 }
 
-#users-button:hover, #schedules-button:hover, #tasks-button:hover, #logout-button:hover {
+#users-button:hover, #schedules-button:hover, #tasks-button:hover, #logout-button:hover, #add-new-schedule:hover, #add-new-day:hover, #add-new-task:hover {
     /* border: 1px solid #2f5bb7; */
     border: 0px;
     text-shadow: 0 1px rgba(0,0,0,0.3);

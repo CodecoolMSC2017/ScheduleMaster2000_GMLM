@@ -83,6 +83,21 @@
             <li><button id="tasks-button">Tasks</button></li>
             <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
             <li><p id = "welcome-string">Welcome <span id="user-name"></span>!</p></li>
+            <li>
+                <div id="add-schedule-button-content" class="hidden content">
+                    <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
+                </div>
+            </li>
+            <li>
+                <div id="add-day-button-content" class="hidden content">
+                    <button id="add-new-day" onclick="onAddDayButtonClicked();">Add new day</button>
+                </div>
+            </li>
+            <li>
+                <div id="add-task-button-content" class="hidden content">
+                    <button id="add-new-task">Add new task</button>
+                </div>
+            </li>
         </ul>
     </div>
 
@@ -167,9 +182,6 @@
 
     <div id="schedules-content" class="hidden content">
         <h1>Schedules</h1><br>
-        <div id="add-schedule-button-content" class="hidden content">
-            <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
-        </div><br>
         <table id="schedules">
             <thead>
                 <tr>
@@ -185,9 +197,6 @@
 
     <div id="schedule-content" class="hidden content">
         <h1>Days</h1>
-        <div id="add-day-button-content" class="hidden content">
-            <button id="add-new-day" onclick="onAddDayButtonClicked();">Add new day</button>
-        </div><br>
         <table id="schedule">
             <thead>
                 <tr>
@@ -203,9 +212,6 @@
 
     <div id="tasks-content" class="hidden content">
         <h1>Tasks</h1>
-        <div id="add-task-button-content" class="hidden content">
-            <button id="add-new-task">Add new task</button>
-        </div><br>
         <table id="tasks">
             <thead>
             <tr>
