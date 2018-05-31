@@ -32,7 +32,7 @@ CREATE TABLE days (
 CREATE TABLE tasks (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
-	name TEXT UNIQUE,
+	name TEXT NOT NULL,
 	content TEXT,
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
