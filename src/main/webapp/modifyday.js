@@ -30,6 +30,7 @@ function onDayModifyLoad(id) {
 
      params.append('id', id);
      params.append('title', dayTitleInputEl.value);
+     params.append('scheduleId', modifiedScheduleId);
 
      const xhr = new XMLHttpRequest();
      xhr.addEventListener('load', onDayModifyResponse);
