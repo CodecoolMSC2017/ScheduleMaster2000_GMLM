@@ -1,7 +1,7 @@
 let popupModifyScheduleFormDivEl;
 
 function onModifyScheduleResponse() {
-    removeAllChildren(infoContentDivEl);
+    removeAllChildren(scheduleInfoContentDivId);
     if (this.status === OK) {
         onModifyScheduleCloseSpanClicked();
         onSchedulesButtonClicked();
@@ -46,7 +46,7 @@ function onModifyScheduleCloseSpanClicked() {
 }
 
 function onModifyScheduleButtonClicked() {
-    removeAllChildren(infoContentDivEl);
+    removeAllChildren(scheduleInfoContentDivId);
 
     const scheduleId = this.dataset.scheduleId;
 

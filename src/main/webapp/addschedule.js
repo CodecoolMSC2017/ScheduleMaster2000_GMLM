@@ -45,7 +45,7 @@ function onAddScheduleButtonClicked() {
     const closeSpan = document.getElementById('close-schedule-modal');
     closeSpan.addEventListener('click', onScheduleCloseSpanClicked);
 
-    removeAllChildren(infoContentDivEl);
+    removeAllChildren(scheduleInfoContentDivId);
     popupScheduleFormDivEl.style.display = "block";
     showContents(['save-schedule-button', 'schedules-content', 'menu-content', 'add-schedule-button-content']);
 }
