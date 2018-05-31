@@ -101,7 +101,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="close" class="close">&times;</span>
-                <h2>Add new task</h2>
+                <h2>Task</h2>
             </div>
             <div class="modal-body">
                 <form id="add-task-form">
@@ -123,7 +123,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="close-day-modal" class="close">&times;</span>
-                <h2>Add new day</h2>
+                <h2>Day</h2>
             </div>
             <div class="modal-body">
                 <form id="add-day-form">
@@ -143,7 +143,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="close-schedule-modal" class="close">&times;</span>
-                <h2>Add new schedule</h2>
+                <h2>Schedule</h2>
             </div>
             <div class="modal-body">
                 <form id="add-schedule-form">
