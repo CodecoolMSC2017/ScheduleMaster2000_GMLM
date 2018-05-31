@@ -17,7 +17,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         if (name == null || name.equals("")) {
             throw new IllegalArgumentException("Name can not be empty");
         }
-        if (doesTaskExists(name)) {
+        if (doesTaskExists(name, user_id)) {
             throw new IllegalArgumentException("Task with this name already exists");
         }
         boolean autoCommit = connection.getAutoCommit();
@@ -38,8 +38,8 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
-    public void updateTask(String name, String content, int task_id) throws SQLException {
-        if (doesTaskExists(name)) {
+    public void updateTask(String name, String content, int task_id, int userId) throws SQLException {
+        if (doesTaskExistsWithOtherId(task_id,name, userId)) {
             throw new IllegalArgumentException("A task with that name already exists");
         }
         boolean autoCommit = connection.getAutoCommit();
@@ -59,13 +59,15 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
-    private boolean doesTaskExists(String name) throws SQLException {
+    private boolean doesTaskExists(String name, int userId) throws SQLException {
         if (name == null || name.equals("")) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
-        String sql = "SELECT * FROM tasks WHERE name = ?";
+        String sql = "SELECT * FROM tasks\n" +
+            "where user_id = ? AND name Like ?;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, name);
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setString(2, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (!resultSet.next()) {
                     return false;
@@ -74,6 +76,29 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
         return true;
     }
+
+    private boolean doesTaskExistsWithOtherId(int id, String name, int userId) throws SQLException {
+        Task oldTask = null;
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Name cannot be empty");
+        }
+        String sql = "SELECT * FROM tasks\n" +
+            "where user_id = ? AND name Like ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1,userId);
+            preparedStatement.setString(2, name);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (!resultSet.next()) {
+                    oldTask = fetchTask(resultSet);
+                }
+            }
+        }
+        if(oldTask == null || id == oldTask.getId()) {
+            return false;
+        }
+        return true;
+    }
+
 
     public Task findById(int id) throws SQLException {
         String sql = "SELECT * FROM tasks WHERE id = ?;";
