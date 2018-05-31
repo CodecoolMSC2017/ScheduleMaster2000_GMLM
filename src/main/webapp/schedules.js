@@ -28,6 +28,7 @@ function appendSchedule(schedule) {
     deleteTdEl.appendChild(deleteButtonEl);
 
     const trEl = document.createElement('tr');
+    trEl.setAttribute('id', schedule.id);
     trEl.appendChild(nameTdEl);
     trEl.appendChild(modifyTdEl);
     trEl.appendChild(deleteTdEl);
@@ -54,10 +55,10 @@ function onSchedulesResponse() {
     clearMessages();
 
     if (this.status === OK) {
-        showContents(['menu-content', 'schedules-content', 'add-schedule-button-content']);
+        showContents(['menu-content', 'schedules-content', 'add-schedule-button-content', 'save-schedule-button']);
         onSchedulesLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content', 'add-schedule-button-content']);
+        showContents(['menu-content', 'error-message-content', 'add-schedule-button-content', 'save-schedule-button']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }
