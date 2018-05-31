@@ -35,21 +35,25 @@ function onSaveTaskButtonClicked() {
 
 
 function onCloseTaskSpanClicked() {
-    popupTaskFormDivEl.style.display = "none";
+    onTasksButtonClicked();
+    popupTaskFormDivEl.style.display = "none"; 
 }
 
 function onAddTaskButtonClicked() {
+    popupTaskFormDivEl = document.getElementById('add-task-modal');
+
     addTaskForm = document.getElementById('add-task-form');
     addTaskForm.reset();
+    
     const addTaskButtonEl = document.getElementById('save-task-button');
     addTaskButtonEl.addEventListener('click', onSaveTaskButtonClicked);
-
-    popupTaskFormDivEl = document.getElementById('add-task-modal');
 
     const closeSpan = document.getElementById('close');
     closeSpan.addEventListener('click', onCloseTaskSpanClicked);
 
     removeAllChildren(infoContentDivEl);
+    
     popupTaskFormDivEl.style.display = "block";
     showContents(['save-task-button', 'tasks-content', 'menu-content', 'add-task-button-content']);
+    onTasksButtonClicked();
 }

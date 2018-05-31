@@ -43,6 +43,7 @@ function appendTask(task) {
     deleteButtonEl.addEventListener('click', onDeleteTaskButtonClicked);
 
     const trEl = document.createElement('tr');
+    trEl.setAttribute('id', task.id);
     trEl.append(idTdEl);
     trEl.append(nameTdEl);
     trEl.append(modifyButtonTdEl);
@@ -68,10 +69,10 @@ function onTasksLoad(tasks) {
 
 function onTasksResponse() {
     if (this.status === OK) {
-        showContents(['menu-content', 'tasks-content', 'add-task-button-content']);
+        showContents(['menu-content', 'tasks-content', 'add-task-button-content', 'save-task-button']);
         onTasksLoad(JSON.parse(this.responseText));
     } else {
-        showContents(['menu-content', 'error-message-content', 'add-task-button-content']);
+        showContents(['menu-content', 'error-message-content', 'add-task-button-content', 'save-task-button']);
         onOtherResponse(errorMessageContentDivEl, this);
     }
 }

@@ -9,13 +9,18 @@ function onDeleteTaskResponse(taskId) {
     xhr.send(params);
 }
 
+function onDeleteTaskInTable(taskId) {
+    const deletedTaskTr = document.getElementById(taskId);
+    deletedTaskTr.parentNode.removeChild(deletedTaskTr);
+}
+
 function onDeleteTaskButtonClicked() {
     const taskId = this.dataset.taskId;
 
     if (confirm("Do you want to delete this task?")) {
         onDeleteTaskResponse(taskId);
+        onDeleteTaskInTable(taskId);
     } else {
         onTasksButtonClicked();
     }
-
 }

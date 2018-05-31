@@ -9,13 +9,17 @@ function onDeleteScheduleResponse(scheduleId) {
     xhr.send(params);
 }
 
+function deleteScheduleTrEl(scheduleId) {
+    const trElementToRemove = document.getElementById(scheduleId);
+    trElementToRemove.parentNode.removeChild(trElementToRemove);
+}
+
 function onScheduleDeleteButtonClicked() {
     const scheduleId = this.dataset.scheduleId;
 
     if (confirm("Do you want to delete this schedule?")) {
         onDeleteScheduleResponse(scheduleId);
-        const trElementToRemove = document.getElementById(scheduleId);
-        trElementToRemove.parentNode.removeChild(trElementToRemove);
+        deleteScheduleTrEl(scheduleId);
     } else {
         onSchedulesButtonClicked();
     }
