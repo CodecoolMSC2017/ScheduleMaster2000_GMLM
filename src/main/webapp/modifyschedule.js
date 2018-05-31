@@ -9,7 +9,7 @@ function onModifyScheduleResponse() {
     const pEl = document.createElement('p');
     const response = JSON.parse(this.responseText);
     pEl.textContent = response.message;
-    infoContentDivEl.append(pEl);
+    scheduleInfoContentDivId.append(pEl);
 }
 
 function onScheduleModifyLoad(id) {
@@ -37,7 +37,7 @@ function onModifyScheduleContentResponse() {
     if (this.status === OK) {
         onModifyScheduleFormContentLoad(JSON.parse(this.responseText));
     } else {
-        onOtherResponse(infoContentDivEl, this);
+        onOtherResponse(scheduleInfoContentDivId, this);
     }
 }
 
