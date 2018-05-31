@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SimpleUserService implements UserService {
     private final UserDao userDao;
-    private static final Logger logger = LoggerFactory.getLogger(SimpleTaskService.class);
+    private static final Logger logger = LoggerFactory.getLogger(SimpleUserService.class);
 
     public SimpleUserService(UserDao userDao) {
         this.userDao = userDao;
