@@ -65,8 +65,9 @@ public class TaskServlet extends AbstractServlet {
             int taskId = Integer.parseInt(req.getParameter("id"));
             String name = req.getParameter("title");
             String content = req.getParameter("content");
+            int userId = user.getId();
 
-            taskService.updateTask(name, content, taskId);
+            taskService.updateTask(name, content, taskId, userId);
             sendMessage(resp, 200, "Task is modified!");
         } catch (SQLException e) {
             handleSqlError(resp, e);
