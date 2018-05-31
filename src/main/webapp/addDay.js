@@ -44,6 +44,7 @@ function onSaveDayButtonClicked() {
 }
 
 function onCloseNewDaySpanClicked() {
+    getModifiedScheduleAfterAdd();
     popupAddDayFormDivEl.style.display = "none";
 }
 
@@ -64,4 +65,6 @@ function onAddDayButtonClicked() {
     removeAllChildren(dayInfoContentDivEl);
     popupAddDayFormDivEl.style.display = "block";
     showContents(['save-day-button', 'schedule-content', 'menu-content', 'add-day-button-content']);
+    getModifiedScheduleAfterAdd();
+
 }

@@ -54,6 +54,7 @@ function onDayContentResponse() {
 
 function onCloseDaySpanClicked() {
     const dayPopUpFormDivEl = document.getElementById('add-day-modal');
+    getModifiedSchedule();
     dayPopUpFormDivEl.style.display = "none";
 }
 
