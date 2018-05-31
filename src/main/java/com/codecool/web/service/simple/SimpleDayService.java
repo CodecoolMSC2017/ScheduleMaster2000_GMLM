@@ -34,10 +34,10 @@ public class SimpleDayService implements DayService {
     }
 
     @Override
-    public void updateDayName(String title, int id) throws SQLException, ServiceException {
+    public void updateDayName(String title, int id, int scheduleId) throws SQLException, ServiceException {
         try {
 
-            dayDao.updateDayName(title, id);
+            dayDao.updateDayName(title, id, scheduleId);
 
             logger.debug(String.format("Updated day %d title to %s", id, title));
         } catch (IllegalArgumentException ex) {

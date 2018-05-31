@@ -10,7 +10,7 @@ public interface DayService {
 
     Day addNewDay(int schedule_id, String title) throws SQLException, ServiceException;
 
-    void updateDayName(String title, int id) throws SQLException, ServiceException;
+    void updateDayName(String title, int id, int scheduleId) throws SQLException, ServiceException;
 
     void assignDayToSchedule(int schedule_id, int day_id) throws SQLException, ServiceException;
 
