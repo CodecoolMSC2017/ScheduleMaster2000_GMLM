@@ -31,9 +31,9 @@ public class SimpleTaskService implements TaskService {
     }
 
     @Override
-    public void updateTask(String name, String content, int task_id) throws SQLException, ServiceException {
+    public void updateTask(String name, String content, int task_id, int user_id) throws SQLException, ServiceException {
         try {
-            taskDao.updateTask(name, content, task_id);
+            taskDao.updateTask(name, content, task_id, user_id);
             logger.debug(String.format("Task %d has been updated", task_id));
         } catch (IllegalArgumentException ex) {
             logger.debug("Exception has been caught: " + ex);
