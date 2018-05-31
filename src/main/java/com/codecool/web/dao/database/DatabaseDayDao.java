@@ -17,6 +17,9 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         if (title == null || title.equals("")) {
             throw new IllegalArgumentException("You can't create a day not assigned to a schedule");
         }
+        if(doesDayTitleExists(title, schedule_id)) {
+            throw new IllegalArgumentException("You already have task with this name!");
+        }
         boolean autoCommit = connection.getAutoCommit();
         connection.setAutoCommit(false);
         String sql = "insert into days (schedule_id,title) VALUES (?,?);";
@@ -34,8 +37,8 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
     }
 
-    public void updateDayName(String title, int id) throws SQLException {
-        if (doesDayTitleExists(title)) {
+    public void updateDayName(String title, int id, int scheduleId) throws SQLException {
+        if (doesDayTitleExistsById(id,title, scheduleId)) {
             throw new IllegalArgumentException("A day with that title already exists");
         }
         boolean autoCommit = connection.getAutoCommit();
@@ -140,13 +143,15 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         return new Day(id, title, scheduleId);
     }
 
-    private boolean doesDayTitleExists(String title) throws SQLException {
+    private boolean doesDayTitleExists(String title, int scheduleId) throws SQLException {
         if (title == null || title.equals("")) {
             throw new IllegalArgumentException("Day's title can not be empty");
         }
-        String sql = "SELECT * FROM days WHERE title = ?";
+        String sql = "SELECT * from days\n" +
+            "\twhere schedule_id = ? AND title LIKE ?;";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, title);
+            preparedStatement.setInt(1, scheduleId);
+            preparedStatement.setString(2, title);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return true;
@@ -154,6 +159,29 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
             }
         }
         return false;
+    }
+
+    private boolean doesDayTitleExistsById(int id, String title, int scheduleId) throws SQLException {
+        if (title == null || title.equals("")) {
+            throw new IllegalArgumentException("Day's title can not be empty");
+        }
+
+        Day matchingNameDay= null;
+
+        String sql = "SELECT * from days\n" +
+            "\twhere schedule_id = ? AND title LIKE ?;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, scheduleId);
+            preparedStatement.setString(2, title);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    matchingNameDay = fetchDay(resultSet);                }
+            }
+        }
+        if(matchingNameDay == null || id == matchingNameDay.getId()) {
+            return false;
+        }
+        return true;
     }
 
 }
