@@ -14,6 +14,8 @@ function onScheduleDeleteButtonClicked() {
 
     if (confirm("Do you want to delete this schedule?")) {
         onDeleteScheduleResponse(scheduleId);
+        const trElementToRemove = document.getElementById(scheduleId);
+        trElementToRemove.parentNode.removeChild(trElementToRemove);
     } else {
         onSchedulesButtonClicked();
     }
