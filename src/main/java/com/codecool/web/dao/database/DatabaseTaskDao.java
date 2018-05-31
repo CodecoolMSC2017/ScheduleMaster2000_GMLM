@@ -88,7 +88,7 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
             preparedStatement.setInt(1,userId);
             preparedStatement.setString(2, name);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (!resultSet.next()) {
+                if (resultSet.next()) {
                     oldTask = fetchTask(resultSet);
                 }
             }
