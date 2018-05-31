@@ -21,7 +21,7 @@ public class SimpleDayService implements DayService {
     }
 
     @Override
-    public Day addNewDay(int schedule_id, String title) throws SQLException, ServiceException {
+    public Day addNewDay(int schedule_id, String title) throws ServiceException {
         try {
 
             logger.debug(String.format("Added day %s to schedule %d", title, schedule_id));
@@ -30,6 +30,9 @@ public class SimpleDayService implements DayService {
         } catch (IllegalArgumentException ex) {
             logger.debug("Exception has been caught: " + ex);
             throw new ServiceException(ex.getMessage());
+        } catch (SQLException sql) {
+            logger.debug("Exception has been caught:"+sql);
+            throw new ServiceException("You can't create more than 7 days!");
         }
     }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface DayService {
 
-    Day addNewDay(int schedule_id, String title) throws SQLException, ServiceException;
+    Day addNewDay(int schedule_id, String title) throws ServiceException ;
 
     void updateDayName(String title, int id, int scheduleId) throws SQLException, ServiceException;
 
