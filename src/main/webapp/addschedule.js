@@ -30,6 +30,7 @@ function onSaveScheduleButtonClicked() {
 }
 
 function onScheduleCloseSpanClicked() {
+    onSchedulesButtonClicked();
     popupScheduleFormDivEl.style.display = "none";
 }
 
@@ -48,4 +49,5 @@ function onAddScheduleButtonClicked() {
     removeAllChildren(scheduleInfoContentDivId);
     popupScheduleFormDivEl.style.display = "block";
     showContents(['save-schedule-button', 'schedules-content', 'menu-content', 'add-schedule-button-content']);
+    onSchedulesButtonClicked();
 }
