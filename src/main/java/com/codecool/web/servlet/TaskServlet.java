@@ -6,7 +6,10 @@ import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
 import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
+import com.codecool.web.service.simple.SimpleDayService;
 import com.codecool.web.service.simple.SimpleTaskService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,6 +21,8 @@ import java.sql.SQLException;
 
 @WebServlet("/protected/task")
 public class TaskServlet extends AbstractServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(TaskServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -47,11 +52,16 @@ public class TaskServlet extends AbstractServlet {
             String content = req.getParameter("content");
 
             taskService.addNewTask(name, content, user.getId());
+
+            logger.debug(String.format("User %s has been added %s task", user.getEmail(), name));
+
             sendMessage(resp, 200, "New task is added.");
         } catch (SQLException e) {
             handleSqlError(resp, e);
+            logger.debug("Exception has been caught: " + e);
         } catch (ServiceException e) {
             sendMessage(resp, 401, e.getMessage());
+            logger.debug("Exception has been caught: " + e);
         }
     }
 
