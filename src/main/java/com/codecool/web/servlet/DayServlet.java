@@ -70,8 +70,9 @@ public class DayServlet extends AbstractServlet {
 
             int dayId = Integer.parseInt(req.getParameter("id"));
             String title = req.getParameter("title");
+            int scheduleId = Integer.parseInt(req.getParameter("scheduleId"));
 
-            dayService.updateDayName(title, dayId);
+            dayService.updateDayName(title, dayId, scheduleId);
 
             sendMessage(resp, 200, "Day's title has been modified!");
         } catch (SQLException e) {
