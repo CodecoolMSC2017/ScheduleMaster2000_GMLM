@@ -43,8 +43,7 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
     }
 
     public Schedule getScheduleById(int id) throws SQLException {
-        String sql = "get schedule by id:\n" +
-            "SELECT * from schedules\n" +
+        String sql = "SELECT * from schedules\n" +
             "where id = ?";
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, id);
