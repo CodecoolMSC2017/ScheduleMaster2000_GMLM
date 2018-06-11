@@ -11,5 +11,6 @@ public interface UserDao {
 
     User findByEmail(String email) throws SQLException;
     User addNewUser(String name, String email, String password) throws SQLException;
+    User addNewGoogleUser(String name, String email) throws SQLException;
     List<User> getAllUsers() throws SQLException;
 }

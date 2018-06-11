@@ -1,5 +1,6 @@
 function onLogoutResponse() {
     if (this.status === OK) {
+        signOut();
         setUnauthorized();
         clearMessages();
         showContents(['login-content']);
