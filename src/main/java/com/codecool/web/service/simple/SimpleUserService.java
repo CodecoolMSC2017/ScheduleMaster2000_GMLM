@@ -32,8 +32,19 @@ public class SimpleUserService implements UserService {
     @Override
     public User addNewUser(String name, String email, String password) throws SQLException, ServiceException {
         try {
-            logger.debug("New user has been added");
+            logger.debug("New user has been added: " + email);
             return userDao.addNewUser(name, email, password);
+        } catch (IllegalArgumentException ex) {
+            logger.debug("Exception was caught: " + ex);
+            throw new ServiceException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public User addNewGoogleUser(String name, String email) throws SQLException, ServiceException {
+        try {
+            logger.debug("New user has been added: " + email);
+            return userDao.addNewGoogleUser(name, email);
         } catch (IllegalArgumentException ex) {
             logger.debug("Exception was caught: " + ex);
             throw new ServiceException(ex.getMessage());
