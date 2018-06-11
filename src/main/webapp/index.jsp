@@ -5,6 +5,9 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-signin-scope" content="profile email">
+        <meta name="google-signin-client_id" content="221395632683-memhr17ad59qsc43ak5haaq3r0fj1h7e.apps.googleusercontent.com">
+
         <c:url value="/style.css" var="styleUrl"/>
         <c:url value="/index.js" var="indexScriptUrl"/>
         <c:url value="/login.js" var="loginScriptUrl"/>
@@ -26,8 +29,15 @@
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
         <c:url value="/modifyschedule.js" var="modifyScheduleScriptUrl"/>
         <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
-        <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/>
+        <!-- <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/> -->
+        <c:url value="/google-sign-in.js" var="googleSignInScriptUrl"/>
+        <c:url value="/google-sign-out.js" var="googleSignOutScriptUrl"/>
+
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+        <script src="https://apis.google.com/js/platform.js" async defer></script>
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
         <script src="${registerScriptUrl}"></script>
@@ -48,7 +58,10 @@
         <script src="${modifyDayScriptUrl}"></script>
         <script src="${deleteScheduleScriptUrl}"></script>
         <script src="${modifyScheduleScriptUrl}"></script>
-        <script src="${addtasktodayScriptUrl}"></script>
+        <!--<script src="${addtasktodayScriptUrl}"></script> -->
+        <script src="${googleSignInScriptUrl}"></script>
+        <script src="${googleSignOutScriptUrl}"></script>
+
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -60,6 +73,7 @@
             <input type="password" name="password" placeholder="Password">
             <input type="submit" id="login-button" name="login" class="login login-submit" value="login">
             <input type="submit" id="register-button" name="register" class="register register-submit" value="sign up">
+            <div id="google-signin2"></div>
             <!-- <button id="login-button">Login</button> -->
             <!--<button id="register-button">Sign up</button> -->
         </form>
