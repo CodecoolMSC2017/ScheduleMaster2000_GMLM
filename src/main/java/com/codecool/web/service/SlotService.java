@@ -12,7 +12,7 @@ public interface SlotService {
 
     List<Slot> getSlotsByDayId(int day_id) throws SQLException, ServiceException;
 
-    void assignTaskToDay(int endHour, int day_id, int task_id) throws SQLException;
+    public void assignTaskToDay(int startHour, int endHour, int day_id, int task_id) throws SQLException, ServiceException;
 
     void deleteSlot(int day_id, int task_id) throws SQLException;
 

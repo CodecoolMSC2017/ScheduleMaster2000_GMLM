@@ -34,10 +34,18 @@ public class SimpleSlotService implements SlotService {
     }
 
 
-    public void assignTaskToDay(int endHour, int day_id, int task_id) throws SQLException {
-        slotDao.assignTaskToDay(endHour, day_id, task_id);
-    }
+    public void assignTaskToDay(int startHour, int endHour, int day_id, int task_id) throws SQLException, ServiceException {
+        try {
+            checkIfSlotsAreExists(startHour, endHour,day_id);
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
 
+        for (int i = startHour + 1; i < endHour + 1; i++) {
+            slotDao.assignTaskToDay(i, day_id, task_id);
+        }
+
+    }
 
     public void deleteSlot(int day_id, int task_id) throws SQLException {
         slotDao.deleteSlot(day_id, task_id);
@@ -46,11 +54,11 @@ public class SimpleSlotService implements SlotService {
     public List<Integer> getFreeHours(int dayId) throws SQLException {
         List<Integer> allHours = generateBasicHourList();
         List<Integer> occupiedHours = slotDao.getOccupiedHours(dayId);
-        for(int busyHour: occupiedHours) {
+        for (int busyHour : occupiedHours) {
             Iterator iter = allHours.iterator();
-            while(iter.hasNext()) {
-                int hour = (int)iter.next();
-                if(hour == busyHour) {
+            while (iter.hasNext()) {
+                int hour = (int) iter.next();
+                if (hour == busyHour) {
                     iter.remove();
                 }
             }
@@ -61,8 +69,8 @@ public class SimpleSlotService implements SlotService {
     public List<Integer> getFreeStartHours(int dayId) throws SQLException {
         List<Integer> freeHours = getFreeHours(dayId);
         List<Integer> result = new ArrayList();
-        for(int hour : freeHours) {
-            result.add(hour-1);
+        for (int hour : freeHours) {
+            result.add(hour - 1);
         }
         return result;
     }
@@ -70,7 +78,7 @@ public class SimpleSlotService implements SlotService {
 
     private List<Integer> generateBasicHourList() {
         List<Integer> result = new ArrayList<>();
-        for(int i = 1; i<=24; i++) {
+        for (int i = 1; i <= 24; i++) {
             result.add(i);
         }
         return result;
@@ -83,8 +91,15 @@ public class SimpleSlotService implements SlotService {
         return result;
     }
 
-    private boolean chekIfSlotIsExists(int endHour, int day_id) throws SQLException {
-        return slotDao.checkIfSlotIsExists(endHour, day_id);
+    private boolean checkIfSlotsAreExists(int startHour, int endHour, int day_id) throws SQLException {
+
+        for (int i = startHour + 1; i < endHour + 1; i++) {
+            if (slotDao.checkIfSlotIsExists(i, day_id)) {
+                throw new IllegalArgumentException("You already have task in this time!");
+            }
+        }
+
+        return false;
     }
 
 }
