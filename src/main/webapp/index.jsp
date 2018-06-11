@@ -26,6 +26,7 @@
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
         <c:url value="/modifyschedule.js" var="modifyScheduleScriptUrl"/>
         <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
+        <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/>
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
         <script src="${indexScriptUrl}"></script>
         <script src="${loginScriptUrl}"></script>
@@ -47,6 +48,7 @@
         <script src="${modifyDayScriptUrl}"></script>
         <script src="${deleteScheduleScriptUrl}"></script>
         <script src="${modifyScheduleScriptUrl}"></script>
+        <script src="${addtasktodayScriptUrl}"></script>
         <title>Schedule Master 2000</title>
     </head>
 <body>
@@ -163,6 +165,35 @@
         </div>
     </div>
 
+    <div id="addtask-to-day-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span id="close-addtask-to-day-modal" class="close">&times;</span>
+                <h2>Schedule</h2>
+            </div>
+            <div class="modal-body">
+                <form id="addtask-to-day-form">
+                    Choose task:
+                    <select id="task">
+                        <option selected="selected">Choose</option>
+                    </select><br>
+                    <br>Choose start hour:
+                    <select id="start-hour">
+                        <option selected="selected">Choose</option>
+                    </select><br>
+                    <br>Choose end hour:
+                    <select id="end-hour">
+                        <option selected="selected">Choose</option>
+                    </select><br>
+                </form>
+                <div id="addtask-to-day-info-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button id="addtask-button" class="hidden content">Add!</button>
+            </div>
+        </div>
+    </div>
+
     <div id="users-content" class="hidden content">
         <h1>Users</h1><br>
         <table id="users">
@@ -230,6 +261,7 @@
 
     <div id="tasks-of-day-content" class="hidden content">
         <h1>Tasks</h1>
+        <button id="addtask-to-day" onclick="onAddTaskToDayButtonClicked();">Add task to day</button>
         <table id="tasks-of-day">
             <thead>
             <tr>
