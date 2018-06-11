@@ -102,4 +102,13 @@ public class SimpleTaskService implements TaskService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    public List<Task> getUnassignedTasks() throws SQLException, ServiceException {
+        List<Task> result = taskDao.getUnassignedTasks();
+
+        if(result.isEmpty()) {
+            throw new ServiceException("There are no unassigned tasks!");
+        }
+        return result;
+    }
 }
