@@ -1,5 +1,6 @@
 let popupAddTaskToDayFormDivEl;
 let addTaskToDayForm;
+let dayId;
 
 function onAddTaskToDayResponse() {
     clearMessages();
@@ -8,7 +9,7 @@ function onAddTaskToDayResponse() {
     const response = JSON.parse(this.responseText);
     pEl.textContent = response.message;
     addTaskToDayInfoContentDivEl.append(pEl);
-    showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'tasks-of-day-content']);
+    showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'add-day-button-content']);
 
     addTaskToDayForm.reset();
 }
@@ -25,9 +26,10 @@ function onAddButtonClicked() {
     const chosenEndHour = chosenEndHourInputEl.value;
 
     const params = new URLSearchParams();
-    params.append('chosenTask', chosenTask);
-    params.append('chosenStartHour', chosenStartHour);
-    params.append('chosenEndHour', chosenEndHour);
+    params.append('taskId', chosenTask);
+    params.append('startHour', chosenStartHour);
+    params.append('endHour', chosenEndHour);
+    params.append('dayId', dayId);
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onAddTaskToDayResponse);
@@ -38,6 +40,7 @@ function onAddButtonClicked() {
 
 function loadAvailableTasks(tasks) {
     const taskSelectEl = document.getElementById('task');
+    removeAllChildren(taskSelectEl);
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
@@ -49,7 +52,8 @@ function loadAvailableTasks(tasks) {
 }
 
 function loadAvailableEndHours(endHours) {
-    const endHourSelectEl = document.getElementById('start-hour');
+    const endHourSelectEl = document.getElementById('end-hour');
+    removeAllChildren(endHourSelectEl);
 
     for (let i = 0; i < endHours.length; i++) {
         const hour = endHours[i];
@@ -63,6 +67,7 @@ function loadAvailableEndHours(endHours) {
 
 function loadAvailableStartHours(startHours) {
     const startHourSelectEl = document.getElementById('start-hour');
+    removeAllChildren(startHourSelectEl);
 
     for (let i = 0; i < startHours.length; i++) {
         const hour = startHours[i];
@@ -82,17 +87,17 @@ function onAddTaskDtoLoad(taskSlotsDto) {
 
 function onAddTaskDtoResponse() {
     if (this.status === OK) {
-        showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'tasks-of-day-content']);
+        showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'add-day-button-content']);
         onAddTaskDtoLoad(JSON.parse(this.responseText));
-        onTaskClicked();
     } else {
-        showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'tasks-of-day-content']);
+        showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'add-day-button-content']);
         onOtherResponse(addTaskToDayInfoContentDivEl, this);
     }
 }
 
 function onCloseSpanClicked() {
      popupAddTaskToDayFormDivEl.style.display = "none";
+     showContents(['menu-content', 'schedule-content']);
  }
 
 function onAddTaskToDayButtonClicked() {
@@ -111,7 +116,7 @@ function onAddTaskToDayButtonClicked() {
 
     popupAddTaskToDayFormDivEl.style.display = "block";
 
-    const dayId = this.dataset.dayId;
+    dayId = this.dataset.dayId;
 
     const params = new URLSearchParams();
     params.append('dayId', dayId);
@@ -121,4 +126,5 @@ function onAddTaskToDayButtonClicked() {
     xhr.addEventListener('error', onNetworkError);
     xhr.open('GET', 'protected/slot?' + params.toString());
     xhr.send(params);
+
 }

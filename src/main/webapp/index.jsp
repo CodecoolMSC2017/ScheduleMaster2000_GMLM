@@ -58,7 +58,7 @@
         <script src="${modifyDayScriptUrl}"></script>
         <script src="${deleteScheduleScriptUrl}"></script>
         <script src="${modifyScheduleScriptUrl}"></script>
-        <!--<script src="${addtasktodayScriptUrl}"></script> -->
+        <script src="${addtasktodayScriptUrl}"></script>
         <script src="${googleSignInScriptUrl}"></script>
         <script src="${googleSignOutScriptUrl}"></script>
 
@@ -203,7 +203,7 @@
                 <div id="addtask-to-day-info-content"></div>
             </div>
             <div class="modal-footer">
-                <button id="addtask-button" class="hidden content">Add!</button>
+                <button id="addtask-button">Add!</button>
             </div>
         </div>
     </div>
