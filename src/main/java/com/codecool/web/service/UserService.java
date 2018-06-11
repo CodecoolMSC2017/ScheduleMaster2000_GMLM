@@ -10,5 +10,6 @@ public interface UserService {
 
     User findUserByEmail(String email) throws SQLException, ServiceException;
     User addNewUser(String name, String email, String password) throws SQLException, IllegalArgumentException, ServiceException;
+    User addNewGoogleUser(String name, String email) throws SQLException, ServiceException;
     List<User> getAllUsers() throws SQLException, ServiceException;
 }
