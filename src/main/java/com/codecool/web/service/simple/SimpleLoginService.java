@@ -34,4 +34,21 @@ public final class SimpleLoginService implements LoginService {
             throw new ServiceException(ex.getMessage());
         }
     }
+
+    @Override
+    public User googleLoginUser(String email) throws ServiceException, SQLException {
+        try {
+            User user = userDao.findByEmail(email);
+
+            if (user == null) {
+                throw new ServiceException("This google account isn't registered yet.");
+            }
+
+            logger.debug(user.getEmail() + " is logged in!");
+
+            return user;
+        } catch (IllegalArgumentException ex) {
+            throw new ServiceException(ex.getMessage());
+        }
+    }
 }
