@@ -65,6 +65,34 @@ public class DatabaseUserDao extends AbstractDao implements UserDao {
     }
 
     @Override
+    public User addNewGoogleUser(String name, String email) throws SQLException {
+        if (name == null || name.equals("")) {
+            throw new IllegalArgumentException("Name cannot be empty!");
+        }
+
+        if (email == null || email.equals("")) {
+            throw new IllegalArgumentException("Email address cannot be empty!");
+        }
+
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+        String sql = "INSERT INTO users (name, email, permission) VALUES (?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, email);
+            preparedStatement.setBoolean(3, false);
+            executeInsert(preparedStatement);
+            int id = fetchGeneratedId(preparedStatement);
+            return new User(id, name, email, false);
+        } catch (SQLException ex) {
+            connection.rollback();
+            throw ex;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+    @Override
     public List<User> getAllUsers() throws SQLException {
         List<User> users = new ArrayList<>();
         String sql = "SELECT * FROM users";
