@@ -11,7 +11,7 @@ import java.util.List;
 public class DatabaseSlotDao extends AbstractDao implements SlotDao {
 
 
-    DatabaseSlotDao(Connection connection) {
+    public DatabaseSlotDao(Connection connection) {
         super(connection);
     }
 
@@ -102,8 +102,28 @@ public class DatabaseSlotDao extends AbstractDao implements SlotDao {
             }
         }
         return false;
-
     }
+
+    public List<Integer> getOccupiedHours(int dayId) throws SQLException {
+        String sql = "select hour from slots\n" +
+            "\twhere day_id = ?;";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            List<Integer> occupiedHours = new ArrayList<>();
+            try (ResultSet resultSet = statement.executeQuery(sql)) {
+                while (resultSet.next()) {
+                    occupiedHours.add(fetchSlotHours(resultSet));
+                }
+                return occupiedHours;
+            }
+        }
+    }
+
+    private Integer fetchSlotHours(ResultSet resultSet) throws SQLException {
+        int hour = resultSet.getInt("hour");
+        return hour;
+    }
+
 
     private Slot fetchSlot(ResultSet resultSet) throws SQLException {
         int hour = resultSet.getInt("hour");

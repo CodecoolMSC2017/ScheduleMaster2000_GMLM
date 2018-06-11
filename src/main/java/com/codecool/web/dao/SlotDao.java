@@ -16,4 +16,6 @@ public interface SlotDao {
     void deleteSlot(int day_id, int task_id) throws SQLException;
 
     boolean checkIfSlotIsExists(int endHour, int day_id) throws SQLException;
+
+    List<Integer> getOccupiedHours(int dayId) throws SQLException;
 }
