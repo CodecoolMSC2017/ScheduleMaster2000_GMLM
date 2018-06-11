@@ -70,9 +70,12 @@ public class SlotServlet extends AbstractServlet {
             int startHour = Integer.parseInt(req.getParameter("startHour"));
             int endHour = Integer.parseInt(req.getParameter("endHour"));
 
-            slotService.assignTaskToDay(endHour,dayId,taskId);
+            slotService.assignTaskToDay(startHour,endHour,dayId,taskId);
+            sendMessage(resp, 200, "Success!");
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
+        } catch (ServiceException e) {
+            sendMessage(resp,401,e.getMessage());
         }
     }
 
@@ -86,6 +89,7 @@ public class SlotServlet extends AbstractServlet {
             int taskId = Integer.parseInt(req.getParameter("taskId"));
 
             slotService.deleteSlot(dayId, taskId);
+            sendMessage(resp, 200, "Success!");
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
         }
