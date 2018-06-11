@@ -106,10 +106,11 @@ public class DatabaseSlotDao extends AbstractDao implements SlotDao {
 
     public List<Integer> getOccupiedHours(int dayId) throws SQLException {
         String sql = "select hour from slots\n" +
-            "\twhere day_id = ?;";
+            "\twhere day_id = ?";
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             List<Integer> occupiedHours = new ArrayList<>();
+            statement.setInt(1, dayId);
             try (ResultSet resultSet = statement.executeQuery(sql)) {
                 while (resultSet.next()) {
                     occupiedHours.add(fetchSlotHours(resultSet));
