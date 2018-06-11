@@ -20,6 +20,11 @@ function appendDay(day) {
     deleteButtonEl.dataset.scheduleId = day.scheduleId;
     deleteButtonEl.addEventListener('click', onDeleteDayButtonClicked);
 
+    const addTaskToDayButtonEl = document.createElement('button');
+    addTaskToDayButtonEl.textContent = 'Add task to day';
+    addTaskToDayButtonEl.dataset.dayId = day.id;
+    addTaskToDayButtonEl.addEventListener('click', onAddTaskToDayButtonClicked);
+
     const titleTdEl = document.createElement('td');
     titleTdEl.appendChild(titleAEl);
 
@@ -30,9 +35,11 @@ function appendDay(day) {
     deleteTdEl.appendChild(deleteButtonEl);
 
     const trEl = document.createElement('tr');
+    trEl.appendChild(addTaskToDayButtonEl);
     trEl.appendChild(titleTdEl);
     trEl.appendChild(modifyTdEl);
     trEl.appendChild(deleteTdEl);
+    trEl.appendChild(addTaskToDayButtonEl);
     scheduleTableBodyEl.appendChild(trEl);
 }
 
