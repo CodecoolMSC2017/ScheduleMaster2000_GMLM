@@ -29,7 +29,7 @@
         <c:url value="/modifyday.js" var="modifyDayScriptUrl"/>
         <c:url value="/modifyschedule.js" var="modifyScheduleScriptUrl"/>
         <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
-        <!-- <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/> -->
+        <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/>
         <c:url value="/google-sign-in.js" var="googleSignInScriptUrl"/>
         <c:url value="/google-sign-out.js" var="googleSignOutScriptUrl"/>
 
@@ -183,7 +183,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <span id="close-addtask-to-day-modal" class="close">&times;</span>
-                <h2>Schedule</h2>
+                <h2>Add task to day</h2>
             </div>
             <div class="modal-body">
                 <form id="addtask-to-day-form">
@@ -248,6 +248,7 @@
                     <th>Title</th>
                     <th>Modify</th>
                     <th>Delete</th>
+                    <th>Add task</th>
                 </tr>
             </thead>
             <tbody id="schedule-tbody">
@@ -275,7 +276,6 @@
 
     <div id="tasks-of-day-content" class="hidden content">
         <h1>Tasks</h1>
-        <button id="addtask-to-day" onclick="onAddTaskToDayButtonClicked();">Add task to day</button>
         <table id="tasks-of-day">
             <thead>
             <tr>
