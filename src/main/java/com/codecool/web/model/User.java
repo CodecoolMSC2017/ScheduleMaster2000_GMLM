@@ -14,6 +14,13 @@ public class User extends AbstractModel {
         this.isAdmin = isAdmin;
     }
 
+    public User(int id, String name, String email, boolean isAdmin) {
+        super(id);
+        this.name = name;
+        this.email = email;
+        this.isAdmin = isAdmin;
+    }
+
     public String getName() {
         return name;
     }
