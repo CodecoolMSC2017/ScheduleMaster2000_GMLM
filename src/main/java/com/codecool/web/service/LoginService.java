@@ -8,4 +8,5 @@ import java.sql.SQLException;
 public interface LoginService {
 
     User loginUser(String email, String password) throws IllegalArgumentException, ServiceException, SQLException;
+    User googleLoginUser(String email) throws ServiceException, SQLException;
 }
