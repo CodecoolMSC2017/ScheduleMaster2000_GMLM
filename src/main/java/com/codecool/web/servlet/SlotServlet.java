@@ -43,7 +43,7 @@ public class SlotServlet extends AbstractServlet {
             DayService dayService = new SimpleDayService(dayDao);
 
             int dayId = Integer.parseInt(req.getParameter("dayId"));
-            // TODO implement getFreeHours method in SlotService and SlotDao
+            // TODO get user's id to retrieve just his/her own unassigned tasks
             List<Integer> endHours = slotService.getFreeHours(dayId);
             List<Integer> startHours = slotService.getFreeStartHours(dayId);
             List<Task> unassignedTask = taskService.getUnassignedTasks();
