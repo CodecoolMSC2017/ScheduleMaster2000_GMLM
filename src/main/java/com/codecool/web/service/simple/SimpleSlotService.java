@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class SimpleSlotService implements SlotService {
@@ -40,6 +41,39 @@ public class SimpleSlotService implements SlotService {
 
     public void deleteSlot(int day_id, int task_id) throws SQLException {
         slotDao.deleteSlot(day_id, task_id);
+    }
+
+    public List<Integer> getFreeHours(int dayId) throws SQLException {
+        List<Integer> allHours = generateBasicHourList();
+        List<Integer> occupiedHours = slotDao.getOccupiedHours(dayId);
+        for(int busyHour: occupiedHours) {
+            Iterator iter = allHours.iterator();
+            while(iter.hasNext()) {
+                int hour = (int)iter.next();
+                if(hour == busyHour) {
+                    iter.remove();
+                }
+            }
+        }
+        return allHours;
+    }
+
+    public List<Integer> getFreeStartHours(int dayId) throws SQLException {
+        List<Integer> freeHours = getFreeHours(dayId);
+        List<Integer> result = new ArrayList();
+        for(int hour : freeHours) {
+            result.add(hour-1);
+        }
+        return result;
+    }
+
+
+    private List<Integer> generateBasicHourList() {
+        List<Integer> result = new ArrayList<>();
+        for(int i = 1; i<=24; i++) {
+            result.add(i);
+        }
+        return result;
     }
 
     private List<Slot> checkListLength(List<Slot> result, String message) throws ServiceException {

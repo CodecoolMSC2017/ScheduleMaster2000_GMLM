@@ -15,4 +15,8 @@ public interface SlotService {
     void assignTaskToDay(int endHour, int day_id, int task_id) throws SQLException;
 
     void deleteSlot(int day_id, int task_id) throws SQLException;
+
+    List<Integer> getFreeHours(int dayId) throws SQLException;
+
+    List<Integer> getFreeStartHours(int dayId) throws SQLException;
 }
