@@ -17,4 +17,16 @@ public class TaskSlotsDto {
         this.endHours = endHours;
 
     }
+
+    public List<Task> getUnassignedTasks() {
+        return unassignedTasks;
+    }
+
+    public List<Integer> getStartHours() {
+        return startHours;
+    }
+
+    public List<Integer> getEndHours() {
+        return endHours;
+    }
 }
