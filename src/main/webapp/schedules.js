@@ -13,6 +13,11 @@ function appendSchedule(schedule) {
     modifyButtonEl.dataset.scheduleId = schedule.id;
     modifyButtonEl.addEventListener('click', onModifyScheduleButtonClicked);
 
+    const publishButtonEl = document.createElement('button');
+    publishButtonEl.textContent = 'Publish';
+    publishButtonEl.dataset.scheduleId = schedule.id;
+    publishButtonEl.addEventListener('click', onPublishButtonClicked);
+
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
     deleteButtonEl.dataset.scheduleId = schedule.id;
@@ -27,11 +32,15 @@ function appendSchedule(schedule) {
     const deleteTdEl = document.createElement('td');
     deleteTdEl.appendChild(deleteButtonEl);
 
+    const publishTdEl = document.createElement('td');
+    publishTdEl.appendChild(publishButtonEl);
+
     const trEl = document.createElement('tr');
     trEl.setAttribute('id', schedule.id);
     trEl.appendChild(nameTdEl);
     trEl.appendChild(modifyTdEl);
     trEl.appendChild(deleteTdEl);
+    trEl.appendChild(publishTdEl);
     schedulesTableBodyEl.appendChild(trEl);
 }
 
