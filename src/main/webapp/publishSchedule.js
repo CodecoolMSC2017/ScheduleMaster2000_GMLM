@@ -1,11 +1,11 @@
 function onPublishScheduleResponse(scheduleId) {
     const params = new URLSearchParams();
-    params.append('ScheduleId', scheduleId);
+    params.append('scheduleId', scheduleId);
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onSchedulesButtonClicked);
     xhr.addEventListener('error', onNetworkError);
-    xhr.open('PUT', '/guestschedule', + params.toString());
+    xhr.open('PUT', 'guestschedule?', + params.toString());
     xhr.send(params);
 }
 

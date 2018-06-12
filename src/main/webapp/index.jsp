@@ -32,6 +32,7 @@
         <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/>
         <c:url value="/google-sign-in.js" var="googleSignInScriptUrl"/>
         <c:url value="/google-sign-out.js" var="googleSignOutScriptUrl"/>
+        <c:url value="/publishSchedule.js" var="publishScheduleScriptUrl"/>
 
         <link rel="stylesheet" type="text/css" href="${styleUrl}">
 
@@ -61,6 +62,7 @@
         <script src="${addtasktodayScriptUrl}"></script>
         <script src="${googleSignInScriptUrl}"></script>
         <script src="${googleSignOutScriptUrl}"></script>
+        <script src="${publishScheduleScriptUrl}"></script>
 
         <title>Schedule Master 2000</title>
     </head>
