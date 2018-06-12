@@ -1,5 +1,6 @@
 let tasksOfDayTableEl;
 let tasksOfDayTableBodyEl;
+let currentDayId;
 
 function appendTaskToDay(task) {
     const nameTdEl = document.createElement('td');
@@ -26,17 +27,19 @@ function appendTaskToDay(task) {
     const deleteButtonTdEl = document.createElement('td');
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = "Delete";
+    deleteButtonEl.dataset.taskId = task.id;
+    deleteButtonEl.dataset.dayId = currentDayId;
     deleteButtonTdEl.append(deleteButtonEl);
-
-    //deleteButtonEl.addEventListener('click', onDeleteButtonClicked);
+    deleteButtonEl.addEventListener('click', onDeleteTaskFromDayButtonClicked);
 
     const trEl = document.createElement('tr');
+    trEl.setAttribute('class', task.id);
     trEl.append(nameTdEl);
     trEl.append(contentTdEl);
     trEl.append(startHourTdEl);
     trEl.append(endHourTdEl);
     trEl.append(modifyButtonTdEl);
-    trEl.append(deleteButtonEl);
+    trEl.append(deleteButtonTdEl);
 
     tasksOfDayTableBodyEl.append(trEl);
 }
@@ -71,10 +74,21 @@ function onDayResponse() {
 }
 
 function onDayClicked() {
-    const dayId = this.dataset.dayId;
+    currentDayId = this.dataset.dayId;
 
     const params = new URLSearchParams();
-    params.append('id', dayId);
+    params.append('id', currentDayId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onDayResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/days?' + params.toString());
+    xhr.send();
+}
+
+function onDayReload(currentDayId) {
+    const params = new URLSearchParams();
+    params.append('id', currentDayId);
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onDayResponse);

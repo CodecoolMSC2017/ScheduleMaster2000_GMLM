@@ -30,6 +30,7 @@
         <c:url value="/modifyschedule.js" var="modifyScheduleScriptUrl"/>
         <c:url value="/deleteSchedule.js" var="deleteScheduleScriptUrl"/>
         <c:url value="/addtasktoday.js" var="addtasktodayScriptUrl"/>
+        <c:url value="/deleteTaskFromDay.js" var="deleteTaskFromDayScriptUrl"/>
         <c:url value="/google-sign-in.js" var="googleSignInScriptUrl"/>
         <c:url value="/google-sign-out.js" var="googleSignOutScriptUrl"/>
         <c:url value="/publishSchedule.js" var="publishScheduleScriptUrl"/>
@@ -60,6 +61,7 @@
         <script src="${deleteScheduleScriptUrl}"></script>
         <script src="${modifyScheduleScriptUrl}"></script>
         <script src="${addtasktodayScriptUrl}"></script>
+        <script src="${deleteTaskFromDayScriptUrl}"></script>
         <script src="${googleSignInScriptUrl}"></script>
         <script src="${googleSignOutScriptUrl}"></script>
         <script src="${publishScheduleScriptUrl}"></script>
