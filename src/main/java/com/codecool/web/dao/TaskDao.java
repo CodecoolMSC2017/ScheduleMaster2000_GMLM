@@ -14,5 +14,5 @@ public interface TaskDao {
     List<Task> getUsersTask(int user_id) throws SQLException;
     void deleteTask(int id) throws SQLException;
     List<Task> getTaskByDayId (int day_id) throws SQLException;
-    List<Task> getUnassignedTasks() throws SQLException;
+    List<Task> getUnassignedTasks(int userId) throws SQLException;
 }

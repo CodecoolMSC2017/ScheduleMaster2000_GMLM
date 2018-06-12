@@ -161,16 +161,18 @@ public class DatabaseTaskDao extends AbstractDao implements TaskDao {
         }
     }
 
-    public List<Task> getUnassignedTasks() throws SQLException {
+    public List<Task> getUnassignedTasks(int userId) throws SQLException {
         String sql ="Select id, user_id, name, content from tasks\n" +
-            "\tLEFT JOIN slots\n" +
-            "\ton tasks.id = slots.task_id\n" +
-            "\tWHERE slots.hour is null;";
-        try (Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(sql)) {
+            "LEFT JOIN slots\n" +
+            "on tasks.id = slots.task_id\n" +
+            "WHERE user_id = ? and slots.hour is null;";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             List<Task> unassignedTasks = new ArrayList<>();
-            while (resultSet.next()) {
-                unassignedTasks.add(fetchTask(resultSet));
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    unassignedTasks.add(fetchTask(resultSet));
+                }
             }
             return unassignedTasks;
         }
