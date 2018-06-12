@@ -21,4 +21,7 @@ public interface ScheduleService {
 
     void updateSchedule(String name, int id) throws SQLException, ServiceException;
 
+    void updateSchedulePublicity(int id) throws SQLException, ServiceException;
+
+    Schedule getPublishedSchedule(int id) throws SQLException, ServiceException;
 }

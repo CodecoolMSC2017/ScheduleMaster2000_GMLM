@@ -20,7 +20,7 @@ public class SimpleScheduleService implements ScheduleService {
     }
 
     public List<Schedule> getAllSchedules() throws SQLException, ServiceException {
-        if(scheduleDao.getAllSchedules().isEmpty()) {
+        if (scheduleDao.getAllSchedules().isEmpty()) {
             throw new ServiceException("There are no schedules made!");
         } else {
             logger.debug("All schedules have been accessed");
@@ -29,7 +29,7 @@ public class SimpleScheduleService implements ScheduleService {
     }
 
     public List<Schedule> getUsersSchedules(int userId) throws SQLException, ServiceException {
-        if(scheduleDao.getUsersSchedules(userId).isEmpty()) {
+        if (scheduleDao.getUsersSchedules(userId).isEmpty()) {
             throw new ServiceException("You don't have any schedule!");
         } else {
             logger.debug(String.format("User %d schedules have been accessed", userId));
@@ -38,7 +38,7 @@ public class SimpleScheduleService implements ScheduleService {
     }
 
     public Schedule getScheduleById(int id) throws SQLException, ServiceException {
-        if(scheduleDao.getScheduleById(id) == null) {
+        if (scheduleDao.getScheduleById(id) == null) {
             throw new ServiceException("Not existing schedule!");
         } else {
             logger.debug(String.format("Schedule %d has been accessed", id));
@@ -49,7 +49,7 @@ public class SimpleScheduleService implements ScheduleService {
 
     public void addNewSchedule(int userId, String name) throws SQLException, ServiceException {
         try {
-            scheduleDao.addNewSchedule(userId,name);
+            scheduleDao.addNewSchedule(userId, name);
             logger.debug(String.format("Schedule %s has been added", name));
         } catch (IllegalArgumentException ex) {
             logger.debug("Exception has been caught: " + ex);
@@ -71,5 +71,24 @@ public class SimpleScheduleService implements ScheduleService {
             logger.debug("Exception has been caught: " + e);
             throw new ServiceException(e.getMessage());
         }
+    }
+
+    public void updateSchedulePublicity(int id) throws SQLException, ServiceException {
+        Schedule schedule = getScheduleById(id);
+        boolean status = true;
+        if(schedule.isPublished()) {
+            status = false;
+        }
+        scheduleDao.updateSchedulePublicity(id, status);
+        logger.debug(String.format("Schedule %d status has been updated to %s", id, status));
+
+    }
+
+    public Schedule getPublishedSchedule(int id) throws SQLException, ServiceException {
+        Schedule schedule = getScheduleById(id);
+        if(!schedule.isPublished()) {
+            throw new ServiceException("This schedule is not published by the owner!");
+        }
+        return schedule;
     }
 }

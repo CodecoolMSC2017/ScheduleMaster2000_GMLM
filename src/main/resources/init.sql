@@ -19,6 +19,7 @@ CREATE TABLE schedules (
 	id SERIAL PRIMARY KEY,
 	user_id INTEGER NOT NULL,
 	name TEXT NOT NULL,
+	is_published BOOLEAN DEFAULT FALSE,
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
@@ -53,7 +54,7 @@ INSERT INTO users (name, email, password, permission) VALUES
 	('Ketrin Kanalas', 'kkanalas@lungodrom', 'plakatos', 'false'), -- 3
 	('Szantiago Orgovan', 'sorgovan@lungodrom', 'student', 'false'); -- 4
 
-iNSERT INTO schedules (user_id,name) VALUES
+INSERT INTO schedules (user_id,name) VALUES
 	(2,'Bugázás'), --1
 	(2,'Uzsora'),  --2
 	(3,'Munka'),  --3
