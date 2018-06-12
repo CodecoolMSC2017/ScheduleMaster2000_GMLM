@@ -3,15 +3,16 @@ let addTaskToDayForm;
 let dayId;
 
 function onAddTaskToDayResponse() {
-    clearMessages();
-
+    removeAllChildren(addTaskToDayInfoContentDivEl);
+    if (this.status === OK) {
+        addTaskToDayForm.reset();
+        onCloseSpanClicked();
+    }
     const pEl = document.createElement('p');
     const response = JSON.parse(this.responseText);
     pEl.textContent = response.message;
-    addTaskToDayInfoContentDivEl.append(pEl);
+    addTaskToDayInfoContentDivEl.appendChild(pEl);
     showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'add-day-button-content']);
-
-    addTaskToDayForm.reset();
 }
 
 function onAddButtonClicked() {
@@ -112,7 +113,7 @@ function onAddTaskToDayButtonClicked() {
     const closeSpan = document.getElementById('close-addtask-to-day-modal');
     closeSpan.addEventListener('click', onCloseSpanClicked);
 
-    //removeAllChildren(infoContentDivEl);
+    removeAllChildren(addTaskToDayInfoContentDivEl);
 
     popupAddTaskToDayFormDivEl.style.display = "block";
 
