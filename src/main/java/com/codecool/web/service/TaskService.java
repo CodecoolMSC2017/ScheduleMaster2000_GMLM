@@ -15,5 +15,5 @@ public interface TaskService {
     List<Task> getUsersTask(int user_id) throws SQLException, ServiceException;
     void deleteTask(int id) throws SQLException;
     List<Task> getTaskByDayId (int day_id) throws SQLException, ServiceException;
-    List<Task> getUnassignedTasks() throws SQLException, ServiceException;
+    List<Task> getUnassignedTasks(int userId) throws SQLException, ServiceException;
 }

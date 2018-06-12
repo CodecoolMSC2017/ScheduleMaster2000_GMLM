@@ -1,19 +1,17 @@
 package com.codecool.web.servlet;
 
-import com.codecool.web.dao.DayDao;
 import com.codecool.web.dao.SlotDao;
 import com.codecool.web.dao.TaskDao;
-import com.codecool.web.dao.database.DatabaseDayDao;
+
 import com.codecool.web.dao.database.DatabaseSlotDao;
 import com.codecool.web.dao.database.DatabaseTaskDao;
 import com.codecool.web.dto.TaskSlotsDto;
 
 import com.codecool.web.model.Task;
-import com.codecool.web.service.DayService;
+import com.codecool.web.model.User;
 import com.codecool.web.service.SlotService;
 import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
-import com.codecool.web.service.simple.SimpleDayService;
 import com.codecool.web.service.simple.SimpleSlotService;
 import com.codecool.web.service.simple.SimpleTaskService;
 
@@ -39,14 +37,13 @@ public class SlotServlet extends AbstractServlet {
             TaskDao taskDao = new DatabaseTaskDao(connection);
             TaskService taskService = new SimpleTaskService(taskDao);
 
-            DayDao dayDao = new DatabaseDayDao(connection);
-            DayService dayService = new SimpleDayService(dayDao);
+            User user = (User)req.getSession().getAttribute("user");
 
             int dayId = Integer.parseInt(req.getParameter("dayId"));
-            // TODO get user's id to retrieve just his/her own unassigned tasks
+
             List<Integer> endHours = slotService.getFreeHours(dayId);
             List<Integer> startHours = slotService.getFreeStartHours(dayId);
-            List<Task> unassignedTask = taskService.getUnassignedTasks();
+            List<Task> unassignedTask = taskService.getUnassignedTasks(user.getId());
 
 
             TaskSlotsDto taskSlotDto = new TaskSlotsDto(unassignedTask,startHours,endHours);
