@@ -121,8 +121,7 @@ public class DatabaseSlotDao extends AbstractDao implements SlotDao {
     }
 
     private Integer fetchSlotHours(ResultSet resultSet) throws SQLException {
-        int hour = resultSet.getInt("hour");
-        return hour;
+        return resultSet.getInt("hour");
     }
 
 
