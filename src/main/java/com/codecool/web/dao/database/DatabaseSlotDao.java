@@ -74,11 +74,10 @@ public class DatabaseSlotDao extends AbstractDao implements SlotDao {
         connection.setAutoCommit(false);
         String sql = "DELETE FROM slots\n" +
             "\twhere day_id = ? AND task_id = ?;";
-        try (PreparedStatement statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);) {
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, day_id);
             statement.setInt(2, task_id);
-            executeInsert(statement);
-            int id = fetchGeneratedId(statement);
+            statement.executeUpdate();
             connection.commit();
         } catch (SQLException ex) {
             connection.rollback();
