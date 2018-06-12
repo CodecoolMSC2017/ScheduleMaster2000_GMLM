@@ -1,18 +1,22 @@
 let popupAddTaskToDayFormDivEl;
 let addTaskToDayForm;
 let dayId;
+let taskSelectEl;
+let startHourSelectEl;
+let endHourSelectEl;
 
 function onAddTaskToDayResponse() {
     removeAllChildren(addTaskToDayInfoContentDivEl);
     if (this.status === OK) {
-        addTaskToDayForm.reset();
         onCloseSpanClicked();
+    } else {
+        const pEl = document.createElement('p');
+        const response = JSON.parse(this.responseText);
+        pEl.textContent = response.message;
+        addTaskToDayInfoContentDivEl.appendChild(pEl);
     }
-    const pEl = document.createElement('p');
-    const response = JSON.parse(this.responseText);
-    pEl.textContent = response.message;
-    addTaskToDayInfoContentDivEl.appendChild(pEl);
     showContents(['menu-content', 'schedule-content', 'addtask-to-day-info-content', 'add-day-button-content']);
+    addTaskToDayForm.reset();
 }
 
 function onAddButtonClicked() {
@@ -40,8 +44,7 @@ function onAddButtonClicked() {
 }
 
 function loadAvailableTasks(tasks) {
-    const taskSelectEl = document.getElementById('task');
-    removeAllChildren(taskSelectEl);
+    taskSelectEl = document.getElementById('task');
 
     for (let i = 0; i < tasks.length; i++) {
         const task = tasks[i];
@@ -53,8 +56,7 @@ function loadAvailableTasks(tasks) {
 }
 
 function loadAvailableEndHours(endHours) {
-    const endHourSelectEl = document.getElementById('end-hour');
-    removeAllChildren(endHourSelectEl);
+    endHourSelectEl = document.getElementById('end-hour');
 
     for (let i = 0; i < endHours.length; i++) {
         const hour = endHours[i];
@@ -67,8 +69,7 @@ function loadAvailableEndHours(endHours) {
 
 
 function loadAvailableStartHours(startHours) {
-    const startHourSelectEl = document.getElementById('start-hour');
-    removeAllChildren(startHourSelectEl);
+    startHourSelectEl = document.getElementById('start-hour');
 
     for (let i = 0; i < startHours.length; i++) {
         const hour = startHours[i];
@@ -101,7 +102,19 @@ function onCloseSpanClicked() {
      showContents(['menu-content', 'schedule-content']);
  }
 
+function clearFormSelectOptions() {
+    taskSelectEl = document.getElementById('task');
+    startHourSelectEl = document.getElementById('start-hour');
+    endHourSelectEl = document.getElementById('end-hour');
+
+    removeAllChildren(taskSelectEl);
+    removeAllChildren(startHourSelectEl);
+    removeAllChildren(endHourSelectEl);
+}
+
 function onAddTaskToDayButtonClicked() {
+    clearFormSelectOptions();
+
     popupAddTaskToDayFormDivEl = document.getElementById('addtask-to-day-modal');
 
     addTaskToDayForm = document.getElementById('addtask-to-day-form');
