@@ -34,18 +34,27 @@ public class SimpleSlotService implements SlotService {
     }
 
 
-    public void assignTaskToDay(int startHour, int endHour, int day_id, int task_id) throws SQLException, ServiceException {
-        if (startHour == endHour) {
-            throw new ServiceException("Start hour and end hour can not be the same!");
+    public void assignTaskToDay(String startHourStr, String endHourStr, String dayIdStr, String taskIdStr) throws SQLException, ServiceException {
+        if (startHourStr.equals("") || endHourStr.equals("") || taskIdStr.equals("")) {
+            throw new ServiceException("Task, start hour and end hour can not be empty!");
+        }
+
+        int startHour = Integer.parseInt(startHourStr);
+        int endHour = Integer.parseInt(endHourStr);
+        int taskId = Integer.parseInt(taskIdStr);
+        int dayId = Integer.parseInt(dayIdStr);
+
+        if (endHour <= startHour) {
+            throw new ServiceException("Start hour cannot be same or earlier than end hour!");
         }
         try {
-            checkIfSlotsAreExists(startHour, endHour,day_id);
+            checkIfSlotsAreExists(startHour, endHour,dayId);
         } catch (IllegalArgumentException ex) {
             throw new ServiceException(ex.getMessage());
         }
 
         for (int i = startHour + 1; i < endHour + 1; i++) {
-            slotDao.assignTaskToDay(i, day_id, task_id);
+            slotDao.assignTaskToDay(i, dayId, taskId);
         }
 
     }
