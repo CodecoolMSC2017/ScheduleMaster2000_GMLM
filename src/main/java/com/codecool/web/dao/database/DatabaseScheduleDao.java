@@ -125,9 +125,32 @@ public class DatabaseScheduleDao extends AbstractDao implements ScheduleDao {
         }
     }
 
+    public void updateSchedulePublicity(int id, boolean status) throws SQLException {
+        String sql = "update schedules\n" +
+            "SET is_published = ?\n" +
+            "where id = ?;";
+
+        boolean autoCommit = connection.getAutoCommit();
+        connection.setAutoCommit(false);
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setBoolean(1, status);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+            connection.commit();
+        } catch (SQLException e) {
+            connection.rollback();
+            throw e;
+        } finally {
+            connection.setAutoCommit(autoCommit);
+        }
+    }
+
+
     private Schedule fetchSchedule(ResultSet resultSet) throws SQLException {
         int id = resultSet.getInt("id");
         String name = resultSet.getString("name");
-        return new Schedule(id, name);
+        boolean isPublished = resultSet.getBoolean("is_published");
+        return new Schedule(id, name, isPublished);
     }
 }
