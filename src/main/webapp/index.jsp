@@ -237,6 +237,7 @@
                     <th>Name</th>
                     <th>Modify</th>
                     <th>Delete</th>
+                    <th>Publish</th>
                 </tr>
             </thead>
             <tbody id="schedules-tbody">
