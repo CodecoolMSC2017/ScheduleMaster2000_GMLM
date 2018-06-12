@@ -62,12 +62,12 @@ public class SlotServlet extends AbstractServlet {
             SlotDao slotDao = new DatabaseSlotDao(connection);
             SlotService slotService = new SimpleSlotService(slotDao);
 
-            int dayId = Integer.parseInt(req.getParameter("dayId"));
-            int taskId = Integer.parseInt(req.getParameter("taskId"));
-            int startHour = Integer.parseInt(req.getParameter("startHour"));
-            int endHour = Integer.parseInt(req.getParameter("endHour"));
+            String dayId = req.getParameter("dayId");
+            String taskId = req.getParameter("taskId");
+            String startHour = req.getParameter("startHour");
+            String endHour = req.getParameter("endHour");
 
-            slotService.assignTaskToDay(startHour,endHour,dayId,taskId);
+            slotService.assignTaskToDay(startHour, endHour, dayId, taskId);
             sendMessage(resp, 200, "Success!");
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
