@@ -35,6 +35,9 @@ public class SimpleSlotService implements SlotService {
 
 
     public void assignTaskToDay(int startHour, int endHour, int day_id, int task_id) throws SQLException, ServiceException {
+        if (startHour == endHour) {
+            throw new ServiceException("Start hour and end hour can not be the same!");
+        }
         try {
             checkIfSlotsAreExists(startHour, endHour,day_id);
         } catch (IllegalArgumentException ex) {
