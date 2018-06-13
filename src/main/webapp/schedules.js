@@ -14,9 +14,15 @@ function appendSchedule(schedule) {
     modifyButtonEl.addEventListener('click', onModifyScheduleButtonClicked);
 
     const publishButtonEl = document.createElement('button');
-    publishButtonEl.textContent = 'Publish';
     publishButtonEl.dataset.scheduleId = schedule.id;
-    publishButtonEl.addEventListener('click', onPublishButtonClicked);
+
+    if(!schedule.published) {
+        publishButtonEl.textContent = 'Publish';
+        publishButtonEl.addEventListener('click', onPublishButtonClicked);
+    } else {
+        publishButtonEl.textContent = 'Unpublish';
+        publishButtonEl.addEventListener('click', onUnpublishButtonClicked);
+    }
 
     const deleteButtonEl = document.createElement('button');
     deleteButtonEl.textContent = 'Delete';
