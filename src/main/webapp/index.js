@@ -11,9 +11,11 @@ let registerFormEl;
 let menuContentDivEl;
 let schedulesContentDivEl;
 let scheduleContentDivEl;
+let guestScheduleContentDivEl;
 let tasksContentDivEl;
 let taskContentDivEl;
 let tasksOfDayContentDivEl;
+let guestTasksOfDayContentDivEl;
 let errorMessageContentDivEl;
 let infoContentDivEl;
 let dayInfoContentDivEl;
@@ -108,7 +110,18 @@ function setUnauthorized() {
     return localStorage.removeItem('user');
 }
 
+function checkRequest() {
+    const pathname = window.location.pathname;
+    if(pathname.includes("guest")) {
+        const params = window.location.search;
+        const reqQuery = "guestschedule"+ params.toString();
+        showContents(['guest-schedule-content']);
+        onGuestScheduleRequest(reqQuery);
+    }
+}
+
 function onLoad() {
+
     loginContentDivEl = document.getElementById('login-content');
     loginFormEl = document.getElementById('login-form');
     registerContentDivEl = document.getElementById('register-content');
@@ -116,9 +129,11 @@ function onLoad() {
     menuContentDivEl = document.getElementById('menu-content');
     schedulesContentDivEl = document.getElementById('schedules-content');
     scheduleContentDivEl = document.getElementById('schedule-content');
+    guestScheduleContentDivEl = document.getElementById('guest-schedule-content');
     tasksContentDivEl = document.getElementById('tasks-content');
     taskContentDivEl = document.getElementById('task-content');
     tasksOfDayContentDivEl = document.getElementById('tasks-of-day-content');
+    guestTasksOfDayContentDivEl = document.getElementById('guest-tasks-of-day-content');
     errorMessageContentDivEl = document.getElementById('error-message-content');
     infoContentDivEl = document.getElementById('info-content');
     dayInfoContentDivEl = document.getElementById('day-info-content');
@@ -151,4 +166,6 @@ function onLoad() {
     }
 }
 
+
 document.addEventListener('DOMContentLoaded', onLoad);
+

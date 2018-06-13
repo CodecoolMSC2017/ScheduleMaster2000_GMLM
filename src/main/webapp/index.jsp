@@ -15,11 +15,13 @@
         <c:url value="/profile.js" var="profileScriptUrl"/>
         <c:url value="/schedules.js" var="schedulesScriptUrl"/>
         <c:url value="/schedule.js" var="scheduleScriptUrl"/>
+        <c:url value="/guestschedule.js" var="guestscheduleScriptUrl"/>
         <c:url value="/logout.js" var="logoutScriptUrl"/>
         <c:url value="/tasks.js" var="tasksScriptUrl"/>
         <c:url value="/users.js" var="usersScriptUrl"/>
         <c:url value="/task.js" var="taskScriptUrl"/>
         <c:url value="/day.js" var="dayScriptUrl"/>
+        <c:url value="/guestday.js" var="guestDayScriptUrl"/>
         <c:url value="/addtask.js" var="addTaskScriptUrl"/>
         <c:url value="/modifytask.js" var="modifyTaskScriptUrl"/>
         <c:url value="/deleteTask.js" var="deleteTaskScriptUrl"/>
@@ -45,12 +47,14 @@
         <script src="${registerScriptUrl}"></script>
         <script src="${profileScriptUrl}"></script>
         <script src="${schedulesScriptUrl}"></script>
+        <script src="${guestscheduleScriptUrl}"></script>
         <script src="${scheduleScriptUrl}"></script>
         <script src="${logoutScriptUrl}"></script>
         <script src="${tasksScriptUrl}"></script>
         <script src="${usersScriptUrl}"></script>
         <script src="${taskScriptUrl}"></script>
         <script src="${dayScriptUrl}"></script>
+        <script src="${guestDayScriptUrl}"></script>
         <script src="${addTaskScriptUrl}"></script>
         <script src="${modifyTaskScriptUrl}"></script>
         <script src="${deleteTaskScriptUrl}"></script>
@@ -293,6 +297,26 @@
             </tr>
             </thead>
             <tbody id="tasks-of-day-tbody">
+            </tbody>
+        </table>
+    </div>
+
+    <div id="guest-schedule-content" class="hidden content">
+        
+    </div>
+
+    <div id="guest-tasks-of-day-content" class="hidden content">
+        <h1>Tasks</h1>
+        <table id="guest-tasks-of-day">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Content</th>
+                <th>Start hour</th>
+                <th>End hour</th>
+            </tr>
+            </thead>
+            <tbody id="guest-tasks-of-day-tbody">
             </tbody>
         </table>
     </div>
