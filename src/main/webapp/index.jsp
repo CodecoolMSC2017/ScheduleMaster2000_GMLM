@@ -130,7 +130,7 @@
             <div class="modal-body">
                 <form id="add-task-form">
                     Task title:<br>
-                    <input type="text" id="new-task-title"><br>
+                    <input type="text" id="new-task-title" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                     Task content:<br>
                     <textarea id="task-content-area" rows="4" cols="50"></textarea>
                 </form>
@@ -152,7 +152,7 @@
             <div class="modal-body">
                 <form id="add-day-form">
                     Day title:<br>
-                    <input type="text" id="new-day-title"><br>
+                    <input type="text" id="new-day-title" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                 </form>
                 <div id="day-info-content"></div>
             </div>
@@ -172,7 +172,7 @@
             <div class="modal-body">
                 <form id="add-schedule-form">
                     Schedule name:<br>
-                    <input type="text" id="new-schedule-name"><br>
+                    <input type="text" id="new-schedule-name" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                 </form>
                 <div id="schedule-info-content"></div>
             </div>
@@ -288,7 +288,7 @@
                 <th>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
-                <th>Modify</th>
+                <!-- <th>Modify</th> -->
                 <th>Delete</th>
             </tr>
             </thead>
