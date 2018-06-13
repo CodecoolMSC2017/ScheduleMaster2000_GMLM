@@ -28,7 +28,7 @@ function onUnpublishButtonClicked() {
 }
 
 function generateGuestLink(scheduleId) {
-    let link = "http://localhost:8080/schedule-master-2000-GMLM/guestschedule?id=" + scheduleId;
+    let link = "http://localhost:8080/schedule-master-2000-GMLM/guest?id=" + scheduleId;
 
     var aux = document.createElement("input");
     aux.setAttribute("value", link);
