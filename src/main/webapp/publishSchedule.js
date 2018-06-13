@@ -1,6 +1,10 @@
+let address = "http://localhost:8080/schedule-master-2000-GMLM/guestschedule?id=hasdáÉFLAsd";
+
 function onPublishScheduleResponse(scheduleId) {
     const params = new URLSearchParams();
     params.append('id', scheduleId);
+
+    address = address + params.toString();
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onSchedulesButtonClicked);
@@ -18,3 +22,9 @@ function onPublishButtonClicked() {
         onSchedulesButtonClicked();
     }
 }
+
+function onUnpublishButtonClicked() {
+    const scheduleId = this.dataset.scheduleId;
+    onPublishScheduleResponse(scheduleId);
+}
+
