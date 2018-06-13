@@ -1,10 +1,7 @@
-let address = "http://localhost:8080/schedule-master-2000-GMLM/guestschedule?id=hasdáÉFLAsd";
 
 function onPublishScheduleResponse(scheduleId) {
     const params = new URLSearchParams();
     params.append('id', scheduleId);
-
-    address = address + params.toString();
 
     const xhr = new XMLHttpRequest();
     xhr.addEventListener('load', onSchedulesButtonClicked);
@@ -18,8 +15,10 @@ function onPublishButtonClicked() {
 
     if (confirm("Do you want to publish this schedule?")) {
         onPublishScheduleResponse(scheduleId);
+        alert(generateGuestLink(scheduleId) + " has been copied to your clipboard");
     } else {
         onSchedulesButtonClicked();
+
     }
 }
 
@@ -28,3 +27,14 @@ function onUnpublishButtonClicked() {
     onPublishScheduleResponse(scheduleId);
 }
 
+function generateGuestLink(scheduleId) {
+    let link = "http://localhost:8080/schedule-master-2000-GMLM/guestschedule?id=" + scheduleId;
+
+    var aux = document.createElement("input");
+    aux.setAttribute("value", link);
+    document.body.appendChild(aux);
+    aux.select();
+    document.execCommand("copy");
+    document.body.removeChild(aux);
+    return link;
+}
