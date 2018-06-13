@@ -33,7 +33,8 @@ public class GuestTasksServlet extends AbstractServlet {
             TaskDao taskDao = new DatabaseTaskDao(connection);
             TaskService taskService = new SimpleTaskService(taskDao);
 
-            String dayId = req.getParameter("dayId");
+            String dayId = req.getParameter("id");
+            System.out.println(dayId);
 
             List<Task> tasks = taskService.getTaskByDayId(Integer.parseInt(dayId));
 

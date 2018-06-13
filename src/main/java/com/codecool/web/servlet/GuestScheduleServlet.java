@@ -35,12 +35,13 @@ public class GuestScheduleServlet extends AbstractServlet {
             DayDao dayDao = new DatabaseDayDao(connection);
             DayService dayService = new SimpleDayService(dayDao);
 
-            int scheduleId = Integer.parseInt(req.getParameter("scheduleId"));
+            int scheduleId = Integer.parseInt(req.getParameter("id"));
 
             Schedule schedule = scheduleService.getPublishedSchedule(scheduleId);
             List<Day> daysOfSchedule= dayService.findDaysByScheduleId(scheduleId);
             //Made a DTO to return the schedule object and the corresponding days too
             ScheduleDayDto scheduleDayDto = new ScheduleDayDto(schedule,daysOfSchedule);
+
             sendMessage(resp, 200, scheduleDayDto);
 
         } catch (SQLException e) {
