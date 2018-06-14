@@ -101,12 +101,10 @@
     </div>
 
     <div id="menu-content" class="hidden content">
-        <ul>
+        <ul id="menu-list">
             <li><button id="users-button">Users</button></li>
             <li><button id="schedules-button" onclick="onSchedulesButtonClicked();">Schedules</button></li>
             <li><button id="tasks-button">Tasks</button></li>
-            <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
-            <li><p id = "welcome-string">Welcome <span id="user-name"></span>!</p></li>
             <li>
                 <div id="add-schedule-button-content" class="hidden content">
                     <button id="add-new-schedule" onclick="onAddScheduleButtonClicked();">Add new schedule</button>
@@ -122,6 +120,8 @@
                     <button id="add-new-task">Add new task</button>
                 </div>
             </li>
+            <li><button id="logout-button" onclick="onLogoutButtonClicked();">Log out</button></li>
+            <li><p id = "welcome-string">Welcome <span id="user-name"></span>!</p></li>
         </ul>
     </div>
 
@@ -301,11 +301,9 @@
         </table>
     </div>
 
-    <div id="guest-schedule-content" class="hidden content">
-        
-    </div>
+    <div id="guest-schedule-content" class="hidden content"></div><br>
 
-    <div id="guest-tasks-of-day-content" class="hidden content">
+    <br><div id="guest-tasks-of-day-content" class="hidden content">
         <h1>Tasks</h1>
         <table id="guest-tasks-of-day">
             <thead>

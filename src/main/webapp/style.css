@@ -108,42 +108,54 @@
       color: white;
   }
 
-ul {
+#menu-list {
+    display:table;
+    margin: 0 auto;
+    text-align: center;
     list-style-type: none;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
-    border: 1px solid #e7e7e7;
+    border: 3px solid #e7e7e7;
     background-color: #f3f3f3;
+    padding-top: 6px;
+    padding-bottom: 2px;
 }
 
 li {
     float: left;
 }
 
+ul {
+    list-style-type: none;
+    text-align: center;
+    padding: 15px;
+}
+
 li a {
-    display: block;
+    padding: 5px;
+    display: inline-block;
     color: #666;
     text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
-}
-
-li a:hover:not(.active) {
-    background-color: #ddd;
-}
-
-li a.active {
-    color: white;
-    background-color: #4d90fe;
+    size: 600%;
+    font-size: large;
+    color: #fff;
+    padding-bottom: 15px;
+    padding-top: 15px;
+    border: 0px;
+    text-shadow: 0 1px rgba(0,0,0,0.3);
+    background-color: #357ae8;
+    border:1px solid;
 }
 
 #users-button, #schedules-button, #tasks-button, #logout-button, #add-new-schedule, #add-new-day, #add-new-task {
-    size: 300%;
+    size: 600%;
+    font-size: large;
     border: 0px;
     color: #fff;
     text-shadow: 0 1px rgba(0,0,0,0.1);
     background-color: #4d90fe;
+    padding-bottom: 15px;
+    padding-top: 15px;
 }
 
 #users-button:hover, #schedules-button:hover, #tasks-button:hover, #logout-button:hover, #add-new-schedule:hover, #add-new-day:hover, #add-new-task:hover {
@@ -155,8 +167,9 @@ li a.active {
   }
 
 #welcome-string {
-    font-size: 14px;
+    font-size: large;
     text-align: right;
+    padding-left: 500px;
 }
 
 #task-content h3 {
