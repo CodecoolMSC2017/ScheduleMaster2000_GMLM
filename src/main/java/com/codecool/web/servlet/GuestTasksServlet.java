@@ -39,7 +39,7 @@ public class GuestTasksServlet extends AbstractServlet {
             List<Task> tasks = taskService.getTaskByDayId(Integer.parseInt(dayId));
 
             sendMessage(resp, 200, tasks);
-            logger.debug("The " + user.getEmail() + " user is get all tasks from his/her given day.");
+            logger.debug("The tasks of the published schedule are retreived to a guest! Day_id: " + dayId);
         } catch (SQLException ex) {
             handleSqlError(resp, ex);
             logger.debug("Exception has been caught: " + ex.getMessage());
