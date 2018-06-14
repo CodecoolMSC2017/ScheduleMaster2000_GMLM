@@ -1,9 +1,10 @@
 let publishedSchedule;
+let ulEl;
 
 function guestAppendDay(day) {
     const hEl = document.createElement('h1');
     hEl.textContent = publishedSchedule;
-    
+
     const titleAEl = document.createElement('a');
     titleAEl.textContent = day.title;
     titleAEl.dataset.dayId = day.id;
@@ -13,10 +14,8 @@ function guestAppendDay(day) {
     const titleLiEl = document.createElement('li');
     titleLiEl.appendChild(titleAEl);
 
-    const ulEl = document.createElement('ul');
     ulEl.appendChild(titleLiEl);
 
-    
     guestScheduleContentDivEl.appendChild(ulEl);
 }
 
@@ -26,6 +25,7 @@ function onGuestScheduleLoad(dto) {
     publishedSchedule = dto.schedule;
     const hEl = document.createElement('h1');
     hEl.textContent = publishedSchedule.name;
+    ulEl = document.createElement('ul');
     guestScheduleContentDivEl.appendChild(hEl);
     for (let i = 0; i < days.length; i++) {
         const day = days[i];
