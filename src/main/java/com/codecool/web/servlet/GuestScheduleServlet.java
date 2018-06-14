@@ -23,8 +23,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @WebServlet("/guestschedule")
 public class GuestScheduleServlet extends AbstractServlet {
+
+    private static final Logger logger = LoggerFactory.getLogger(ScheduleServlet.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,16 +44,16 @@ public class GuestScheduleServlet extends AbstractServlet {
             int scheduleId = Integer.parseInt(req.getParameter("id"));
 
             Schedule schedule = scheduleService.getPublishedSchedule(scheduleId);
-            List<Day> daysOfSchedule= dayService.findDaysByScheduleId(scheduleId);
+            List<Day> daysOfSchedule = dayService.findDaysByScheduleId(scheduleId);
             //Made a DTO to return the schedule object and the corresponding days too
-            ScheduleDayDto scheduleDayDto = new ScheduleDayDto(schedule,daysOfSchedule);
+            ScheduleDayDto scheduleDayDto = new ScheduleDayDto(schedule, daysOfSchedule);
 
             sendMessage(resp, 200, scheduleDayDto);
-
+            logger.debug("The published schedule " + scheduleId + " is retreived to a guest!");
         } catch (SQLException e) {
             handleSqlError(resp, e);
         } catch (ServiceException e) {
-            sendMessage(resp, 401,e.getMessage());
+            sendMessage(resp, 401, e.getMessage());
         }
     }
 }

@@ -94,7 +94,7 @@ public class SimpleTaskService implements TaskService {
             if (taskDao.getTaskByDayId(day_id).isEmpty()) {
                 throw new ServiceException("There aren't any task for this day yet!");
             } else {
-                logger.debug("Tasks have been accessed for day + ");
+                logger.debug("Tasks have been accessed for day %d", day_id);
                 return taskDao.getTaskByDayId(day_id);
             }
         }catch (IllegalArgumentException ex) {
@@ -109,6 +109,7 @@ public class SimpleTaskService implements TaskService {
         if(result.isEmpty()) {
             throw new ServiceException("There are no unassigned tasks!");
         }
+        logger.debug("Unassigned tasks retreived from User %d", userId);
         return result;
     }
 }

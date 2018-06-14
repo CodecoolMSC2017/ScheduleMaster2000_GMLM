@@ -89,6 +89,7 @@ public class SimpleScheduleService implements ScheduleService {
         if(!schedule.isPublished()) {
             throw new ServiceException("This schedule is not published by the owner!");
         }
+        logger.debug("Published schedule %d is returned!", id);
         return schedule;
     }
 }

@@ -6,6 +6,9 @@ function appendUser(user) {
 
     const nameTdEl = document.createElement('td');
     nameTdEl.textContent = user.name;
+    nameTdEl.href = 'javascript:void(0);';
+    nameTdEl.dataset.userId = user.id;
+    nameTdEl.addEventListener('click', onUsersNameClicked);
 
     const emailTdEl = document.createElement('td');
     emailTdEl.textContent = user.email;
