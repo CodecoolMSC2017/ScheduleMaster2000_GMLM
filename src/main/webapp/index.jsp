@@ -289,7 +289,7 @@
             <thead>
             <tr>
                 <th id='task-day-name-thead'>Name</th>
-                <th>Content</th>
+                <th id= 'task-day-content-thead'>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
                 <!-- <th>Modify</th> -->
@@ -309,7 +309,7 @@
             <thead>
             <tr>
                 <th id='guest-task-day-name-thead'>Name</th>
-                <th>Content</th>
+                <th id='guest-task-content-thead'>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
             </tr>

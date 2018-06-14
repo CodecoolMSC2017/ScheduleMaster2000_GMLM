@@ -95,23 +95,27 @@ table {
     table-layout: fixed;
     font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
     border-collapse: collapse;
-    width: 1000px;
+    width: 75%;
     margin-left: auto;
     margin-right: auto;
 }
 
 
-#schedule-name-thead, #task-name-thead, #task-day-name-thead, #guest-task-day-name-thead, #day-title-thead {
+#schedule-name-thead, #task-name-thead, #day-title-thead {
     width: 75%;
 
 }
 
+#guest-task-day-name-thead, #guest-task-content-thead, #task-day-content-thead,#task-day-name-thead {
+    width: 40%;
+}
+
 #user-name-thead {
-    width: 40%
+    width: 40%;
 }
 
 #user-id-thead {
-    width:5%
+    width:5%;
 }
 
 tr, th {
