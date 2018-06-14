@@ -204,6 +204,8 @@ li a {
 /* Modal Content */
 .modal-content {
     position: relative;
+    max-width: 500px;
+    width: 75%;
     background-color: #fefefe;
     margin: auto;
     padding: 0;

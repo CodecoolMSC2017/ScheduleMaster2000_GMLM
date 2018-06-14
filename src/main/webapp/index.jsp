@@ -132,7 +132,7 @@
                 <h2>Task</h2>
             </div>
             <div class="modal-body">
-                <form id="add-task-form">
+                <form id="add-task-form" style="text-align: center;">
                     Task title:<br>
                     <input type="text" id="new-task-title" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                     Task content:<br>
@@ -154,7 +154,7 @@
                 <h2>Day</h2>
             </div>
             <div class="modal-body">
-                <form id="add-day-form">
+                <form id="add-day-form" style="text-align: center;">
                     Day title:<br>
                     <input type="text" id="new-day-title" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                 </form>
@@ -174,7 +174,7 @@
                 <h2>Schedule</h2>
             </div>
             <div class="modal-body">
-                <form id="add-schedule-form">
+                <form id="add-schedule-form" style="text-align: center;">
                     Schedule name:<br>
                     <input type="text" id="new-schedule-name" onkeydown="if (event.keyCode == 13) {return false;}"><br>
                 </form>
