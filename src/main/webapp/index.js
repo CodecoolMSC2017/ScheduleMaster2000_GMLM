@@ -114,7 +114,9 @@ function checkRequest() {
     const pathname = window.location.pathname;
     if(pathname.includes("guest")) {
         const params = window.location.search;
-        const reqQuery = "guestschedule"+ params.toString();
+        const split = params.split("?")
+        const dec = window.atob(split[1]);
+        const reqQuery = "guestschedule?"+ dec.toString();
         showContents(['guest-schedule-content']);
         onGuestScheduleRequest(reqQuery);
     }
