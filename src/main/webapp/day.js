@@ -24,8 +24,9 @@ function appendTaskToDay(task) {
     //modifyTaskButtonEl.addEventListener('click', onModifyButtonClicked);
 
     const deleteButtonTdEl = document.createElement('td');
-    const deleteButtonEl = document.createElement('button');
-    deleteButtonEl.textContent = "Delete";
+    const deleteButtonEl = document.createElement('input');
+    deleteButtonEl.setAttribute('type', 'image');
+    deleteButtonEl.setAttribute('src', 'icons/delete.png');
     deleteButtonEl.dataset.taskId = task.id;
     deleteButtonEl.dataset.dayId = currentDayId;
     deleteButtonTdEl.append(deleteButtonEl);

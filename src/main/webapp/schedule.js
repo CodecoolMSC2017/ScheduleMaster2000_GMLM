@@ -8,20 +8,23 @@ function appendDay(day) {
     titleAEl.href = 'javascript:void(0);';
     titleAEl.addEventListener('click', onDayClicked);
 
-    const modifyButtonEl = document.createElement('button');
-    modifyButtonEl.textContent = 'Modify';
+    const modifyButtonEl = document.createElement('input');
     modifyButtonEl.setAttribute('id', day.id);
+    modifyButtonEl.setAttribute('type', 'image');
+    modifyButtonEl.setAttribute('src', 'icons/modify.png');
     modifyButtonEl.dataset.scheduleId = day.scheduleId;
     modifyButtonEl.addEventListener('click', onModifyDayButtonClicked);
 
-    const deleteButtonEl = document.createElement('button');
-    deleteButtonEl.textContent = 'Delete';
+    const deleteButtonEl = document.createElement('input');
+    deleteButtonEl.setAttribute('type', 'image');
+    deleteButtonEl.setAttribute('src', 'icons/delete.png');
     deleteButtonEl.dataset.dayId = day.id;
     deleteButtonEl.dataset.scheduleId = day.scheduleId;
     deleteButtonEl.addEventListener('click', onDeleteDayButtonClicked);
 
-    const addTaskToDayButtonEl = document.createElement('button');
-    addTaskToDayButtonEl.textContent = 'Add task to day';
+    const addTaskToDayButtonEl = document.createElement('input');
+    addTaskToDayButtonEl.setAttribute('type', 'image');
+    addTaskToDayButtonEl.setAttribute('src', 'icons/add.png');
     addTaskToDayButtonEl.dataset.dayId = day.id;
     addTaskToDayButtonEl.addEventListener('click', onAddTaskToDayButtonClicked);
 

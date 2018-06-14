@@ -27,16 +27,18 @@ function appendTask(task) {
     nameTdEl.addEventListener('click', onTaskClicked);
 
     const modifyButtonTdEl = document.createElement('td');
-    const modifyButtonEl = document.createElement('button');
-    modifyButtonEl.textContent = 'Modify';
+    const modifyButtonEl = document.createElement('input');
+    modifyButtonEl.setAttribute('type', 'image');
+    modifyButtonEl.setAttribute('src', 'icons/modify.png');
     modifyButtonEl.setAttribute('id', task.id);
     modifyButtonTdEl.append(modifyButtonEl);
 
     modifyButtonEl.addEventListener('click', onModifyButtonClicked);
 
     const deleteButtonTdEl = document.createElement('td');
-    const deleteButtonEl = document.createElement('button');
-    deleteButtonEl.textContent = 'Delete';
+    const deleteButtonEl = document.createElement('input');
+    deleteButtonEl.setAttribute('type', 'image');
+    deleteButtonEl.setAttribute('src', 'icons/delete.png');
     deleteButtonTdEl.append(deleteButtonEl);
     deleteButtonEl.dataset.taskId = task.id;
 

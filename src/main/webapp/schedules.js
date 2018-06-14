@@ -8,24 +8,28 @@ function appendSchedule(schedule) {
     nameAEl.dataset.scheduleId = schedule.id;
     nameAEl.addEventListener('click', onScheduleClicked);
 
-    const modifyButtonEl = document.createElement('button');
-    modifyButtonEl.textContent = 'Modify';
+    const modifyButtonEl = document.createElement('input');
+    modifyButtonEl.setAttribute('type', 'image');
+    modifyButtonEl.setAttribute('src', 'icons/modify.png')
     modifyButtonEl.dataset.scheduleId = schedule.id;
     modifyButtonEl.addEventListener('click', onModifyScheduleButtonClicked);
 
-    const publishButtonEl = document.createElement('button');
+    const publishButtonEl = document.createElement('input');
     publishButtonEl.dataset.scheduleId = schedule.id;
 
     if(!schedule.published) {
-        publishButtonEl.textContent = 'Publish';
+        publishButtonEl.setAttribute('type', 'image');
+        publishButtonEl.setAttribute('src', 'icons/share2.png');
         publishButtonEl.addEventListener('click', onPublishButtonClicked);
     } else {
-        publishButtonEl.textContent = 'Unpublish';
+        publishButtonEl.setAttribute('type', 'image');
+        publishButtonEl.setAttribute('src', 'icons/unshare.png');
         publishButtonEl.addEventListener('click', onUnpublishButtonClicked);
     }
 
-    const deleteButtonEl = document.createElement('button');
-    deleteButtonEl.textContent = 'Delete';
+    const deleteButtonEl = document.createElement('input');
+    deleteButtonEl.setAttribute('type', 'image');
+    deleteButtonEl.setAttribute('src', 'icons/delete.png');
     deleteButtonEl.dataset.scheduleId = schedule.id;
     deleteButtonEl.addEventListener('click', onScheduleDeleteButtonClicked);
 
