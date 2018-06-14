@@ -221,8 +221,8 @@
         <table id="users">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
+                    <th id='user-id-thead'>ID</th>
+                    <th id='user-name-thead'>Name</th>
                     <th>Email</th>
                     <th>Password</th>
                     <th>Role</th>
@@ -238,7 +238,7 @@
         <table id="schedules">
             <thead>
                 <tr>
-                    <th>Name</th>
+                    <th id='schedule-name-thead'>Name</th>
                     <th>Modify</th>
                     <th>Delete</th>
                     <th>Publish</th>
@@ -254,7 +254,7 @@
         <table id="schedule">
             <thead>
                 <tr>
-                    <th>Title</th>
+                    <th id='day-title-thead'>Title</th>
                     <th>Modify</th>
                     <th>Delete</th>
                     <th>Add task</th>
@@ -271,7 +271,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Name</th>
+                <th id='task-name-thead'>Name</th>
                 <th>Modify</th>
                 <th>Delete</th>
             </tr>
@@ -288,7 +288,7 @@
         <table id="tasks-of-day">
             <thead>
             <tr>
-                <th>Name</th>
+                <th id='task-day-name-thead'>Name</th>
                 <th>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
@@ -308,7 +308,7 @@
         <table id="guest-tasks-of-day">
             <thead>
             <tr>
-                <th>Name</th>
+                <th id='guest-task-day-name-thead'>Name</th>
                 <th>Content</th>
                 <th>Start hour</th>
                 <th>End hour</th>
