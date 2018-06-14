@@ -58,26 +58,6 @@ public class DatabaseDayDao extends AbstractDao implements DayDao {
         }
     }
 
-    //Laci thinks this method might not be needed at all, so somebody should delete it if it turns out to be true
-    public void assignDayToSchedule(int schedule_id, int day_id) throws SQLException {
-        boolean autoCommit = connection.getAutoCommit();
-        connection.setAutoCommit(false);
-        String sql = "UPDATE days \n" +
-            "SET schedule_id = ?\n" +
-            "WHERE id = ?";
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setInt(1, schedule_id);
-            preparedStatement.setInt(2, day_id);
-            executeInsert(preparedStatement);
-            connection.commit();
-        } catch (SQLException ex) {
-            connection.rollback();
-            throw ex;
-        } finally {
-            connection.setAutoCommit(autoCommit);
-        }
-    }
-
     public void deleteDay(int id) throws SQLException {
         String sql = "DELETE FROM days where id = ?;";
         boolean autoCommit = connection.getAutoCommit();

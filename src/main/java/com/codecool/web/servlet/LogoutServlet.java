@@ -1,7 +1,6 @@
 package com.codecool.web.servlet;
 
 import com.codecool.web.model.User;
-import com.codecool.web.service.simple.SimpleLoginService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

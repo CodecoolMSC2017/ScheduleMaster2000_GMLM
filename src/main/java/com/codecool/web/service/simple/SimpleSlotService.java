@@ -1,6 +1,5 @@
 package com.codecool.web.service.simple;
 
-import com.codecool.web.dao.ScheduleDao;
 import com.codecool.web.dao.SlotDao;
 import com.codecool.web.model.Slot;
 import com.codecool.web.service.SlotService;

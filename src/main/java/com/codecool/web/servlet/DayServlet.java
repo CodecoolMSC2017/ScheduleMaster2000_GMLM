@@ -2,28 +2,21 @@ package com.codecool.web.servlet;
 
 
 import com.codecool.web.dao.DayDao;
-import com.codecool.web.dao.TaskDao;
 import com.codecool.web.dao.database.DatabaseDayDao;
-import com.codecool.web.dao.database.DatabaseTaskDao;
 import com.codecool.web.model.Day;
-import com.codecool.web.model.Task;
 import com.codecool.web.model.User;
 import com.codecool.web.service.DayService;
-import com.codecool.web.service.TaskService;
 import com.codecool.web.service.exception.ServiceException;
 import com.codecool.web.service.simple.SimpleDayService;
-import com.codecool.web.service.simple.SimpleTaskService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.List;
 
 @WebServlet("/protected/day")
 public class DayServlet extends AbstractServlet {

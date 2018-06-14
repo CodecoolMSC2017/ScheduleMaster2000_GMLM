@@ -49,17 +49,6 @@ public class SimpleDayService implements DayService {
         }
     }
 
-    //Laci thinks this method might not be needed at all, so somebody should delete it if it turns out to be true
-    @Override
-    public void assignDayToSchedule(int schedule_id, int day_id) throws SQLException, ServiceException {
-        try {
-            dayDao.assignDayToSchedule(schedule_id, day_id);
-        } catch (IllegalArgumentException ex) {
-            logger.debug("Exception has been caught: " + ex);
-            throw new ServiceException(ex.getMessage());
-        }
-    }
-
     @Override
     public void deleteDay(int id) throws SQLException, ServiceException {
         try {
