@@ -37,7 +37,12 @@ public class SchedulesServlet extends AbstractServlet {
             List<Schedule> schedules = null;
 
             if (actualUser.isAdmin()) {
-                schedules = scheduleService.getAllSchedules();
+                if(req.getQueryString() != null) {
+                    int clickedUserId = Integer.parseInt(req.getParameter("clickedUser"));
+                    schedules = scheduleService.getUsersSchedules(clickedUserId);
+                } else {
+                    schedules = scheduleService.getAllSchedules();
+                }
             } else {
                 schedules = scheduleService.getUsersSchedules(actualUser.getId());
             }
@@ -51,7 +56,6 @@ public class SchedulesServlet extends AbstractServlet {
             sendMessage(resp, HttpServletResponse.SC_UNAUTHORIZED, e.getMessage());
             logger.debug("Exception has been caught: " + e.getMessage());
         }
-
 
     }
 }
