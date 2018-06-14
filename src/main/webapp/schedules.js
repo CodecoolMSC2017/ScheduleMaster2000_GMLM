@@ -85,3 +85,15 @@ function onSchedulesButtonClicked() {
     xhr.open('GET', 'protected/schedules');
     xhr.send();
 }
+
+function onUsersNameClicked() {
+    const regUserId = this.dataset.userId;
+    const params = new URLSearchParams();
+    params.append('clickedUser', regUserId);
+
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', onSchedulesResponse);
+    xhr.addEventListener('error', onNetworkError);
+    xhr.open('GET', 'protected/schedules?' + params.toString());
+    xhr.send();
+}
